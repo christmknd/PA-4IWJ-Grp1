@@ -3,10 +3,11 @@
 /.env.local
 /.env.local.php
 /.env.*.local
-/config/secrets/prod/prod.decrypt.private.php
-/public/bundles/
-/var/
-/vendor/
+app/config/secrets/prod/prod.decrypt.private.php
+app/public/bundles/
+app/var/
+app/vendor/
+app/node_modules/
 ###< symfony/framework-bundle ###
 
 ###> symfony/phpunit-bridge ###
@@ -15,4 +16,5 @@
 /phpunit.xml
 ###< symfony/phpunit-bridge ###
 
-.idea
+
+.idea/
