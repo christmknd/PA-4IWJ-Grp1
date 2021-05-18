@@ -15,8 +15,14 @@
         <a href="#" class="brand-logo">La carte des Pets</a>
         <ul id="nav-mobile" class="right hide-on-med-and-down">
             <li><a href="{{path("default")}}">Accueil</a></li>
-            <li><a href="{{path("annonce_index")}}">Annonces</a></li>
-            <li><a href="{{path("evenement_index")}}">Evenements</a></li>
+            {% if app.user %}
+                <li><a href="{{path("annonce_index")}}">Mes annonces</a></li>
+                <li><a href="{{path("evenement_index")}}">Mes Evenements</a></li>
+                <li><a href="{{path("app_logout")}}">Se deconnecter</a></li>
+            {% else %}
+                <li><a href="{{path("app_register")}}">S'incrire</a></li>
+                <li><a href="{{path("app_login")}}">Se connecter</a></li>
+            {% endif %}
         </ul>
     </div>
 </nav>
@@ -37,6 +43,10 @@
     document.addEventListener('DOMContentLoaded', function() {
         var elems = document.querySelectorAll('.dropdown-trigger');
         var instances = M.Dropdown.init(elems);
+    });
+    document.addEventListener('DOMContentLoaded', function() {
+        var elems = document.querySelectorAll('select');
+        var instances = M.FormSelect.init(elems);
     });
 </script>
 </body>
