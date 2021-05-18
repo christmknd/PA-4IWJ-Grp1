@@ -58,6 +58,7 @@ class Evenement
     public function __construct()
     {
         $this->annonces = new ArrayCollection();
+        $this->etat = true;
     }
 
     public function getId(): ?int

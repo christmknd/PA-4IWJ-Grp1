@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\AnnonceRepository;
+use Carbon\Carbon;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -88,6 +89,9 @@ class Annonce
     public function __construct()
     {
         $this->evenements = new ArrayCollection();
+        $this->etat = true;
+        $this->atCreated = Carbon::now();
+        $this->nbrViews = 0;
     }
 
     public function getId(): ?int
