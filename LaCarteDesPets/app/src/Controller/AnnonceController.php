@@ -31,6 +31,7 @@ class AnnonceController extends AbstractController
     public function new(Request $request): Response
     {
         $annonce = new Annonce();
+        $annonce->setUtilisateur($this->getUser());
         $form = $this->createForm(AnnonceType::class, $annonce);
         $form->handleRequest($request);
 

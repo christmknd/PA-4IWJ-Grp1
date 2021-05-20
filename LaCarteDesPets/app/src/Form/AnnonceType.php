@@ -40,7 +40,6 @@ class AnnonceType extends AbstractType
             ])
             ->add('sexe', ChoiceType::class, [
                 'label' => 'Sexe',
-                'multiple' => true,
                 'choices'  => [
                     'Male' => 'Male',
                     'Femelle' => 'Femelle',
