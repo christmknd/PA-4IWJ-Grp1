@@ -27,8 +27,8 @@
                 <td>{{ evenement.description }}</td>
                 <td>{{ evenement.etat ? 'Yes' : 'No' }}</td>
                 <td>
-                    <a href="{{ path('evenement_show', {'id': evenement.id}) }}">show</a>
-                    <a href="{{ path('evenement_edit', {'id': evenement.id}) }}">edit</a>
+                    <a href="{{ path('evenement_show', {'id': evenement.id}) }}">visualiser</a>
+                    <a href="{{ path('evenement_edit', {'id': evenement.id}) }}">modifier</a>
                 </td>
             </tr>
         {% else %}
@@ -39,5 +39,5 @@
         </tbody>
     </table>
 
-    <a href="{{ path('evenement_new') }}">Create new</a>
+    <a href="{{ path('evenement_new') }}">Creer</a>
 {% endblock %}

@@ -11,17 +11,17 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Route("/evenement")
+ * @Route("/mes_evenements")
  */
 class EvenementController extends AbstractController
 {
     /**
-     * @Route("/", name="evenement_index", methods={"GET"})
+     * @Route("/", name="mes_evenements_index", methods={"GET"})
      */
     public function index(EvenementRepository $evenementRepository): Response
     {
         return $this->render('evenement/index.html.twig', [
-            'evenements' => $evenementRepository->findAll(),
+            'evenements' => $evenementRepository->findBy(['utilisateur' =>$this->getUser()]),
         ]);
     }
 
@@ -40,7 +40,7 @@ class EvenementController extends AbstractController
             $entityManager->persist($evenement);
             $entityManager->flush();
 
-            return $this->redirectToRoute('evenement_index');
+            return $this->redirectToRoute('mes_evenements_index');
         }
 
         return $this->render('evenement/new.html.twig', [
@@ -70,7 +70,7 @@ class EvenementController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('evenement_index');
+            return $this->redirectToRoute('mes_evenements_index');
         }
 
         return $this->render('evenement/edit.html.twig', [
@@ -90,6 +90,6 @@ class EvenementController extends AbstractController
             $entityManager->flush();
         }
 
-        return $this->redirectToRoute('evenement_index');
+        return $this->redirectToRoute('mes_evenements_index');
     }
 }
