@@ -39,8 +39,11 @@
                 <td>{{ annonce.sexe }}</td>
                 <td>{{ annonce.age }}</td>
                 <td>
-                    <a href="{{ path('annonce_show', {'id': annonce.id}) }}">show</a>
-                    <a href="{{ path('annonce_edit', {'id': annonce.id}) }}">edit</a>
+                    <a href="{{ path('annonce_show', {'id': annonce.id}) }}">visualiser</a>
+                    <a href="{{ path('annonce_edit', {'id': annonce.id}) }}">modifier</a>
+                    <form method="post" action="{{ path('annonce_toggle_etat', {'id': annonce.id}) }}">
+                        <button class="btn">Toggle Etat</button>
+                    </form>
                 </td>
             </tr>
         {% else %}

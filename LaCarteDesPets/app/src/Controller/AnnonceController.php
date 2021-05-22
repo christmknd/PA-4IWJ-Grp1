@@ -92,4 +92,14 @@ class AnnonceController extends AbstractController
 
         return $this->redirectToRoute('annonce_index');
     }
+
+    /**
+     * @Route("/{id}/toggle_etat", name="annonce_toggle_etat", methods={"POST"})
+     */
+    public function toggle_etat(Request $request, Annonce $annonce): Response
+    {
+        $annonce->setEtat(!$annonce->getEtat());
+        $this->getDoctrine()->getManager()->flush();
+        return $this->redirectToRoute('annonce_index');
+    }
 }
