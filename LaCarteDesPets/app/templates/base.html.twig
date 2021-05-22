@@ -16,8 +16,8 @@
         <ul id="nav-mobile" class="right hide-on-med-and-down">
             <li><a href="{{path("default")}}">Accueil</a></li>
             {% if app.user %}
-                <li><a href="{{path("annonce_index")}}">Mes annonces</a></li>
-                <li><a href="{{path("evenement_index")}}">Mes Evenements</a></li>
+                <li><a href="{{path("mes_annonces_index")}}">Mes annonces</a></li>
+                <li><a href="{{path("mes_evenements_index")}}">Mes Evenements</a></li>
                 <li><a href="{{path("app_logout")}}">Se deconnecter</a></li>
             {% else %}
                 <li><a href="{{path("app_register")}}">S'incrire</a></li>

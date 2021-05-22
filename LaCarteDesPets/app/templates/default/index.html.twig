@@ -1,14 +1,89 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello DefaultController!{% endblock %}
+{% block title %}LaCarteDesPets - Accueil{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
-
 <div class="example-wrapper">
-Page d'accueil
+    <h1>Tous les Annonces</h1>
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Titre</th>
+            <th>Type</th>
+            <th>Description</th>
+            <th>Etat</th>
+            <th>AtCreated</th>
+            <th>NbrViews</th>
+            <th>NomAnimal</th>
+            <th>Espece</th>
+            <th>Lieu</th>
+            <th>Sexe</th>
+            <th>Age</th>
+            <th>actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for annonce in annonces %}
+            <tr>
+                <td>{{ annonce.id }}</td>
+                <td>{{ annonce.titre }}</td>
+                <td>{{ annonce.type }}</td>
+                <td>{{ annonce.description }}</td>
+                <td>{{ annonce.etat ? 'Yes' : 'No' }}</td>
+                <td>{{ annonce.atCreated ? annonce.atCreated|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ annonce.nbrViews }}</td>
+                <td>{{ annonce.nomAnimal }}</td>
+                <td>{{ annonce.espece }}</td>
+                <td>{{ annonce.lieu }}</td>
+                <td>{{ annonce.sexe }}</td>
+                <td>{{ annonce.age }}</td>
+                <td>
+                    <a href="{{ path('annonce_show', {'id': annonce.id}) }}">visualiser</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="13">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <h1>Tous les Evenements</h1>
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Titre</th>
+            <th>Date</th>
+            <th>Lieu</th>
+            <th>Description</th>
+            <th>Etat</th>
+            <th>actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for evenement in evenements %}
+            <tr>
+                <td>{{ evenement.id }}</td>
+                <td>{{ evenement.titre }}</td>
+                <td>{{ evenement.date ? evenement.date|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ evenement.lieu }}</td>
+                <td>{{ evenement.description }}</td>
+                <td>{{ evenement.etat ? 'Yes' : 'No' }}</td>
+                <td>
+                    <a href="{{ path('evenement_show', {'id': evenement.id}) }}">visualiser</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
 </div>
 {% endblock %}
