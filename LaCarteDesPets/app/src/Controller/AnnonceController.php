@@ -11,17 +11,17 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Route("/annonce")
+ * @Route("/mes_annonces")
  */
 class AnnonceController extends AbstractController
 {
     /**
-     * @Route("/", name="annonce_index", methods={"GET"})
+     * @Route("/", name="mes_annonces_index", methods={"GET"})
      */
     public function index(AnnonceRepository $annonceRepository): Response
     {
         return $this->render('annonce/index.html.twig', [
-            'annonces' => $annonceRepository->findAll(),
+            'annonces' => $annonceRepository->findBy(['utilisateur' =>$this->getUser()]),
         ]);
     }
 
@@ -40,7 +40,7 @@ class AnnonceController extends AbstractController
             $entityManager->persist($annonce);
             $entityManager->flush();
 
-            return $this->redirectToRoute('annonce_index');
+            return $this->redirectToRoute('mes_annonces_index');
         }
 
         return $this->render('annonce/new.html.twig', [
@@ -70,7 +70,7 @@ class AnnonceController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('annonce_index');
+            return $this->redirectToRoute('mes_annonces_index');
         }
 
         return $this->render('annonce/edit.html.twig', [
@@ -90,7 +90,7 @@ class AnnonceController extends AbstractController
             $entityManager->flush();
         }
 
-        return $this->redirectToRoute('annonce_index');
+        return $this->redirectToRoute('mes_annonces_index');
     }
 
     /**
@@ -100,6 +100,6 @@ class AnnonceController extends AbstractController
     {
         $annonce->setEtat(!$annonce->getEtat());
         $this->getDoctrine()->getManager()->flush();
-        return $this->redirectToRoute('annonce_index');
+        return $this->redirectToRoute('mes_annonces_index');
     }
 }
