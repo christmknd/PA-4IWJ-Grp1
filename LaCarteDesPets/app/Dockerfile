@@ -99,7 +99,7 @@ RUN apk --update --no-cache add \
     ttf-dejavu \
     ttf-droid \
     ttf-liberation \
-    ttf-ubuntu-font-family \
+    # ttf-ubuntu-font-family \
     fontconfig
 
 # Add openssl dependencies for wkhtmltopdf
