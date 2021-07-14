@@ -10,6 +10,7 @@
         <thead>
         <tr>
             <th>Id</th>
+            <th>Utilisateur</th>
             <th>Titre</th>
             <th>Type</th>
             <th>Description</th>
@@ -28,6 +29,7 @@
         {% for annonce in annonces %}
             <tr>
                 <td>{{ annonce.id }}</td>
+                <td>{{ annonce.utilisateur.pseudo }}</td>
                 <td>{{ annonce.titre }}</td>
                 <td>{{ annonce.type }}</td>
                 <td>{{ annonce.description }}</td>
@@ -57,6 +59,7 @@
         <thead>
         <tr>
             <th>Id</th>
+            <th>Utilisateur</th>
             <th>Titre</th>
             <th>Date</th>
             <th>Lieu</th>
@@ -69,6 +72,7 @@
         {% for evenement in evenements %}
             <tr>
                 <td>{{ evenement.id }}</td>
+                <td>{{ evenement.utilisateur.pseudo }}</td>
                 <td>{{ evenement.titre }}</td>
                 <td>{{ evenement.date ? evenement.date|date('Y-m-d H:i:s') : '' }}</td>
                 <td>{{ evenement.lieu }}</td>
