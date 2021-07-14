@@ -54,6 +54,8 @@ class AnnonceController extends AbstractController
      */
     public function show(Annonce $annonce): Response
     {
+        $annonce->setNbrViews($annonce->getNbrViews()+1);
+        $this->getDoctrine()->getManager()->flush();
         return $this->render('annonce/show.html.twig', [
             'annonce' => $annonce,
         ]);
