@@ -2,8 +2,10 @@
 
 namespace App\Controller;
 
+use App\Entity\Annonce;
 use App\Entity\Evenement;
 use App\Form\EvenementType;
+use App\Repository\AnnonceRepository;
 use App\Repository\EvenementRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -92,4 +94,33 @@ class EvenementController extends AbstractController
 
         return $this->redirectToRoute('mes_evenements_index');
     }
+
+    /**
+     * @Route("/{id}/remove_annonce/{annonce_id}", name="remove_annonce_from_evenement", methods={"POST"})
+     */
+    public function remove_annonce_from_evenement(Request $request, Evenement $evenement, AnnonceRepository $annonceRepository): Response
+    {
+        $annonce = $annonceRepository->find($request->attributes->get('annonce_id'));
+        $evenement->removeAnnonce($annonce);
+        $entityManager = $this->getDoctrine()->getManager();
+        $entityManager->persist($evenement);
+        $entityManager->flush();
+
+        return $this->redirectToRoute('evenement_show', ['id'=>$request->attributes->get('id')]);
+    }
+
+    /**
+     * @Route("/{id}/add_annonce/{annonce_id}", name="add_annonce_to_evenement", methods={"POST"})
+     */
+    public function add_annonce_to_evenement(Request $request, Evenement $evenement, AnnonceRepository $annonceRepository): Response
+    {
+        $annonce = $annonceRepository->find($request->attributes->get('annonce_id'));
+        $evenement->addAnnonce($annonce);
+        $entityManager = $this->getDoctrine()->getManager();
+        $entityManager->persist($evenement);
+        $entityManager->flush();
+
+        return $this->redirectToRoute('evenement_show', ['id'=>$request->attributes->get('id')]);
+    }
+
 }

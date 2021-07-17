@@ -13,7 +13,7 @@
             </tr>
             <tr>
                 <th>Utilisateur</th>
-                <td>{{ annonce.utilisateur.pseudo }}</td>
+                <td>{{ evenement.utilisateur.pseudo }}</td>
             </tr>
             <tr>
                 <th>Titre</th>
@@ -41,5 +41,110 @@
     {% if app.user == evenement.utilisateur %}
         <a href="{{ path('evenement_edit', {'id': evenement.id}) }}">edit</a>
         {{ include('evenement/_delete_form.html.twig') }}
+    {% endif %}
+    <h2>Annonces dans cet evenement</h2>
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Titre</th>
+            <th>Type</th>
+            <th>Description</th>
+            <th>Etat</th>
+            <th>AtCreated</th>
+            <th>NbrViews</th>
+            <th>NomAnimal</th>
+            <th>Espece</th>
+            <th>Lieu</th>
+            <th>Sexe</th>
+            <th>Age</th>
+            <th>actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for annonce in evenement.annonces %}
+            <tr>
+                <td>{{ annonce.id }}</td>
+                <td>{{ annonce.titre }}</td>
+                <td>{{ annonce.type }}</td>
+                <td>{{ annonce.description }}</td>
+                <td>{{ annonce.etat ? 'Yes' : 'No' }}</td>
+                <td>{{ annonce.atCreated ? annonce.atCreated|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ annonce.nbrViews }}</td>
+                <td>{{ annonce.nomAnimal }}</td>
+                <td>{{ annonce.espece }}</td>
+                <td>{{ annonce.lieu }}</td>
+                <td>{{ annonce.sexe }}</td>
+                <td>{{ annonce.age }}</td>
+                {% if app.user == evenement.utilisateur %}
+                    <td>
+                        <form method="post" action="{{ path('remove_annonce_from_evenement', {'id': evenement.id, 'annonce_id': annonce.id}) }}">
+                            <button class="btn">Enlever annonce</button>
+                        </form>
+                    </td>
+                {% endif %}
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="13">no records found</td>
+            </tr>
+        {% endfor %}
+
+        </tbody>
+    </table>
+    {% if app.user == evenement.utilisateur %}
+        <h2>Mes annonces exclues de l'événement</h2>
+
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Id</th>
+                <th>Titre</th>
+                <th>Type</th>
+                <th>Description</th>
+                <th>Etat</th>
+                <th>AtCreated</th>
+                <th>NbrViews</th>
+                <th>NomAnimal</th>
+                <th>Espece</th>
+                <th>Lieu</th>
+                <th>Sexe</th>
+                <th>Age</th>
+                <th>actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for annonce in app.user.annonces %}
+                {% if annonce not in evenement.annonces %}
+                    <tr>
+                        <td>{{ annonce.id }}</td>
+                        <td>{{ annonce.titre }}</td>
+                        <td>{{ annonce.type }}</td>
+                        <td>{{ annonce.description }}</td>
+                        <td>{{ annonce.etat ? 'Yes' : 'No' }}</td>
+                        <td>{{ annonce.atCreated ? annonce.atCreated|date('Y-m-d H:i:s') : '' }}</td>
+                        <td>{{ annonce.nbrViews }}</td>
+                        <td>{{ annonce.nomAnimal }}</td>
+                        <td>{{ annonce.espece }}</td>
+                        <td>{{ annonce.lieu }}</td>
+                        <td>{{ annonce.sexe }}</td>
+                        <td>{{ annonce.age }}</td>
+                        <td>
+                            <a href="{{ path('annonce_show', {'id': annonce.id}) }}">visualiser</a>
+                            <form method="post" action="{{ path('add_annonce_to_evenement', {'id': evenement.id, 'annonce_id':annonce.id}) }}">
+                                <button class="btn">Ajouter annonce</button>
+                            </form>
+                        </td>
+                    </tr>
+                {% endif %}
+            {% else %}
+                <tr>
+                    <td colspan="13">no records found</td>
+                </tr>
+            {% endfor %}
+
+            </tbody>
+        </table>
     {% endif %}
 {% endblock %}
