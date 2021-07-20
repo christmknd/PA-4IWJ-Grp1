@@ -14,7 +14,6 @@
             <th>Titre</th>
             <th>Type</th>
             <th>Description</th>
-            <th>Etat</th>
             <th>AtCreated</th>
             <th>NbrViews</th>
             <th>NomAnimal</th>
@@ -27,13 +26,13 @@
         </thead>
         <tbody>
         {% for annonce in annonces %}
+            {% if annonce.etat  %}
             <tr>
                 <td>{{ annonce.id }}</td>
                 <td>{{ annonce.utilisateur.pseudo }}</td>
                 <td>{{ annonce.titre }}</td>
                 <td>{{ annonce.type }}</td>
                 <td>{{ annonce.description }}</td>
-                <td>{{ annonce.etat ? 'Yes' : 'No' }}</td>
                 <td>{{ annonce.atCreated ? annonce.atCreated|date('Y-m-d H:i:s') : '' }}</td>
                 <td>{{ annonce.nbrViews }}</td>
                 <td>{{ annonce.nomAnimal }}</td>
@@ -45,6 +44,7 @@
                     <a href="{{ path('annonce_show', {'id': annonce.id}) }}">visualiser</a>
                 </td>
             </tr>
+        {% endif %}
         {% else %}
             <tr>
                 <td colspan="13">no records found</td>
