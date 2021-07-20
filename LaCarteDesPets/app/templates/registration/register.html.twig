@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Register{% endblock %}
+
+{% block body %}
+    {% for flashError in app.flashes('verify_email_error') %}
+        <div class="alert alert-danger" role="alert">{{ flashError }}</div>
+    {% endfor %}
+
+    <h1>Register</h1>
+    {% if typeDeCompte == "association" or typeDeCompte == "personne" %}
+        {{ form_start(registrationForm) }}
+            {{ form_row(registrationForm.pseudo) }}
+            {{ form_row(registrationForm.email) }}
+            {% if typeDeCompte == "association" %}
+                {{ form_row(registrationForm.siret) }}
+            {% endif %}
+            {{ form_row(registrationForm.plainPassword, {
+                label: 'Password'
+            }) }}
+        <button type="submit" class="btn">Register</button>
+        {{ form_end(registrationForm) }}
+    {% else %}
+        <form method="get" action="{{ path('register_person') }}">
+            <button class="btn">Je suis une personne</button>
+        </form>
+        <form method="get" action="{{ path('register_association') }}">
+            <button class="btn">Je suis une association</button>
+        </form>
+    {% endif %}
+
+{% endblock %}
