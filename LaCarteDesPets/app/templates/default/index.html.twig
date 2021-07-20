@@ -27,6 +27,7 @@
         </thead>
         <tbody>
         {% for annonce in annonces %}
+            {% if annonce.etat  %}
             <tr>
                 <td>{{ annonce.id }}</td>
                 <td>{{ annonce.utilisateur.pseudo }}</td>
@@ -45,6 +46,7 @@
                     <a href="{{ path('annonce_show', {'id': annonce.id}) }}">visualiser</a>
                 </td>
             </tr>
+        {% endif %}
         {% else %}
             <tr>
                 <td colspan="13">no records found</td>
