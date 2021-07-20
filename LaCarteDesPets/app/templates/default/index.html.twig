@@ -14,7 +14,6 @@
             <th>Titre</th>
             <th>Type</th>
             <th>Description</th>
-            <th>Etat</th>
             <th>AtCreated</th>
             <th>NbrViews</th>
             <th>NomAnimal</th>
@@ -34,7 +33,6 @@
                 <td>{{ annonce.titre }}</td>
                 <td>{{ annonce.type }}</td>
                 <td>{{ annonce.description }}</td>
-                <td>{{ annonce.etat ? 'Yes' : 'No' }}</td>
                 <td>{{ annonce.atCreated ? annonce.atCreated|date('Y-m-d H:i:s') : '' }}</td>
                 <td>{{ annonce.nbrViews }}</td>
                 <td>{{ annonce.nomAnimal }}</td>
