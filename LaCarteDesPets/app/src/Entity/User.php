@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Carbon\Carbon;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -73,6 +74,17 @@ class User implements UserInterface
     {
         $this->evenements = new ArrayCollection();
         $this->annonces = new ArrayCollection();
+    }
+
+    public function isValid(): bool
+    {
+        return !empty($this->email)
+            && filter_var($this->email, FILTER_VALIDATE_EMAIL)
+            && !empty($this->pseudo)
+            && !empty($this->type_de_compte)
+            && (8<=strlen($this->password)) && (strlen($this->password)<=40)
+            && !is_null($this->evenements)
+            && !is_null($this->annonces);
     }
 
     public function getId(): ?int

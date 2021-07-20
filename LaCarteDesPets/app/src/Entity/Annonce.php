@@ -94,6 +94,23 @@ class Annonce
         $this->nbrViews = 0;
     }
 
+    public function isValid(): bool
+    {
+        return !empty($this->titre)
+            && !empty($this->type)
+            && !empty($this->description)
+            && (strlen($this->description)<=1000)
+            && !empty($this->nomAnimal)
+            && !empty($this->espece)
+            && !empty($this->lieu)
+            && !empty($this->sexe)
+            && !is_null($this->age)
+            && !is_null($this->nbrViews)
+            && !is_null($this->evenements)
+            && !is_null($this->etat)
+            && !is_null($this->atCreated);
+    }
+
     public function getId(): ?int
     {
         return $this->id;
