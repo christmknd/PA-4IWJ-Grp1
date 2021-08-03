@@ -20,7 +20,7 @@
                 {% if app.user.typeDeCompte == "association" %}
                     <li><a href="{{path("mes_evenements_index")}}">Mes Evenements</a></li>
                 {% endif %}
-                <li><a href="{{path("mon_compte")}}">Mon compte</a></li>
+                <li><a href="{{path("user_show")}}">Mon compte</a></li>
                 <li><a href="{{path("app_logout")}}">Se deconnecter</a></li>
             {% else %}
                 <li><a href="{{path("app_register")}}">S'incrire</a></li>
