@@ -9,6 +9,7 @@ use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
@@ -34,10 +35,18 @@ class UserController extends AbstractController
     public function edit(Request $request): Response
     {
         $user = $this->getUser();
-        $form = $this->createForm(RegistrationFormType::class, $user);
+        $email = $user->getEmail();
+        $form = $this->createForm(UserType::class, $user);
+        if ($user->getTypeDeCompte()=="personne"){
+            $form->remove('siret');
+        }
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            // Si le mail a été modifié, le compte n'est pas vérifier
+            if($email!==$form->get('email')->getData()){
+                $user->setIsVerified(false);
+            }
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('user_show');
@@ -54,11 +63,8 @@ class UserController extends AbstractController
      */
     public function delete(Request $request): Response
     {
-        //logout avant
-        /*
-        $securityController = new SecurityController();
-        $securityController->logout();
-        */
+        $session = new Session();
+        $session->invalidate();
         if ($this->isCsrfTokenValid('delete'.$this->getUser()->getId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($this->getUser());
