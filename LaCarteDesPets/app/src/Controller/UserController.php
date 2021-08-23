@@ -70,7 +70,6 @@ class UserController extends AbstractController
             $entityManager->remove($this->getUser());
             $entityManager->flush();
         }
-
         return $this->redirectToRoute('default');
     }
 }

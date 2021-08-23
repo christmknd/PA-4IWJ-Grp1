@@ -32,6 +32,7 @@ class ResetPasswordController extends AbstractController
         $this->resetPasswordHelper = $resetPasswordHelper;
     }
 
+
     /**
      * Display & process form to request a password reset.
      *
@@ -88,14 +89,14 @@ class ResetPasswordController extends AbstractController
 
         $token = $this->getTokenFromSession();
         if (null === $token) {
-            throw $this->createNotFoundException('No reset password token found in the URL or in the session.');
+            throw $this->createNotFoundException('Pas de changement de mot de passe possible (Token null) (No reset password token found in the URL or in the session).');
         }
 
         try {
             $user = $this->resetPasswordHelper->validateTokenAndFetchUser($token);
         } catch (ResetPasswordExceptionInterface $e) {
             $this->addFlash('reset_password_error', sprintf(
-                'There was a problem validating your reset request - %s',
+                'Un problemen est survenu lors de votre changement de mot de passe (There was a problem validating your reset request - %s)',
                 $e->getReason()
             ));
 
@@ -148,18 +149,18 @@ class ResetPasswordController extends AbstractController
             // the lines below and change the redirect to 'app_forgot_password_request'.
             // Caution: This may reveal if a user is registered or not.
             //
-            // $this->addFlash('reset_password_error', sprintf(
-            //     'There was a problem handling your password reset request - %s',
-            //     $e->getReason()
-            // ));
+             $this->addFlash('reset_password_error', sprintf(
+                 'There was a problem handling your password reset request - %s',
+                 $e->getReason()
+             ));
 
             return $this->redirectToRoute('app_check_email');
         }
 
         $email = (new TemplatedEmail())
-            ->from(new Address('maximedaude.dev@gmail.com', 'MaximeDev'))
+            ->from(new Address('esgipa2021@gmail.com', 'Carte des Pets'))
             ->to($user->getEmail())
-            ->subject('Your password reset request')
+            ->subject('Carte des Pets - Changement de mot de passe')
             ->htmlTemplate('reset_password/email.html.twig')
             ->context([
                 'resetToken' => $resetToken,

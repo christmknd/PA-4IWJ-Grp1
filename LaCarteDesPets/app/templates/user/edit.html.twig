@@ -7,7 +7,10 @@
 
     {{ include('user/_form.html.twig', {'button_label': 'Update'}) }}
 
-    <a href="{{ path('user_show') }}">Revenir au profil</a>
+    <a href="{{ path('user_show') }}">
+        <button style ="background-color:#ffcc00; margin: 5px" class="btn">
+            Revenir au profil
+        </button>
+    </a>
 
-    {{ include('user/_delete_form.html.twig') }}
 {% endblock %}
