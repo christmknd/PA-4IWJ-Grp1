@@ -1,6 +1,6 @@
-<h1>Bonjour !</h1>
+<h1>Bonjour {{ user.pseudo }}!</h1>
 
-<p>Pour changer votre mot de passe, s'il vous plait suivez le lien</p>
+<p>Pour changer votre mot de passe, cliquez sur le lien</p>
 
 <a href="{{ url('app_reset_password', {token: resetToken.token}) }}">{{ url('app_reset_password', {token: resetToken.token}) }}</a>
 
