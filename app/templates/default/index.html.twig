@@ -1,0 +1,93 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}LaCarteDesAnimaux - Accueil{% endblock %}
+
+{% block body %}
+<div class="example-wrapper">
+    <h1>Tous les Annonces</h1>
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Utilisateur</th>
+            <th>Titre</th>
+            <th>Type</th>
+            <th>Description</th>
+            <th>Date de création</th>
+            <th>Nombre de vue</th>
+            <th>Nom Animal</th>
+            <th>Espece</th>
+            <th>Lieu</th>
+            <th>Sexe</th>
+            <th>Age</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for annonce in annonces %}
+            {% if annonce.etat  %}
+            <tr>
+                <td>{{ annonce.id }}</td>
+                <td>{{ annonce.utilisateur.pseudo }}</td>
+                <td>{{ annonce.titre }}</td>
+                <td>{{ annonce.type }}</td>
+                <td>{{ annonce.description }}</td>
+                <td>{{ annonce.atCreated ? annonce.atCreated|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ annonce.nbrViews }}</td>
+                <td>{{ annonce.nomAnimal }}</td>
+                <td>{{ annonce.espece }}</td>
+                <td>{{ annonce.lieu }}</td>
+                <td>{{ annonce.sexe }}</td>
+                <td>{{ annonce.age }}</td>
+                <td>
+                    <a href="{{ path('annonce_show', {'id': annonce.id}) }}">visualiser</a>
+                </td>
+            </tr>
+        {% endif %}
+        {% else %}
+            <tr>
+                <td colspan="13">Pas d'annonce</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <h1>Tous les Evenements</h1>
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Utilisateur</th>
+            <th>Titre</th>
+            <th>Date</th>
+            <th>Lieu</th>
+            <th>Description</th>
+            <th>Etat</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for evenement in evenements %}
+            <tr>
+                <td>{{ evenement.id }}</td>
+                <td>{{ evenement.utilisateur.pseudo }}</td>
+                <td>{{ evenement.titre }}</td>
+                <td>{{ evenement.date ? evenement.date|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ evenement.lieu }}</td>
+                <td>{{ evenement.description }}</td>
+                <td>{{ evenement.etat ? 'Yes' : 'No' }}</td>
+                <td>
+                    <a href="{{ path('evenement_show', {'id': evenement.id}) }}">visualiser</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">pas d'annonce</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

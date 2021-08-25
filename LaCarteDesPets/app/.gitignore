@@ -1,9 +1,0 @@
-./vendor
-
-./var
-
-./migrations
-
-.gitignore
-
-../vendor
