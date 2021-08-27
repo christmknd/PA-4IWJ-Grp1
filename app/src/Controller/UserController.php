@@ -49,10 +49,11 @@ class UserController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             // Si le mail a été modifié, le compte n'est pas vérifier
+
             if($email!==$form->get('email')->getData()){
                 $user->setIsVerified(false);
 
-                $email = (new TemplatedEmail())
+                $email_new = (new TemplatedEmail())
                     ->from(new Address('esgipa2021@gmail.com', 'Carte des Pets'))
                     ->to($user->getEmail())
                     ->subject('Carte des Pets - Confirmation Email')
@@ -61,16 +62,10 @@ class UserController extends AbstractController
                         'user' => $user,
                     ]);
                 // generate a signed url and email it to the user
-                $emailVerifier->sendEmailConfirmation('app_verify_email', $user, $email);
-
-                return $guardHandler->authenticateUserAndHandleSuccess(
-                    $user,
-                    $request,
-                    $authenticator,
-                    'main' // firewall name in security.yaml
-                );
+                $emailVerifier->sendEmailConfirmation('app_verify_email', $user, $email_new);
 
             }
+
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('user_show');
