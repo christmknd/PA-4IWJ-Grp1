@@ -57,6 +57,17 @@ class RegistrationController extends AbstractController
             $entityManager->persist($user);
             $entityManager->flush();
 
+            $email = (new TemplatedEmail())
+                ->from(new Address('esgipa2021@gmail.com', 'Carte des Pets'))
+                ->to($user->getEmail())
+                ->subject('Carte des Pets - Confirmation Email')
+                ->htmlTemplate('registration/confirmation_email.html.twig')
+                ->context([
+                    'user' => $user,
+                ]);
+            // generate a signed url and email it to the user
+            $this->emailVerifier->sendEmailConfirmation('app_verify_email', $user, $email);
+
             return $guardHandler->authenticateUserAndHandleSuccess(
                 $user,
                 $request,
@@ -91,14 +102,17 @@ class RegistrationController extends AbstractController
             $entityManager->persist($user);
             $entityManager->flush();
 
+            $email = (new TemplatedEmail())
+                ->from(new Address('esgipa2021@gmail.com', 'Carte des Pets'))
+                ->to($user->getEmail())
+                ->subject('Carte des Pets - Confirmation Email')
+                ->htmlTemplate('registration/confirmation_email.html.twig')
+                ->context([
+                    'user' => $user,
+                ]);
             // generate a signed url and email it to the user
-            $this->emailVerifier->sendEmailConfirmation('app_verify_email', $user,
-                (new TemplatedEmail())
-                    ->from(new Address('mailer@lacartedespets.fr', 'Le chien sympathique'))
-                    ->to($user->getEmail())
-                    ->subject('Please Confirm your Email')
-                    ->htmlTemplate('registration/confirmation_email.html.twig')
-            );
+            $this->emailVerifier->sendEmailConfirmation('app_verify_email', $user, $email);
+
             return $guardHandler->authenticateUserAndHandleSuccess(
                 $user,
                 $request,
@@ -130,7 +144,7 @@ class RegistrationController extends AbstractController
         }
 
         // @TODO Change the redirect on success and handle or remove the flash message in your templates
-        $this->addFlash('success', 'Your email address has been verified.');
+        $this->addFlash('success', 'Votre email a bien été validé');
 
         return $this->redirectToRoute('app_register');
     }

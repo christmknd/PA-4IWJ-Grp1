@@ -6,8 +6,8 @@
 */app/config/secrets/prod/prod.decrypt.private.php
 */app/public/bundles/
 */app/var/
-*/app/vendor/
-*/app/node_modules/
+app/vendor/
+app/node_modules/
 ###< symfony/framework-bundle ###
 
 ###> symfony/phpunit-bridge ###
