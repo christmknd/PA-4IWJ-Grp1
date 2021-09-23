@@ -8,6 +8,8 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints\Assert;
+
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
@@ -25,7 +27,13 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=180, unique=true)
-     * ToDo: assert e-mail (et d'autres choses partout)
+     * @Assert\Email(
+     *     message = "Cette e-mail n'es pas valide"
+     * )
+     * @Assert\Length(
+     *     max=180
+     *     maxMessage= "Cette e-mail ne doit pas contenir plus de 180 charactères"
+     * )
      */
     private $email;
 
@@ -57,16 +65,27 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\Choice({"Personne","Association"})
      */
     private $type_de_compte;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @assert\Length(
+     *     min = 2
+     *     max = 255
+     *     maxMessage = "Ce pseudo ne doit pas contenir plus de 255 caractères"
+     *     )
      */
     private $pseudo;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @assert\Length(
+     *     min = 2
+     *     max = 255
+     *     maxMessage = "Ce siret ne doit pas contenir plus de 255 caractères"
+     *     )
      */
     private $siret;
 

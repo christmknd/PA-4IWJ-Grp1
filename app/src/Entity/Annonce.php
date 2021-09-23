@@ -22,16 +22,32 @@ class Annonce
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @assert\NotBlank
+     * @assert\Length(
+     *     min = 2
+     *     minMessage = "Ce titre doit contenir plus de 2 charactères"
+     *     max = 255
+     *     maxMessage= "Ce titre ne doit pas contenir plus de 255 charactères"
+     *     )
      */
     private $titre;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank
+     * @Assert\Choice({"Adoption","Perte"})
      */
     private $type;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank
+     * @assert\Length(
+     *     min = 2
+     *     minMessage = "Cette description doit contenir plus de 2 charactères"
+     *     max = 255
+     *     maxMessage = "Cette description ne doit pas contenir plus de 255 charactères"
+     * )
      */
     private $description;
 
@@ -52,26 +68,45 @@ class Annonce
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank
+     * @assert\Length(
+     *     min = 2
+     *     max = 255
+     *     )
      */
     private $nomAnimal;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank
+     * @assert\Length(
+     *     min = 2
+     *     max = 255
+     *     )
      */
     private $espece;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank
+     * @assert\Length(
+     *     min = 2
+     *     minMessage = "Ce lieu doit contenir plus de 2 charactères"
+     *     max = 255
+     *     )
      */
     private $lieu;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank
+     * @Assert\Choice({"H","F"})
      */
     private $sexe;
 
     /**
      * @ORM\Column(type="integer")
+     * @Assert\NotBlank
      */
     private $age;
 
