@@ -7,6 +7,9 @@ use Carbon\Carbon;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as assert;
+
+
 
 /**
  * @ORM\Entity(repositoryClass=AnnonceRepository::class)
@@ -22,16 +25,28 @@ class Annonce
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @assert\NotBlank
+     * @assert\Length(
+     *     min = 2,
+     *     max = 255,
+     *     )
      */
     private $titre;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank
+     * @Assert\Choice({"Adoption","Perte"})
      */
     private $type;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank
+     * @assert\Length(
+     *     min = 2,
+     *     max = 255
+     * )
      */
     private $description;
 
@@ -52,26 +67,44 @@ class Annonce
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank
+     * @assert\Length(
+     *     min = 2,
+     *     max = 255
+     *     )
      */
     private $nomAnimal;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank
+     * @assert\Length(
+     *     min = 2,
+     *     max = 255
+     *     )
      */
     private $espece;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank
+     * @assert\Length(
+     *     min = 2,
+     *     max = 255
+     *     )
      */
     private $lieu;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank
+     * @Assert\Choice({"Male","Female"})
      */
     private $sexe;
 
     /**
      * @ORM\Column(type="integer")
+     * @Assert\NotBlank
      */
     private $age;
 

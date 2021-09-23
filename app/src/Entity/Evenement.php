@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\EvenementRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Symfony\Component\Validator\Constraints as assert;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -21,6 +22,11 @@ class Evenement
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @assert\NotBlank
+     * @assert\Length(
+     *     min = 2,
+     *     max = 255
+     *     )
      */
     private $titre;
 
@@ -31,11 +37,21 @@ class Evenement
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @assert\NotBlank
+     * @assert\Length(
+     *     min = 2,
+     *     max = 255
+     *     )
      */
     private $lieu;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @assert\NotBlank
+     * @assert\Length(
+     *     min = 2,
+     *     max = 255
+     *     )
      */
     private $description;
 
