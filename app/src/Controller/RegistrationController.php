@@ -37,6 +37,7 @@ class RegistrationController extends AbstractController
 
     /**
      * @Route("/register/person", name="register_person", methods={"GET", "POST"})
+     * ToDo: remove 1 controller
      */
     public function registerPerson(Request $request, UserPasswordEncoderInterface $passwordEncoder, GuardAuthenticatorHandler $guardHandler, AppCustomAuthenticator $authenticator): Response
     {

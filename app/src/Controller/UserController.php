@@ -26,6 +26,7 @@ class UserController extends AbstractController
 
     /**
      * @Route("", name="user_show", methods={"GET"})
+     * ToDo: verifier si l'utilisateur est null, pour eviter erreur
      */
     public function show(): Response
     {
