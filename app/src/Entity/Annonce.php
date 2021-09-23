@@ -7,6 +7,9 @@ use Carbon\Carbon;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as assert;
+
+
 
 /**
  * @ORM\Entity(repositoryClass=AnnonceRepository::class)
@@ -24,10 +27,8 @@ class Annonce
      * @ORM\Column(type="string", length=255)
      * @assert\NotBlank
      * @assert\Length(
-     *     min = 2
-     *     minMessage = "Ce titre doit contenir plus de 2 charactères"
-     *     max = 255
-     *     maxMessage= "Ce titre ne doit pas contenir plus de 255 charactères"
+     *     min = 2,
+     *     max = 255,
      *     )
      */
     private $titre;
@@ -43,10 +44,8 @@ class Annonce
      * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank
      * @assert\Length(
-     *     min = 2
-     *     minMessage = "Cette description doit contenir plus de 2 charactères"
+     *     min = 2,
      *     max = 255
-     *     maxMessage = "Cette description ne doit pas contenir plus de 255 charactères"
      * )
      */
     private $description;
@@ -70,7 +69,7 @@ class Annonce
      * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank
      * @assert\Length(
-     *     min = 2
+     *     min = 2,
      *     max = 255
      *     )
      */
@@ -80,7 +79,7 @@ class Annonce
      * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank
      * @assert\Length(
-     *     min = 2
+     *     min = 2,
      *     max = 255
      *     )
      */
@@ -90,8 +89,7 @@ class Annonce
      * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank
      * @assert\Length(
-     *     min = 2
-     *     minMessage = "Ce lieu doit contenir plus de 2 charactères"
+     *     min = 2,
      *     max = 255
      *     )
      */
@@ -100,7 +98,7 @@ class Annonce
     /**
      * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank
-     * @Assert\Choice({"H","F"})
+     * @Assert\Choice({"Male","Female"})
      */
     private $sexe;
 
