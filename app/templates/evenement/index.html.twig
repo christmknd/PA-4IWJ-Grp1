@@ -1,14 +1,13 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}List d'evenement{% endblock %}
+{% block title %}Mes événements{% endblock %}
 
 {% block body %}
     <h1>List d'evenement</h1>
 
-    <table class="table">
+    <table class="responsive-table striped">
         <thead>
             <tr>
-                <th>Id</th>
                 <th>Titre</th>
                 <th>Date</th>
                 <th>Lieu</th>
@@ -20,17 +19,18 @@
         <tbody>
         {% for evenement in evenements %}
             <tr>
-                <td>{{ evenement.id }}</td>
                 <td>{{ evenement.titre }}</td>
                 <td>{{ evenement.date ? evenement.date|date('Y-m-d H:i:s') : '' }}</td>
                 <td>{{ evenement.lieu }}</td>
                 <td>{{ evenement.description }}</td>
                 <td>{{ evenement.etat ? 'Yes' : 'No' }}</td>
                 <td>
-                    <a href="{{ path('evenement_show', {'id': evenement.id}) }}">visualiser</a>
-                    <a href="{{ path('evenement_edit', {'id': evenement.id}) }}">modifier</a>
+                    <a class="btn" href="{{ path('evenement_show', {'id': evenement.id}) }}">visualiser</a>
+                    <a class="btn" href="{{ path('evenement_edit', {'id': evenement.id}) }}">modifier</a>
                     {{ include('evenement/_delete_form.html.twig') }}
-
+                    <form method="post" action="{{ path('evenement_toggle_etat', {'id': evenement.id}) }}">
+                        <button class="btn" style="background-color: {{ evenement.etat ? 'red' : 'blue' }}">{{ evenement.etat ? 'Desactiver' : 'Activer' }}</button>
+                    </form>
                 </td>
             </tr>
         {% else %}
@@ -41,5 +41,5 @@
         </tbody>
     </table>
 
-    <a href="{{ path('evenement_new') }}">Créer</a>
+    <a class="btn" href="{{ path('evenement_new') }}">Créer evenement</a>
 {% endblock %}

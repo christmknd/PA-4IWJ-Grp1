@@ -5,10 +5,9 @@
 {% block body %}
     <h1>Mes annonces</h1>
 
-    <table class="table">
+    <table class="responsive-table striped">
         <thead>
             <tr>
-                <th>Id</th>
                 <th>Titre</th>
                 <th>Type</th>
                 <th>Description</th>
@@ -20,18 +19,16 @@
                 <th>Lieu</th>
                 <th>Sexe</th>
                 <th>Age</th>
-                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
         {% for annonce in annonces %}
             <tr>
-                <td>{{ annonce.id }}</td>
                 <td>{{ annonce.titre }}</td>
                 <td>{{ annonce.type }}</td>
                 <td>{{ annonce.description }}</td>
                 <td>{{ annonce.etat ? 'Yes' : 'No' }}</td>
-                <td>{{ annonce.atCreated ? annonce.atCreated|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ annonce.atCreated ? annonce.atCreated|date('Y-m-d') : '' }}</td>
                 <td>{{ annonce.nbrViews }}</td>
                 <td>{{ annonce.nomAnimal }}</td>
                 <td>{{ annonce.espece }}</td>
@@ -39,8 +36,8 @@
                 <td>{{ annonce.sexe }}</td>
                 <td>{{ annonce.age }}</td>
                 <td>
-                    <a href="{{ path('annonce_show', {'id': annonce.id}) }}">visualiser</a>
-                    <a href="{{ path('annonce_edit', {'id': annonce.id}) }}">modifier</a>
+                    <a class="btn" href="{{ path('annonce_show', {'id': annonce.id}) }}">visualiser</a>
+                    <a class="btn" href="{{ path('annonce_edit', {'id': annonce.id}) }}">Modifier</a>
                     {{ include('annonce/_delete_form.html.twig') }}
                     <form method="post" action="{{ path('annonce_toggle_etat', {'id': annonce.id}) }}">
                         <button class="btn" style="background-color: {{ annonce.etat ? 'red' : 'blue' }}">{{ annonce.etat ? 'Desactiver' : 'Activer' }}</button>
@@ -49,11 +46,11 @@
             </tr>
         {% else %}
             <tr>
-                <td colspan="13">pas d'annonce</td>
+                <td colspan="13">Pas d'annonce</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('annonce_new') }}">Create new</a>
+    <a class="btn" href="{{ path('annonce_new') }}">Créer annonce</a>
 {% endblock %}

@@ -8,10 +8,6 @@
     <table class="table">
         <tbody>
             <tr>
-                <th>Id</th>
-                <td>{{ evenement.id }}</td>
-            </tr>
-            <tr>
                 <th>Utilisateur</th>
                 <td>{{ evenement.utilisateur.pseudo }}</td>
             </tr>
@@ -39,7 +35,7 @@
     </table>
 
     {% if app.user == evenement.utilisateur %}
-        <a href="{{ path('evenement_edit', {'id': evenement.id}) }}">edit</a>
+        <a class="btn" href="{{ path('evenement_edit', {'id': evenement.id}) }}">edit</a>
         {{ include('evenement/_delete_form.html.twig') }}
     {% endif %}
     <h2>Annonces dans cet evenement</h2>
@@ -47,7 +43,6 @@
     <table class="table">
         <thead>
         <tr>
-            <th>Id</th>
             <th>Titre</th>
             <th>Type</th>
             <th>Description</th>
@@ -59,13 +54,11 @@
             <th>Lieu</th>
             <th>Sexe</th>
             <th>Age</th>
-            <th>actions</th>
         </tr>
         </thead>
         <tbody>
         {% for annonce in evenement.annonces %}
             <tr>
-                <td>{{ annonce.id }}</td>
                 <td>{{ annonce.titre }}</td>
                 <td>{{ annonce.type }}</td>
                 <td>{{ annonce.description }}</td>
@@ -99,7 +92,6 @@
         <table class="table">
             <thead>
             <tr>
-                <th>Id</th>
                 <th>Titre</th>
                 <th>Type</th>
                 <th>Description</th>
@@ -111,14 +103,12 @@
                 <th>Lieu</th>
                 <th>Sexe</th>
                 <th>Age</th>
-                <th>actions</th>
             </tr>
             </thead>
             <tbody>
             {% for annonce in app.user.annonces %}
                 {% if annonce not in evenement.annonces %}
                     <tr>
-                        <td>{{ annonce.id }}</td>
                         <td>{{ annonce.titre }}</td>
                         <td>{{ annonce.type }}</td>
                         <td>{{ annonce.description }}</td>
@@ -131,7 +121,7 @@
                         <td>{{ annonce.sexe }}</td>
                         <td>{{ annonce.age }}</td>
                         <td>
-                            <a href="{{ path('annonce_show', {'id': annonce.id}) }}">visualiser</a>
+                            <a class="btn" href="{{ path('annonce_show', {'id': annonce.id}) }}">visualiser</a>
                             <form method="post" action="{{ path('add_annonce_to_evenement', {'id': evenement.id, 'annonce_id':annonce.id}) }}">
                                 <button class="btn">Ajouter annonce</button>
                             </form>

@@ -4,35 +4,94 @@
     <meta charset="UTF-8">
     <title>{% block title %}Bienvenue!{% endblock %}</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-    {% block stylesheets %}{% endblock %}
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    {% block stylesheets %}
+        <style>
+            body {
+                display: flex;
+                min-height: 50vh;
+                flex-direction: column;
+            }
+
+            main {
+                flex: 1 0 auto;
+            }
+            .page-footer a{
+                color: white;
+            }
+            footer{
+                position:static;
+                bottom: 0px;
+                right: 0px;
+                left: 0px;
+            }
+        </style>
+    {% endblock %}
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     {% block javascripts %}{% endblock %}
 </head>
 <body>
-<nav>
-    <div class="nav-wrapper">
-        <a href="{{path("default")}}" class="brand-logo">La carte des Animaux</a>
-        <ul id="nav-mobile" class="right hide-on-med-and-down">
-            <li><a href="{{path("default")}}">Accueil</a></li>
-            {% if app.user %}
-                <li><a href="{{path("mes_annonces_index")}}">Mes annonces</a></li>
-                {% if is_granted('ROLE_ASSO') %}
-                    <li><a href="{{path("mes_evenements_index")}}">Mes evenements</a></li>
+<div class="navbar-fixed">
+    <nav>
+        <div class="nav-wrapper deep-orange darken-2">
+            <a href="{{path("default")}}" class="brand-logo" style="margin-left: 20px">La carte des Animaux</a>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <li><a href="{{path("default")}}">Accueil</a></li>
+                {% if app.user %}
+                    <li><a href="{{path("mes_annonces_index")}}">Mes annonces</a></li>
+                    {% if is_granted('ROLE_ASSO') %}
+                        <li><a href="{{path("mes_evenements_index")}}">Mes evenements</a></li>
+                    {% endif %}
+                    <li><a href="{{path("user_show")}}">Mon compte</a></li>
+                    <li><a href="{{path("app_logout")}}">Se deconnecter</a></li>
+                {% else %}
+                    <li><a href="{{path("app_register")}}">S'incrire</a></li>
+                    <li><a href="{{path("app_login")}}">Se connecter</a></li>
                 {% endif %}
-                <li><a href="{{path("user_show")}}">Mon compte</a></li>
-                <li><a href="{{path("app_logout")}}">Se deconnecter</a></li>
-            {% else %}
-                <li><a href="{{path("app_register")}}">S'incrire</a></li>
-                <li><a href="{{path("app_login")}}">Se connecter</a></li>
-            {% endif %}
-        </ul>
-    </div>
-</nav>
+            </ul>
+        </div>
+    </nav>
+</div>
 
 <div class="container">
     {% block body %}{% endblock %}
 </div>
+
+<footer class="page-footer deep-orange darken-2">
+    <div class="container ">
+        <div class="row">
+            <div class="col l6 s12">
+                <h5 class="white-text">Qui sommes-nous ?</h5>
+                <p class="grey-text text-lighten-4">Présentation projet</p>
+            </div>
+            <div class="col l4 offset-l2 s12">
+                <h5 class="white-text">Menu</h5>
+                <ul>
+                    <li><a href="{{path("default")}}">Accueil</a></li>
+                    {% if app.user %}
+                        <li><a href="{{path("mes_annonces_index")}}">Mes annonces</a></li>
+                        {% if is_granted('ROLE_ASSO') %}
+                            <li><a href="{{path("mes_evenements_index")}}">Mes evenements</a></li>
+                        {% endif %}
+                        <li><a href="{{path("user_show")}}">Mon compte</a></li>
+                        <li><a href="{{path("app_logout")}}">Se deconnecter</a></li>
+                    {% else %}
+                        <li><a href="{{path("app_register")}}">S'incrire</a></li>
+                        <li><a href="{{path("app_login")}}">Se connecter</a></li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="footer-copyright">
+        <div class="container">
+            © 2021 Copyright Carte Des Animeaux
+            <a class="grey-text text-lighten-4 right" href="#">Plus d'informations</a>
+        </div>
+    </div>
+</footer>
+
 
 <script>
     {% for type, messages in app.flashes %}
