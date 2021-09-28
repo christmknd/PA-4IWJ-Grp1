@@ -11,9 +11,13 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use App\Security\Voter\EvenementVoter;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 /**
  * @Route("/mes_evenements")
+ * @IsGranted("ROLE_ASSO")
  */
 class EvenementController extends AbstractController
 {
@@ -63,6 +67,7 @@ class EvenementController extends AbstractController
 
     /**
      * @Route("/{id}/edit", name="evenement_edit", methods={"GET","POST"})
+     * @Security("is_granted('POST_EDIT', evenement)")
      */
     public function edit(Request $request, Evenement $evenement): Response
     {
@@ -83,6 +88,7 @@ class EvenementController extends AbstractController
 
     /**
      * @Route("/{id}", name="evenement_delete", methods={"POST"})
+     * @Security("is_granted('POST_DELETE', evenement)")
      */
     public function delete(Request $request, Evenement $evenement): Response
     {

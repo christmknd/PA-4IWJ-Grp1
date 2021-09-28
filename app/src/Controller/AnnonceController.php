@@ -4,11 +4,14 @@ namespace App\Controller;
 
 use App\Entity\Annonce;
 use App\Form\AnnonceType;
+use App\Security\Voter\AnnonceVoter;
 use App\Repository\AnnonceRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 /**
  * @Route("/mes_annonces")
@@ -63,6 +66,7 @@ class AnnonceController extends AbstractController
 
     /**
      * @Route("/{id}/edit", name="annonce_edit", methods={"GET","POST"})
+     * @Security("is_granted('POST_EDIT', annonce)")
      */
     public function edit(Request $request, Annonce $annonce): Response
     {
@@ -83,6 +87,7 @@ class AnnonceController extends AbstractController
 
     /**
      * @Route("/{id}", name="annonce_delete", methods={"POST"})
+     * @Security("is_granted('POST_DELETE', annonce)")
      */
     public function delete(Request $request, Annonce $annonce): Response
     {

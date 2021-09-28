@@ -27,7 +27,7 @@ https://www.doctrine-project.org/projects/doctrine-orm/en/2.7/reference/associat
 https://symfony.com/doc/current/doctrine/associations.html
 
 ### Commandes à connaitre 
-```
+```bash
 // Création de fichier via maker bundle
 docker-compose exec php bin/console make:controller
 docker-compose exec php bin/console make:form
@@ -37,11 +37,23 @@ docker-compose exec php bin/console debug:router
 ```
 
 ### Reset password
-````
+````bash
 make:resetpassword
 1) Run "php bin/console make:migration" to generate a migration for the new "App\Entity\ResetPasswordRequest" entity. OK
 2) Review forms in "src/Form" to customize validation and labels. OK
 3) Review and customize the templates in `templates/reset_password`. OK
 4) Make sure your MAILER_DSN env var has the correct settings.
 5) Create a "forgot your password link" to the app_forgot_password_request route on your login form. OK
+````
+
+### Voter
+````bash
+make:voter
+
+````
+
+### Error Page
+Affichage seulement en prod
+````bash
+composer require symfony/twig-pack
 ````
