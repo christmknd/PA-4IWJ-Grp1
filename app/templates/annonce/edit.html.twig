@@ -7,7 +7,7 @@
 
     {{ include('annonce/_form.html.twig', {'button_label': 'Update'}) }}
 
-    <a href="{{ path('mes_annonces_index') }}">Revenir à la liste</a>
+    <a class="btn" href="{{ path('mes_annonces_index') }}">Revenir à la liste</a>
 
     {{ include('annonce/_delete_form.html.twig') }}
 {% endblock %}

@@ -21,12 +21,8 @@
         <button type="submit" class="btn">S'inscrire</button>
         {{ form_end(registrationForm) }}
     {% else %}
-        <form method="get" action="{{ path('register_person') }}">
-            <button class="btn">Je suis une personne</button>
-        </form>
-        <form method="get" action="{{ path('register_association') }}">
-            <button class="btn">Je suis une association</button>
-        </form>
+        <a class="waves-effect waves-light btn" href="{{ path('register_person') }}">Je suis une personne</a>
+        <a class="waves-effect waves-light btn" href="{{ path('register_association') }}">Je suis une association</a>
     {% endif %}
 
 {% endblock %}

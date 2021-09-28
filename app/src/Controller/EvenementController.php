@@ -129,4 +129,14 @@ class EvenementController extends AbstractController
         return $this->redirectToRoute('evenement_show', ['id'=>$request->attributes->get('id')]);
     }
 
+    /**
+     * @Route("/{id}/toggle_etat", name="evenement_toggle_etat", methods={"POST"})
+     */
+    public function toggle_etat(Request $request, Evenement $evenement): Response
+    {
+        $evenement->setEtat(!$evenement->getEtat());
+        $this->getDoctrine()->getManager()->flush();
+        return $this->redirectToRoute('mes_evenements_index');
+    }
+
 }
