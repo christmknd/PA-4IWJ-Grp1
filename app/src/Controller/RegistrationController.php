@@ -42,7 +42,7 @@ class RegistrationController extends AbstractController
     public function registerPerson(Request $request, UserPasswordEncoderInterface $passwordEncoder, GuardAuthenticatorHandler $guardHandler, AppCustomAuthenticator $authenticator): Response
     {
         $user = new User();
-        $user->setTypeDeCompte("personne");
+        $user->setTypeDeCompte("Personne");
         $form = $this->createForm(RegistrationFormType::class, $user);
         $form->remove('siret');
         $form->handleRequest($request);
@@ -59,9 +59,9 @@ class RegistrationController extends AbstractController
             $entityManager->flush();
 
             $email = (new TemplatedEmail())
-                ->from(new Address('esgipa2021@gmail.com', 'Carte des Pets'))
+                ->from(new Address('esgipa2021@gmail.com', 'Carte des Animeaux'))
                 ->to($user->getEmail())
-                ->subject('Carte des Pets - Confirmation Email')
+                ->subject('Carte des Animeaux - Confirmation Email')
                 ->htmlTemplate('registration/confirmation_email.html.twig')
                 ->context([
                     'user' => $user,
@@ -88,7 +88,8 @@ class RegistrationController extends AbstractController
     public function registerAssociation(Request $request, UserPasswordEncoderInterface $passwordEncoder, GuardAuthenticatorHandler $guardHandler, AppCustomAuthenticator $authenticator): Response
     {
         $user = new User();
-        $user->setTypeDeCompte("association");
+        $user->setTypeDeCompte("Association");
+        $user->setRoles(["ROLE_ASSO"]);
         $form = $this->createForm(RegistrationFormType::class, $user);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
@@ -104,9 +105,9 @@ class RegistrationController extends AbstractController
             $entityManager->flush();
 
             $email = (new TemplatedEmail())
-                ->from(new Address('esgipa2021@gmail.com', 'Carte des Pets'))
+                ->from(new Address('esgipa2021@gmail.com', 'Carte des Animeaux'))
                 ->to($user->getEmail())
-                ->subject('Carte des Pets - Confirmation Email')
+                ->subject('Carte des Animeaux - Confirmation Email')
                 ->htmlTemplate('registration/confirmation_email.html.twig')
                 ->context([
                     'user' => $user,
