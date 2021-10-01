@@ -37,6 +37,7 @@ security:
     access_control:
         - { path: ^/admin, roles: ROLE_ADMIN }
         - { path: ^/mes_annonces, roles: ROLE_USER }
+        - { path: ^/favori, roles: ROLE_USER }
         - { path: ^/user, roles: ROLE_USER }
         - { path: ^/mes_evenements, roles: ROLE_ASSO }
         - { path: ^/profile, roles: ROLE_USER }

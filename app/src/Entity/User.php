@@ -85,10 +85,22 @@ class User implements UserInterface
      */
     private $siret;
 
+    /**
+     * @ORM\ManyToMany(targetEntity=Annonce::class)
+     */
+    private $annonces_favoris;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=Evenement::class)
+     */
+    private $evenements_favoris;
+
     public function __construct()
     {
         $this->evenements = new ArrayCollection();
         $this->annonces = new ArrayCollection();
+        $this->annonces_favoris = new ArrayCollection();
+        $this->evenements_favoris = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -179,6 +191,7 @@ class User implements UserInterface
     {
         return $this->evenements;
     }
+
 
     public function addEvenement(Evenement $evenement): self
     {
@@ -279,4 +292,53 @@ class User implements UserInterface
 
         return $this;
     }
+
+    /**
+     * @return Collection|Annonce[]
+     */
+    public function getAnnoncesFavoris(): Collection
+    {
+        return $this->annonces_favoris;
+    }
+
+    public function addAnnoncesFavori(Annonce $annoncesFavori): self
+    {
+        if (!$this->annonces_favoris->contains($annoncesFavori)) {
+            $this->annonces_favoris[] = $annoncesFavori;
+        }
+
+        return $this;
+    }
+
+    public function removeAnnoncesFavori(Annonce $annoncesFavori): self
+    {
+        $this->annonces_favoris->removeElement($annoncesFavori);
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Evenement[]
+     */
+    public function getEvenementsFavoris(): Collection
+    {
+        return $this->evenements_favoris;
+    }
+
+    public function addEvenementsFavori(Evenement $evenementsFavori): self
+    {
+        if (!$this->evenements_favoris->contains($evenementsFavori)) {
+            $this->evenements_favoris[] = $evenementsFavori;
+        }
+
+        return $this;
+    }
+
+    public function removeEvenementsFavori(Evenement $evenementsFavori): self
+    {
+        $this->evenements_favoris->removeElement($evenementsFavori);
+
+        return $this;
+    }
+
 }
