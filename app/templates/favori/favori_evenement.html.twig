@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mes événements favoris{% endblock %}
+
+{% block body %}
+    <h1>List d'evenement favoris</h1>
+
+    <table class="responsive-table striped">
+        <thead>
+        <tr>
+            <th>Titre</th>
+            <th>Date</th>
+            <th>Lieu</th>
+            <th>Description</th>
+            <th>Etat</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for evenement in evenements %}
+            <tr>
+                <td>{{ evenement.titre }}</td>
+                <td>{{ evenement.date ? evenement.date|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ evenement.lieu }}</td>
+                <td>{{ evenement.description }}</td>
+                <td>{{ evenement.etat ? 'Yes' : 'No' }}</td>
+                <td>
+                    <form method="post" action="{{ path('favori_evenement_toggle', {'id': annonce.id}) }}">
+                        <button class="material-icons">{{ annonce.favori ? 'star' : 'star_border' }}</button>
+                    </form>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">Pas d'evenement</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

@@ -71,10 +71,17 @@ class Evenement
      */
     private $utilisateur;
 
+    /**
+     * @ORM\Column(type="boolean")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $favori;
+
     public function __construct()
     {
         $this->annonces = new ArrayCollection();
         $this->etat = true;
+        $this->favori = false;
     }
 
     public function getId(): ?int
@@ -174,6 +181,18 @@ class Evenement
     public function setUtilisateur(?User $utilisateur): self
     {
         $this->utilisateur = $utilisateur;
+
+        return $this;
+    }
+
+    public function getFavori(): ?bool
+    {
+        return $this->favori;
+    }
+
+    public function setFavori(bool $favori): self
+    {
+        $this->favori = $favori;
 
         return $this;
     }

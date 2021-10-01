@@ -98,7 +98,7 @@ class Annonce
     /**
      * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank
-     * @Assert\Choice({"Male","Female"})
+     * @Assert\Choice({"Male","Femelle"})
      */
     private $sexe;
 
@@ -119,12 +119,19 @@ class Annonce
      */
     private $utilisateur;
 
+    /**
+     * @ORM\Column(type="boolean")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $favori;
+
     public function __construct()
     {
         $this->evenements = new ArrayCollection();
         $this->etat = true;
         $this->atCreated = Carbon::now();
         $this->nbrViews = 0;
+        $this->favori = false;
     }
 
     public function getId(): ?int
@@ -299,6 +306,18 @@ class Annonce
     public function setUtilisateur(?User $utilisateur): self
     {
         $this->utilisateur = $utilisateur;
+
+        return $this;
+    }
+
+    public function getFavori(): ?bool
+    {
+        return $this->favori;
+    }
+
+    public function setFavori(bool $favori): self
+    {
+        $this->favori = $favori;
 
         return $this;
     }

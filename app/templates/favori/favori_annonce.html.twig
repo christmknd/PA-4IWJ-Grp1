@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mes annonces favorites{% endblock %}
+
+{% block body %}
+    <h1>Mes annonces favorites</h1>
+
+    <table class="responsive-table striped">
+        <thead>
+        <tr>
+            <th>Titre</th>
+            <th>Type</th>
+            <th>Description</th>
+            <th>Etat</th>
+            <th>Date de création</th>
+            <th>Nombre de Vue</th>
+            <th>Nom Animal</th>
+            <th>Espece</th>
+            <th>Lieu</th>
+            <th>Sexe</th>
+            <th>Age</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for annonce in annonces %}
+            <tr>
+                <td>{{ annonce.titre }}</td>
+                <td>{{ annonce.type }}</td>
+                <td>{{ annonce.description }}</td>
+                <td>{{ annonce.etat ? 'Yes' : 'No' }}</td>
+                <td>{{ annonce.atCreated ? annonce.atCreated|date('Y-m-d') : '' }}</td>
+                <td>{{ annonce.nbrViews }}</td>
+                <td>{{ annonce.nomAnimal }}</td>
+                <td>{{ annonce.espece }}</td>
+                <td>{{ annonce.lieu }}</td>
+                <td>{{ annonce.sexe }}</td>
+                <td>{{ annonce.age }}</td>
+                <td>
+                    <form method="post" action="{{ path('favori_annonce_toggle', {'id': annonce.id}) }}">
+                        <button class="material-icons">{{ annonce.favori ? 'star' : 'star_border' }}</button>
+                    </form>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="13">Pas d'annonce</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

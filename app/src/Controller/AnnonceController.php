@@ -109,5 +109,4 @@ class AnnonceController extends AbstractController
         $this->getDoctrine()->getManager()->flush();
         return $this->redirectToRoute('mes_annonces_index');
     }
-
 }
