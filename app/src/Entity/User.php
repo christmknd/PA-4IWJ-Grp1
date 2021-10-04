@@ -63,7 +63,7 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Assert\Choice({"Personne","Association"})
+     * @Assert\Choice({"Personne","Association","Admin"})
      */
     private $type_de_compte;
 

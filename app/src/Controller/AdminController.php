@@ -5,7 +5,6 @@ namespace App\Controller;
 use App\Entity\User;
 use App\Form\RegistrationFormType;
 use App\Form\UserType;
-use App\Repository\UserRepository;
 use App\Security\AppCustomAuthenticator;
 use App\Security\EmailVerifier;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
@@ -19,24 +18,51 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Security\Guard\GuardAuthenticatorHandler;
 
 /**
- * @Route("/user")
+ * @Route("/admin", name="admin")
  */
-class UserController extends AbstractController
+class AdminController extends AbstractController
 {
 
+    /**
+     * @Route("/new", name="register_admin", methods={"GET", "POST"})
+     */
+    public function registerAdmin(Request $request, UserPasswordEncoderInterface $passwordEncoder, GuardAuthenticatorHandler $guardHandler, AppCustomAuthenticator $authenticator): Response
+    {
+        $user = (new User())
+            ->setRoles(["ROLE_ADMIN"])
+            ->setPseudo("adminBest")
+            ->setEmail("admin@test.fr")
+            ->setTypeDeCompte("Admin");
+        $user->setPassword(
+        $passwordEncoder->encodePassword(
+            $user,
+            "admin@test.fr"
+            )
+        );
+        $entityManager = $this->getDoctrine()->getManager();
+        $entityManager->persist($user);
+        $entityManager->flush();
+
+        return $guardHandler->authenticateUserAndHandleSuccess(
+            $user,
+            $request,
+            $authenticator,
+            'main' // firewall name in security.yaml
+        );
+    }
 
     /**
-     * @Route("", name="user_show", methods={"GET"})
+     * @Route("", name="_show", methods={"GET"})
      */
     public function show(): Response
     {
-        return $this->render('user/show.html.twig', [
-            'user' => $this->getUser()
+        return $this->render('admin/show.html.twig', [
+            'admin' => $this->getUser()
         ]);
     }
 
     /**
-     * @Route("/edit", name="user_edit", methods={"GET","POST"})
+     * @Route("/edit", name="_edit", methods={"GET","POST"})
      */
     public function edit(Request $request, EmailVerifier $emailVerifier, GuardAuthenticatorHandler $guardHandler, AppCustomAuthenticator $authenticator): Response
     {

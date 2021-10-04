@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mon profil{% endblock %}
+
+{% block body %}
+    <h1>Mon profil</h1>
+
+    <table class="table">
+        <tbody>
+
+            <tr>
+                <th>Pseudo</th>
+                <td>{{ admin.pseudo }}</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>{{ admin.email }}</td>
+            </tr>
+            <tr>
+                <th>Compte vérifié</th>
+                <td>{{ admin.isVerified ? 'Oui' : 'Non' }}</td>
+            </tr>
+            <tr>
+                <th>Type de compte</th>
+                <td>{{ admin.typeDeCompte }}</td>
+            </tr>
+            {% if app.user.typeDeCompte == "association" %}
+            <tr>
+                <th>Siret</th>
+                <td>{{ admin.siret }}</td>
+            </tr>
+            {% endif %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('admin_edit') }}">
+    <button style ="background-color:#ffcc00; margin: 5px" class="btn">
+        Modifier profil
+    </button>
+    </a>
+
+{% endblock %}
