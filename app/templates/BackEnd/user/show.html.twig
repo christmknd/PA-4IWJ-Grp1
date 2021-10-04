@@ -10,33 +10,34 @@
 
             <tr>
                 <th>Pseudo</th>
-                <td>{{ admin.pseudo }}</td>
+                <td>{{ user.pseudo }}</td>
             </tr>
             <tr>
                 <th>Email</th>
-                <td>{{ admin.email }}</td>
+                <td>{{ user.email }}</td>
             </tr>
             <tr>
                 <th>Compte vérifié</th>
-                <td>{{ admin.isVerified ? 'Oui' : 'Non' }}</td>
+                <td>{{ user.isVerified ? 'Oui' : 'Non' }}</td>
             </tr>
             <tr>
                 <th>Type de compte</th>
-                <td>{{ admin.typeDeCompte }}</td>
+                <td>{{ user.typeDeCompte }}</td>
             </tr>
             {% if app.user.typeDeCompte == "association" %}
             <tr>
                 <th>Siret</th>
-                <td>{{ admin.siret }}</td>
+                <td>{{ user.siret }}</td>
             </tr>
             {% endif %}
         </tbody>
     </table>
 
-    <a href="{{ path('admin_edit') }}">
+    <a href="{{ path('user_edit') }}">
     <button style ="background-color:#ffcc00; margin: 5px" class="btn">
         Modifier profil
     </button>
     </a>
 
+    {{ include('user/_delete_form.html.twig') }}
 {% endblock %}
