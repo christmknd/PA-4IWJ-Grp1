@@ -71,17 +71,11 @@ class Evenement
      */
     private $utilisateur;
 
-    /**
-     * @ORM\Column(type="boolean")
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $favori;
 
     public function __construct()
     {
         $this->annonces = new ArrayCollection();
         $this->etat = true;
-        $this->favori = false;
     }
 
     public function getId(): ?int

@@ -119,11 +119,6 @@ class Annonce
      */
     private $utilisateur;
 
-    /**
-     * @ORM\Column(type="boolean")
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $favori;
 
     public function __construct()
     {
@@ -131,7 +126,6 @@ class Annonce
         $this->etat = true;
         $this->atCreated = Carbon::now();
         $this->nbrViews = 0;
-        $this->favori = false;
     }
 
     public function getId(): ?int
