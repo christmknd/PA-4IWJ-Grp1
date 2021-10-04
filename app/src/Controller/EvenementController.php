@@ -17,7 +17,6 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 /**
  * @Route("/mes_evenements")
- * @IsGranted("ROLE_ASSO")
  */
 class EvenementController extends AbstractController
 {
@@ -56,7 +55,7 @@ class EvenementController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="evenement_show", methods={"GET"})
+     * @Route("/show{id}", name="evenement_show", methods={"GET"})
      */
     public function show(Evenement $evenement): Response
     {

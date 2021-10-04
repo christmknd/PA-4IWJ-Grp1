@@ -38,6 +38,7 @@ class EvenementVoter extends Voter
             return true;
         }
 
+
         // ... (check conditions and return true to grant permission) ...
         switch ($attribute) {
             case 'POST_EDIT':
