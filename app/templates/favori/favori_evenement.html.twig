@@ -14,6 +14,7 @@
             <th>Description</th>
             <th>Etat</th>
             <th>Actions</th>
+
         </tr>
         </thead>
         <tbody>
@@ -25,8 +26,8 @@
                 <td>{{ evenement.description }}</td>
                 <td>{{ evenement.etat ? 'Yes' : 'No' }}</td>
                 <td>
-                    <form method="post" action="{{ path('favori_evenement_toggle', {'id': annonce.id}) }}">
-                        <button class="material-icons">{{ annonce.favori ? 'star' : 'star_border' }}</button>
+                    <form method="post" action="{{ path('favori_evenement_toggle', {'id': evenement.id}) }}">
+                        <button class="material-icons">{{ evenement.isFavori(app.user) ? 'star' : 'star_border' }}</button>
                     </form>
                 </td>
             </tr>

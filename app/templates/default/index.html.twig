@@ -19,7 +19,7 @@
                             {% if is_granted('ROLE_USER') %}
                             <div class="card-content">
                                 <form method="post" action="{{ path('favori_annonce_toggle', {'id': annonce.id}) }}">
-                                    <button class="material-icons">{{ annonce.favori ? 'star' : 'star_border' }}</button>
+                                    <button class="material-icons">{{ annonce.isFavori(app.user) ? 'star' : 'star_border' }}</button>
                                 </form>
                             </div>
                             {% endif %}
@@ -45,11 +45,13 @@
                         <p>{{ evenement.description }}</p>
                         <p>Le {{ evenement.date ? evenement.date|date('Y-m-d H:i:s') : '' }} à {{ evenement.lieu }}</p>
                     </div>
+                    {% if is_granted('ROLE_USER') %}
                     <div class="card-content">
                         <form method="post" action="{{ path('favori_evenement_toggle', {'id': evenement.id}) }}">
-                            <button class="material-icons">{{ evenement.favori ? 'star' : 'star_border' }}</button>
+                            <button class="material-icons">{{ evenement.isFavori(app.user) ? 'star' : 'star_border' }}</button>
                         </form>
                     </div>
+                    {% endif %}
                     <div class="card-action">
                         <a href="{{ path('evenement_show', {'id': evenement.id}) }}">visualiser</a>
                         {% if evenement.etat  %}

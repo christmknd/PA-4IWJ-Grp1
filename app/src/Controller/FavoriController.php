@@ -67,8 +67,7 @@ class FavoriController extends AbstractController
      */
     public function annonce_toggle_favori(Request $request, Annonce $annonce): Response
     {
-        $annonce->setFavori(!$annonce->getFavori());
-        if ($annonce->getFavori()) $this->getUser()->addAnnoncesFavori($annonce);
+        if (!$annonce->isFavori($this->getUser())) $this->getUser()->addAnnoncesFavori($annonce);
         else $this->getUser()->removeAnnoncesFavori($annonce);
         $this->getDoctrine()->getManager()->flush();
         return $this->redirectToRoute('default');
@@ -79,8 +78,7 @@ class FavoriController extends AbstractController
      */
     public function evenement_toggle_favori(Request $request, Evenement $evenement): Response
     {
-        $evenement->setFavori(!$evenement->getFavori());
-        if ($evenement->getFavori()) $this->getUser()->addEvenementsFavori($evenement);
+        if (!$evenement->isFavori($this->getUser())) $this->getUser()->addEvenementsFavori($evenement);
         else $this->getUser()->removeEvenementsFavori($evenement);
         $this->getDoctrine()->getManager()->flush();
         return $this->redirectToRoute('default');

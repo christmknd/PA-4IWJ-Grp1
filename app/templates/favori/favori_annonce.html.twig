@@ -37,7 +37,7 @@
                 <td>{{ annonce.age }}</td>
                 <td>
                     <form method="post" action="{{ path('favori_annonce_toggle', {'id': annonce.id}) }}">
-                        <button class="material-icons">{{ annonce.favori ? 'star' : 'star_border' }}</button>
+                        <button class="material-icons">{{ annonce.isFavori(app.user) ? 'star' : 'star_border' }}</button>
                     </form>
                 </td>
             </tr>
