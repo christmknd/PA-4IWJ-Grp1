@@ -185,15 +185,9 @@ class Evenement
         return $this;
     }
 
-    public function getFavori(): ?bool
-    {
-        return $this->favori;
-    }
 
-    public function setFavori(bool $favori): self
+    public function isFavori(User $user): ?bool
     {
-        $this->favori = $favori;
-
-        return $this;
+        return $user->getEvenementsFavoris()->contains($this);
     }
 }

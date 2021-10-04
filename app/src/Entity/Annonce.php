@@ -310,15 +310,8 @@ class Annonce
         return $this;
     }
 
-    public function getFavori(): ?bool
+    public function isFavori(User $user): ?bool
     {
-        return $this->favori;
-    }
-
-    public function setFavori(bool $favori): self
-    {
-        $this->favori = $favori;
-
-        return $this;
+        return $user->getAnnoncesFavoris()->contains($this);
     }
 }
