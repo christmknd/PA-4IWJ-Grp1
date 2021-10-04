@@ -53,11 +53,7 @@ class FavoriController extends AbstractController
     public function indexFavoriEvenement(EvenementRepository $evenementRepository): Response
     {
         return $this->render('favori/favori_evenement.html.twig', [
-            'evenements' => $evenementRepository->findBy(
-                [
-                    'favori' =>true
-                ]
-            )
+            'evenements' => $this->getUser()->getEvenementsFavoris()
         ]);
     }
 
