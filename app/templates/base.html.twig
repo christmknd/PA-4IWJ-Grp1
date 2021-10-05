@@ -37,6 +37,9 @@
         <div class="nav-wrapper deep-orange darken-2">
             <a href="{{path("default")}}" class="brand-logo" style="margin-left: 20px">La carte des Animaux</a>
             <ul id="nav-mobile" class="right hide-on-med-and-down">
+                {% if is_granted('ROLE_ADMIN') %}
+                    <a class="btn" href="{{ path('admin') }}">Mode Admin</a>
+                {% endif %}
                 <li><a href="{{path("default")}}">Accueil</a></li>
                 {% if app.user %}
                     <li><a href="{{path("mes_annonces_index")}}">Mes annonces</a></li>

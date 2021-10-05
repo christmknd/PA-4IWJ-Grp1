@@ -1,0 +1,11 @@
+{% extends 'BackEnd/base.html.twig' %}
+
+{% block title %}Ajouter User{% endblock %}
+
+{% block body %}
+    <h1>Créer User</h1>
+
+    {{ include('BackEnd/user/_form.html.twig') }}
+
+    <a class="btn" href="{{ path('admin_users') }}">back to list</a>
+{% endblock %}

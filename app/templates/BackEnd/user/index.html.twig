@@ -1,0 +1,46 @@
+{% extends 'BackEnd/base.html.twig' %}
+
+{% block title %}Les comptes en ligne{% endblock %}
+
+{% block body %}
+    <h1>Les comptes en ligne</h1>
+
+    <a class="btn" href="{{ path('admin_users_new') }}">Créer un compte</a>
+
+    <table class="responsive-table striped">
+        <thead>
+            <tr>
+                <th>Pseudo</th>
+                <th>Email</th>
+                <th>Compte vérifié</th>
+                <th>Type de compte</th>
+                {% if app.user.typeDeCompte == "association" %}
+                <th>Siret</th>
+                {% endif %}
+            </tr>
+        </thead>
+        <tbody>
+        {% for user in users %}
+        <tr>
+
+            <td>{{ user.pseudo }}</td>
+            <td>{{ user.email }}</td>
+            <td>{{ user.isVerified ? 'Oui' : 'Non' }}</td>
+            <td>{{ user.typeDeCompte }}</td>
+        {% if app.user.typeDeCompte == "association" %}
+                <td>{{ user.siret }}</td>
+        {% endif %}
+            <td>
+                <a class="btn" href="{{ path('admin_users_show', {'id': user.id}) }}">visualiser</a>
+                <a class="btn" href="{{ path('admin_users_edit', {'id': user.id}) }}">modifier</a>
+                {{ include('BackEnd/user/_delete_form.html.twig') }}
+            </td>
+        {% else %}
+            <tr>
+                <td colspan="7">Pas de comptes</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}

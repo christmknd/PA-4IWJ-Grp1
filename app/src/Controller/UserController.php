@@ -15,6 +15,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\Mime\Address;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Security\Guard\GuardAuthenticatorHandler;
 
 /**
@@ -26,7 +27,6 @@ class UserController extends AbstractController
 
     /**
      * @Route("", name="user_show", methods={"GET"})
-     * ToDo: verifier si l'utilisateur est null, pour eviter erreur
      */
     public function show(): Response
     {
@@ -43,7 +43,7 @@ class UserController extends AbstractController
         $user = $this->getUser();
         $email = $user->getEmail();
         $form = $this->createForm(UserType::class, $user);
-        if ($user->getTypeDeCompte()=="personne"){
+        if ($user->getTypeDeCompte()!=="Association"){
             $form->remove('siret');
         }
         $form->handleRequest($request);
