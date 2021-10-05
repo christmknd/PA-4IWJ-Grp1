@@ -37,11 +37,12 @@
         <div class="nav-wrapper  purple lighten-3">
             <a href="{{path("admin")}}" class="brand-logo" style="margin-left: 20px">La carte des Animaux - ADMIN</a>
             <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <a class="btn" href="{{ path('default') }}">Mode User</a>
                 <li><a href="{{path("admin")}}">Accueil</a></li>
                 <li><a href="{{path("admin_annonces")}}">Les annonces</a></li>
                 <li><a href="{{path("admin_evenements")}}">Les evenements</a></li>
                 <li><a href="{{path("admin_users")}}">Les comptes</a></li>
-                <li><a href="{{path("user_show")}}">Mon compte</a></li>
+                <li><a href="{{path("admin_show")}}">Mon compte</a></li>
                 <li><a href="{{path("app_logout")}}">Se deconnecter</a></li>
             </ul>
         </div>
@@ -63,10 +64,10 @@
                 <h5 class="white-text">Menu</h5>
                 <ul id="nav-mobile" class="right hide-on-med-and-down">
                     <li><a href="{{path("admin")}}">Accueil</a></li>
-                    <li><a href="{{path("mes_annonces_index")}}">Les annonces</a></li>
-                    <li><a href="{{path("mes_evenements_index")}}">Les evenements</a></li>
-                    <li><a href="{{path("user_show")}}">Les comptes</a></li>
-                    <li><a href="{{path("user_show")}}">Mon compte</a></li>
+                    <li><a href="{{path("admin_annonces")}}">Les annonces</a></li>
+                    <li><a href="{{path("admin_evenements")}}">Les evenements</a></li>
+                    <li><a href="{{path("admin_users")}}">Les comptes</a></li>
+                    <li><a href="{{path("admin_show")}}">Mon compte</a></li>
                     <li><a href="{{path("app_logout")}}">Se deconnecter</a></li>
                 </ul>
             </div>

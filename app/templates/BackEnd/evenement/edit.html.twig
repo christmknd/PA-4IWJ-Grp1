@@ -1,13 +1,13 @@
-{% extends 'base.html.twig' %}
+{% extends 'BackEnd/base.html.twig' %}
 
 {% block title %}Modifier Evenement{% endblock %}
 
 {% block body %}
     <h1>Modifier Evenement</h1>
 
-    {{ include('evenement/_form.html.twig', {'button_label': 'Update'}) }}
+    {{ include('BackEnd/evenement/_form.html.twig', {'button_label': 'Update'}) }}
 
-    <a class="btn" href="{{ path('mes_evenements_index') }}">Revenir à la liste</a>
+    <a class="btn" href="{{ path('admin_evenements') }}">Revenir à la liste</a>
 
-    {{ include('evenement/_delete_form.html.twig') }}
+    {{ include('BackEnd/evenement/_delete_form.html.twig') }}
 {% endblock %}

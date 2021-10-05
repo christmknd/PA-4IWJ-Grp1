@@ -1,9 +1,9 @@
-{% extends 'base.html.twig' %}
+{% extends 'BackEnd/base.html.twig' %}
 
-{% block title %}Mon profil{% endblock %}
+{% block title %}Le profil{% endblock %}
 
 {% block body %}
-    <h1>Mon profil</h1>
+    <h1>Le profil</h1>
 
     <table class="table">
         <tbody>
@@ -33,11 +33,13 @@
         </tbody>
     </table>
 
-    <a href="{{ path('user_edit') }}">
+    <a href="{{ path('admin_users_edit', {'id': user.id}) }}">
     <button style ="background-color:#ffcc00; margin: 5px" class="btn">
         Modifier profil
     </button>
     </a>
 
-    {{ include('user/_delete_form.html.twig') }}
+    {{ include('BackEnd/user/_delete_form.html.twig') }}
+
+    <a class="btn" href="{{ path('admin_users') }}">Revenir à la liste</a>
 {% endblock %}

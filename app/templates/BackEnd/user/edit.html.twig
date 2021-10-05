@@ -1,13 +1,13 @@
-{% extends 'base.html.twig' %}
+{% extends 'BackEnd/base.html.twig' %}
 
 {% block title %}Modifier profil{% endblock %}
 
 {% block body %}
     <h1>Modifier profil de l'utilisateur</h1>
 
-    {{ include('user/_form.html.twig', {'button_label': 'Enregistrer'}) }}
+    {{ include('BackEnd/user/_form.html.twig', {'button_label': 'Enregistrer'}) }}
 
-    <a href="{{ path('user_show') }}">
+    <a href="{{ path('admin_users_show', {'id': user.id}) }}">
         <button style ="background-color:#ffcc00; margin: 5px" class="btn">
             Revenir au profil
         </button>

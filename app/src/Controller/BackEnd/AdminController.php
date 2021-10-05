@@ -36,24 +36,15 @@ class AdminController extends AbstractController
 
 
     /**
-     * @Route("/evenements", name="_evenements", methods={"GET"})
+     * @Route("/show", name="_show", methods={"GET"})
      */
-    public function evenements(EvenementRepository $evenementRepository): Response
+    public function show(): Response
     {
-        return $this->render('BackEnd/evenements.html.twig', [
-            'evenements' => $evenementRepository->findAll()
+        return $this->render('BackEnd/user/show.html.twig', [
+            'user' => $this->getUser()
         ]);
     }
 
-    /**
-     * @Route("/users", name="_users", methods={"GET"})
-     */
-    public function users(UserRepository $userRepository): Response
-    {
-        return $this->render('BackEnd/users.html.twig', [
-            'users' => $userRepository->findAll()
-        ]);
-    }
 
     /**
      * @Route("/new", name="register_admin", methods={"GET", "POST"})

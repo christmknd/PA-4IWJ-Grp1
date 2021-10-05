@@ -29,7 +29,7 @@ class AnnonceController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="annonce_show", methods={"GET"})
+     * @Route("/{id}", name="_show", methods={"GET"})
      */
     public function show(Annonce $annonce): Response
     {
@@ -40,9 +40,9 @@ class AnnonceController extends AbstractController
         ]);
     }
 
+
     /**
-     * @Route("/{id}/edit", name="annonce_edit", methods={"GET","POST"})
-     * @Security("is_granted('POST_EDIT', annonce)")
+     * @Route("/{id}/edit", name="_edit", methods={"GET","POST"})
      */
     public function edit(Request $request, Annonce $annonce): Response
     {
@@ -63,7 +63,6 @@ class AnnonceController extends AbstractController
 
     /**
      * @Route("/{id}", name="_delete", methods={"POST"})
-     * @Security("is_granted('POST_DELETE', annonce)")
      */
     public function delete(Request $request, Annonce $annonce): Response
     {

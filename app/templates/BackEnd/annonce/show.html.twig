@@ -58,8 +58,7 @@
         </tbody>
     </table>
 
-    {% if app.user == annonce.utilisateur %}
-        <a class="btn" href="{{ path('annonce_edit', {'id': annonce.id}) }}">Modifier</a>
-        {{ include('annonce/_delete_form.html.twig') }}
-    {% endif %}
+    <a class="btn" href="{{ path('admin_annonces_edit', {'id': annonce.id}) }}">Modifier</a>
+    {{ include('BackEnd/annonce/_delete_form.html.twig') }}
+    <a class="btn" href="{{ path('admin_annonces') }}">Revenir à la liste</a>
 {% endblock %}
