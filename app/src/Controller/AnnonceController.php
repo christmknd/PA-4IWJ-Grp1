@@ -109,4 +109,13 @@ class AnnonceController extends AbstractController
         $this->getDoctrine()->getManager()->flush();
         return $this->redirectToRoute('mes_annonces_index');
     }
+    /**
+     * @Route("/{id}/filter_annonce", name="filter_annonce", methods={"POST"})
+     */
+
+    /*
+    public function filter_annonce(Request $request Annonce $annonce): Response {
+
+    }
+    */
 }

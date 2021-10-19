@@ -138,4 +138,13 @@ class EvenementController extends AbstractController
         return $this->redirectToRoute('mes_evenements_index');
     }
 
+    /**
+     * @Route("/{id}/filter_evenement", name="filter_evenement", methods={"POST"})
+     */
+
+    /*
+    public function filter_evenement(Request $request Evenement $evenement): Response {
+
+    }
+    */
 }
