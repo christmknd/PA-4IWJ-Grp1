@@ -24,7 +24,11 @@ function initMap() {
             return;
         }
         fillInAddress(place);
-        return codeAddress(place);
+        var mapOptions = {
+            zoom: 5,
+            center: codeAddress()
+        }
+        map = new google.maps.Map(document.getElementById('map'), mapOptions);
     });
 
     function fillInAddress(place) {  // optional parameter
@@ -54,24 +58,20 @@ function initMap() {
         }
     }
 
-    function codeAddress(place) {
+    function codeAddress() {
         geocoder = new google.maps.Geocoder();
-        var address = document.getElementsByClassName('location')[0].value;
-        console.log(place)
+        var address = document.getElementById('annonce_address').value;
         console.log(address)
         geocoder.geocode( { 'address': address}, function(results, status) {
             if (status == 'OK') {
                 LatLng = results[0].geometry.location
                 console.log(results)
-
-                console.log(LatLng)
-                var newDiv = document.createElement("p");
-                // et lui donne un peu de contenu
-                var newContent = document.createTextNode(LatLng[0]);
-                // ajoute le nœud texte au nouveau div créé
-                newDiv.appendChild(newContent);
-                var currentDiv = document.getElementsByClassName('location')[0];
-                currentDiv.appendChild(newDiv);
+                console.log(results[0].geometry.location.toString())
+                var nodeA = document.createElement('p')
+                var nodeB = document.createTextNode(results[0].geometry.location.toString())
+                nodeA.appendChild(nodeB)
+                document.body.appendChild(nodeA)
+                return results[0].geometry.location
             } else {
                 alert('Geocode was not successful for the following reason: ' + status);
             }
