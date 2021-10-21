@@ -14,9 +14,9 @@
     <div id="map" style="height: 400px; width: 100%"></div>
 
     <h1>Annonces en ligne</h1>
-    {% if annonces  %}
-    {{ form(formTriAnnonces) }}
-    {% endif %}
+        {{ form(formTriAnnonces) }}
+        {{ form(formFilterAnnonce) }}
+
 
         <div class="row ">
         {% for annonce in annonces %}
@@ -43,16 +43,16 @@
         {% endif %}
         {% else %}
             <div class="col s1 m4">
-                <p>Pas d'evenements</p>
+                <p>Pas d'annonces</p>
             </div>
         {% endfor %}
         </div>
 
     <h1>Évènements à venir</h1>
 
-    {% if evenements  %}
+
         {{ form(formTriEvenements) }}
-    {% endif %}
+
 
         <div class="collection ">
         {% for evenement in evenements %}

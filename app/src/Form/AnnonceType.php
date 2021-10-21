@@ -32,8 +32,15 @@ class AnnonceType extends AbstractType
             ->add('nomAnimal',TextType::class, [
                 'label' => 'Nom animal'
             ])
-            ->add('espece',TextType::class, [
-                'label' => 'Espece'
+            ->add('espece', ChoiceType::class, [
+                'label' => 'Espece',
+                'required' => false,
+                'choices'  => [
+                    'Chien' => 'chien',
+                    'Chat' => 'chat',
+                    'Serpent' => 'serpent',
+                    'Hamster' => 'Hamster'
+                ],
             ])
             ->add('lieu',TextType::class, [
                 'label' => 'Lieu'

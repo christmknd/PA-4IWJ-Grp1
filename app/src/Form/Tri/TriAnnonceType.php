@@ -26,6 +26,14 @@ class TriAnnonceType extends AbstractType
                     'Décroissant' => 'DESC',
                 ],
             ])
+            ->add('lieuTri', ChoiceType::class, [
+                'label' => 'Lieu',
+                'required' => false,
+                'choices'  => [
+                    'Croissant' => 'ASC',
+                    'Décroissant' => 'DESC',
+                ],
+            ])
             ->add('nbrViewTri', ChoiceType::class, [
                 'label' => 'Nbr de vues',
                 'required' => false,
@@ -43,7 +51,7 @@ class TriAnnonceType extends AbstractType
                 ],
             ])
             ->add('submit', SubmitType::class,[
-                'label' => 'Rechercher',
+                'label' => 'Trier',
             ])
         ;
     }
