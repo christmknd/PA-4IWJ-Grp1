@@ -38,6 +38,27 @@ class TriSelection
      */
     private $dateEventTri;
 
+    /**
+     * @ORM\Column(type="string", nullable=true)
+     */
+    private $lieuTri;
+
+    /**
+     * @return mixed
+     */
+    public function getLieuTri()
+    {
+        return $this->lieuTri;
+    }
+
+    /**
+     * @param mixed $lieuTri
+     */
+    public function setLieuTri($lieuTri): void
+    {
+        $this->lieuTri = $lieuTri;
+    }
+
 
 
     /**

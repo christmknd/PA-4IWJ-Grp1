@@ -5,6 +5,7 @@ namespace App\Form;
 use App\Entity\Evenement;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -22,8 +23,9 @@ class EvenementType extends AbstractType
             ->add('description',TextareaType::class, [
                 'label' => 'Description'
             ])
-            ->add('dateEvent', DateType::class, [
-                'widget' => 'single_text',
+            ->add('dateEvent', DateTimeType::class, [
+                'label' => "Date de l'evenement",
+                'date_widget' => 'single_text'
             ])
             ->add('lieu',TextType::class, [
                 'label' => 'Lieu'

@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Form\FilterAnnonceType;
 use App\Form\Tri\TriAnnonceType;
 use App\Form\Tri\TriEvenementType;
 use App\Repository\AnnonceRepository;
@@ -36,7 +37,10 @@ class DefaultController extends AbstractController
                 $optionNbrViewsTriAnnonces = $formTriAnnonces->get('nbrViewTri')->getData();
                 $optionsTriAnnonces['nbrViews']=$optionNbrViewsTriAnnonces;
             }
-
+            if(!$formTriAnnonces->get('lieuTri')->isEmpty()){
+                $optionNbrViewsTriAnnonces = $formTriAnnonces->get('lieuTri')->getData();
+                $optionsTriAnnonces['lieu']=$optionNbrViewsTriAnnonces;
+            }
         }
 
         $formTriEvenements = $this->createForm(TriEvenementType::class);
@@ -56,13 +60,35 @@ class DefaultController extends AbstractController
                 $optionNbrViewsTriEvenements = $formTriEvenements->get('nbrViewTri')->getData();
                 $optionsTriEvenements['nbrViews']=$optionNbrViewsTriEvenements;
             }
+            if(!$formTriEvenements->get('lieuTri')->isEmpty()){
+                $optionNbrViewsTriEvenements = $formTriEvenements->get('lieuTri')->getData();
+                $optionsTriEvenements['lieu']=$optionNbrViewsTriEvenements;
+            }
         }
 
+        $formFilterAnnonce = $this->createForm(FilterAnnonceType::class);
+        $formFilterAnnonce->handleRequest($request);
+
+        $optionsFilterAnnonce = [];
+
+        if ($formFilterAnnonce->isSubmitted() && $formFilterAnnonce->isValid()) {
+            if(!$formFilterAnnonce->get('sexe')->isEmpty()){
+                $optionSexeFilterAnnonce = $formFilterAnnonce->get('sexe')->getData();
+                $optionsFilterAnnonce['sexe']=$optionSexeFilterAnnonce;
+            }
+            if(!$formFilterAnnonce->get('espece')->isEmpty()){
+                $optionEspeceFilterAnnonce = $formFilterAnnonce->get('espece')->getData();
+                $optionsFilterAnnonce['espece']=$optionEspeceFilterAnnonce;
+            }
+        }
+
+
         return $this->render('default/index.html.twig', [
-            'annonces' => $annonceRepository->findBy([],$optionsTriAnnonces),
+            'annonces' => $annonceRepository->findBy($optionsFilterAnnonce,$optionsTriAnnonces),
             'evenements' => $evenementRepository->findBy([],$optionsTriEvenements),
             'formTriAnnonces' => $formTriAnnonces->createView(),
-            'formTriEvenements' => $formTriEvenements->createView()
+            'formTriEvenements' => $formTriEvenements->createView(),
+            'formFilterAnnonce' => $formFilterAnnonce->createView()
         ]);
     }
 

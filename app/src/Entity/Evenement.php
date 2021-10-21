@@ -33,6 +33,7 @@ class Evenement
 
     /**
      * @ORM\Column(type="datetime")
+     * @Assert\GreaterThan("today +1 day")
      */
     private $dateEvent;
 
