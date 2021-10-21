@@ -2,25 +2,25 @@
 
 namespace App\Repository;
 
-use App\Entity\TrieSelection;
+use App\Entity\TriSelection;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @method TrieSelection|null find($id, $lockMode = null, $lockVersion = null)
- * @method TrieSelection|null findOneBy(array $criteria, array $orderBy = null)
- * @method TrieSelection[]    findAll()
- * @method TrieSelection[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method TriSelection|null find($id, $lockMode = null, $lockVersion = null)
+ * @method TriSelection|null findOneBy(array $criteria, array $orderBy = null)
+ * @method TriSelection[]    findAll()
+ * @method TriSelection[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class TrieSelectionRepository extends ServiceEntityRepository
+class TriSelectionRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, TrieSelection::class);
+        parent::__construct($registry, TriSelection::class);
     }
 
     // /**
-    //  * @return TrieSelection[] Returns an array of TrieSelection objects
+    //  * @return TriSelection[] Returns an array of TriSelection objects
     //  */
     /*
     public function findByExampleField($value)
@@ -37,7 +37,7 @@ class TrieSelectionRepository extends ServiceEntityRepository
     */
 
     /*
-    public function findOneBySomeField($value): ?TrieSelection
+    public function findOneBySomeField($value): ?TriSelection
     {
         return $this->createQueryBuilder('t')
             ->andWhere('t.exampleField = :val')

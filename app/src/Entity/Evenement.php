@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\EvenementRepository;
+use Carbon\Carbon;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Symfony\Component\Validator\Constraints as assert;
@@ -33,7 +34,12 @@ class Evenement
     /**
      * @ORM\Column(type="datetime")
      */
-    private $date;
+    private $dateEvent;
+
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $atCreated;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -71,11 +77,18 @@ class Evenement
      */
     private $utilisateur;
 
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $nbrViews;
+
 
     public function __construct()
     {
         $this->annonces = new ArrayCollection();
+        $this->atCreated = Carbon::now();
         $this->etat = true;
+        $this->nbrViews = 0;
     }
 
     public function getId(): ?int
@@ -95,14 +108,26 @@ class Evenement
         return $this;
     }
 
-    public function getDate(): ?\DateTimeInterface
+    public function getDateEvent(): ?\DateTimeInterface
     {
-        return $this->date;
+        return $this->dateEvent;
     }
 
-    public function setDate(\DateTimeInterface $date): self
+    public function setDateEvent(\DateTimeInterface $dateEvent): self
     {
-        $this->date = $date;
+        $this->dateEvent = $dateEvent;
+
+        return $this;
+    }
+
+    public function getAtCreated(): ?\DateTimeInterface
+    {
+        return $this->atCreated;
+    }
+
+    public function setAtCreated(\DateTimeInterface $atCreated): self
+    {
+        $this->atCreated = $atCreated;
 
         return $this;
     }
@@ -183,5 +208,17 @@ class Evenement
     public function isFavori(User $user): ?bool
     {
         return $user->getEvenementsFavoris()->contains($this);
+    }
+
+    public function getNbrViews(): ?int
+    {
+        return $this->nbrViews;
+    }
+
+    public function setNbrViews(int $nbrViews): self
+    {
+        $this->nbrViews = $nbrViews;
+
+        return $this;
     }
 }

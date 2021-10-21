@@ -22,7 +22,7 @@ class EvenementType extends AbstractType
             ->add('description',TextareaType::class, [
                 'label' => 'Description'
             ])
-            ->add('date', DateType::class, [
+            ->add('dateEvent', DateType::class, [
                 'widget' => 'single_text',
             ])
             ->add('lieu',TextType::class, [

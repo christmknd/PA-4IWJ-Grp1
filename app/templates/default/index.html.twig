@@ -53,7 +53,7 @@
                     <div class="card-content white-text">
                         <span class="card-title">{{ evenement.titre }}</span>
                         <p>{{ evenement.description }}</p>
-                        <p>Le {{ evenement.date ? evenement.date|date('Y-m-d H:i:s') : '' }} à {{ evenement.lieu }}</p>
+                        <p>Le {{ evenement.dateEvent ? evenement.dateEvent|date('Y-m-d H:i:s') : '' }} à {{ evenement.lieu }}</p>
                     </div>
                     {% if is_granted('ROLE_USER') %}
                     <div class="card-content">
