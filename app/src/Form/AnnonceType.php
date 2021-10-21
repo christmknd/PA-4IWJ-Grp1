@@ -27,7 +27,23 @@ class AnnonceType extends AbstractType
                 ],
             ])
             ->add('description',TextareaType::class, [
-                'label' => 'Description'
+                'label' => 'Description',
+            ])
+            ->add('address',TextType::class, [
+                'label' => 'Address',
+                'attr' => ['class' => 'location']
+            ])
+            ->add('ville',TextType::class, [
+                'label' => 'Ville',
+                'attr' => ['class' => 'locality'],
+            ])
+            ->add('zipCode',TextType::class, [
+                'label' => 'Code Postal',
+                'attr' => ['class' => 'postal_code'],
+            ])
+            ->add('pays',TextType::class, [
+                'label' => 'Pays',
+                'attr' => ['class' => 'country'],
             ])
             ->add('nomAnimal',TextType::class, [
                 'label' => 'Nom animal'
@@ -41,9 +57,6 @@ class AnnonceType extends AbstractType
                     'Serpent' => 'serpent',
                     'Hamster' => 'Hamster'
                 ],
-            ])
-            ->add('lieu',TextType::class, [
-                'label' => 'Lieu'
             ])
             ->add('sexe', ChoiceType::class, [
                 'label' => 'Sexe',
