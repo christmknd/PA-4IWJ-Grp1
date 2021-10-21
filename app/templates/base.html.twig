@@ -43,14 +43,14 @@
                 <li><a href="{{path("default")}}">Accueil</a></li>
                 {% if app.user %}
                     <li><a href="{{path("mes_annonces_index")}}">Mes annonces</a></li>
+                    {% if is_granted('ROLE_ASSO') %}
+                        <li><a href="{{path("mes_evenements_index")}}">Mes evenements</a></li>
+                    {% endif %}
                     <ul id="dropdown1" class="dropdown-content">
                         <li><a href="{{path("favori_annonce")}}">Annonces</a></li>
                         <li><a href="{{path("favori_evenement")}}">Evenements</a></li>
                     </ul>
                     <li><a class="dropdown-trigger" href="{{path("favori")}}" data-target="dropdown1">Mes favoris<i class="material-icons right">arrow_drop_down</i></a></li>
-                    {% if is_granted('ROLE_ASSO') %}
-                        <li><a href="{{path("mes_evenements_index")}}">Mes evenements</a></li>
-                    {% endif %}
                     <li><a href="{{path("user_show")}}">Mon compte</a></li>
                     <li><a href="{{path("app_logout")}}">Se deconnecter</a></li>
                 {% else %}

@@ -14,6 +14,9 @@
     <div id="map" style="height: 400px; width: 100%"></div>
 
     <h1>Annonces en ligne</h1>
+    {% if annonces  %}
+    {{ form(formTriAnnonces) }}
+    {% endif %}
 
         <div class="row ">
         {% for annonce in annonces %}
@@ -37,13 +40,20 @@
                             </div>
                         </div>
                     </div>
-            {% else %}
-                <div class="col s1 m4"/>
         {% endif %}
+        {% else %}
+            <div class="col s1 m4">
+                <p>Pas d'evenements</p>
+            </div>
         {% endfor %}
         </div>
 
     <h1>Évènements à venir</h1>
+
+    {% if evenements  %}
+        {{ form(formTriEvenements) }}
+    {% endif %}
+
         <div class="collection ">
         {% for evenement in evenements %}
             <div class="col s1 m6">
@@ -51,7 +61,7 @@
                     <div class="card-content white-text">
                         <span class="card-title">{{ evenement.titre }}</span>
                         <p>{{ evenement.description }}</p>
-                        <p>Le {{ evenement.date ? evenement.date|date('Y-m-d H:i:s') : '' }} à {{ evenement.lieu }}</p>
+                        <p>Le {{ evenement.dateEvent ? evenement.dateEvent|date('Y-m-d H:i:s') : '' }} à {{ evenement.lieu }}</p>
                     </div>
                     {% if is_granted('ROLE_USER') %}
                     <div class="card-content">
@@ -72,7 +82,9 @@
                 </div>
             </div>
         {% else %}
-            <div class="col s1 m6"/>
+            <div class="col s1 m4">
+                <p>Pas d'evenements</p>
+            </div>
         {% endfor %}
         </div>
     <script async
