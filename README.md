@@ -1,5 +1,11 @@
 #La carte des Animaux
 
+Webpack encore +> gestion assets
+Dans migration insert Admin
+```
+insert into "user" (id, email, roles, password, is_verified, type_de_compte, pseudo, siret)
+values (1,"admin@test.fr",["ROLE_ADMIN"],"admin@test.fr",false,"Admin","adminFirst",null);
+```
 ### Installation SF 5 avec docker
 ```
 // Initialiser les images docker

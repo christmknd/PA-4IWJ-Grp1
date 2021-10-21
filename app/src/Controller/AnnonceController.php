@@ -14,7 +14,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 /**
- * @Route("/mes_annonces")
+ * @Route("/annonces")
  */
 class AnnonceController extends AbstractController
 {
@@ -27,6 +27,7 @@ class AnnonceController extends AbstractController
             'annonces' => $annonceRepository->findBy(['utilisateur' =>$this->getUser()]),
         ]);
     }
+
 
     /**
      * @Route("/new", name="annonce_new", methods={"GET","POST"})
