@@ -2,10 +2,18 @@
 
 {% block title %}LaCarteDesAnimaux - Accueil{% endblock %}
 
+{% block javascripts %}
+    <script src="{{ asset('js/map.js') }}"></script>
+{% endblock %}
+
 {% block body %}
 <div class="example-wrapper">
-    <h1>Annonces en ligne</h1>
 
+    <h3>My Google Maps Demo</h3>
+    <!--The div element for the map -->
+    <div id="map" style="height: 400px; width: 100%"></div>
+
+    <h1>Annonces en ligne</h1>
 
         <div class="row ">
         {% for annonce in annonces %}
@@ -67,5 +75,8 @@
             <div class="col s1 m6"/>
         {% endfor %}
         </div>
+    <script async
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAipTm3HoOVFjsVcePwaIRK9GhjqgvwS-U&callback=initMapIndex">
+    </script>
 </div>
 {% endblock %}

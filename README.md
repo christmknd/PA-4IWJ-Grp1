@@ -1,12 +1,22 @@
-#La carte des Animaux
+# La carte des Animaux
+Un site d'annonce d'adoption et de perte d'animeaux
 
-### Installation SF 5 avec docker
+## Init projet avec Docker
 ```
 // Initialiser les images docker
 docker-compose build --no-cache
 // Lancer les containers docker
 docker-compose up -d
 ```
+
+## Creer un compte Admin
+Lien de creation d'un compte Admin, un seul compte par défaut
+```
+http://localhost:8082/admin/new 
+admin@test.fr email & mdp
+```
+
+## Commande symfony Help
 
 ##### Debug docker
 ```
