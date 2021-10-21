@@ -6,6 +6,9 @@
 <div class="example-wrapper">
     <h1>Annonces en ligne</h1>
 
+    {% if annonces  %}
+    {{ form(formTriAnnonces) }}
+    {% endif %}
 
         <div class="row ">
         {% for annonce in annonces %}
@@ -29,13 +32,20 @@
                             </div>
                         </div>
                     </div>
-            {% else %}
-                <div class="col s1 m4"/>
         {% endif %}
+        {% else %}
+            <div class="col s1 m4">
+                <p>Pas d'evenements</p>
+            </div>
         {% endfor %}
         </div>
 
     <h1>Évènements à venir</h1>
+
+    {% if evenements  %}
+        {{ form(formTriEvenements) }}
+    {% endif %}
+
         <div class="collection ">
         {% for evenement in evenements %}
             <div class="col s1 m6">
@@ -64,7 +74,9 @@
                 </div>
             </div>
         {% else %}
-            <div class="col s1 m6"/>
+            <div class="col s1 m4">
+                <p>Pas d'evenements</p>
+            </div>
         {% endfor %}
         </div>
 </div>
