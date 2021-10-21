@@ -26,6 +26,14 @@ class TriEvenementType extends AbstractType
                     'Décroissant' => 'DESC',
                 ],
             ])
+            ->add('lieuTri', ChoiceType::class, [
+                'label' => 'Lieu',
+                'required' => false,
+                'choices'  => [
+                    'Croissant' => 'ASC',
+                    'Décroissant' => 'DESC',
+                ],
+            ])
             ->add('dateAtCreatedTri', ChoiceType::class, [
                 'label' => 'Date de création',
                 'required' => false,
@@ -43,7 +51,7 @@ class TriEvenementType extends AbstractType
                 ],
             ])
             ->add('submit', SubmitType::class,[
-                'label' => 'Rechercher',
+                'label' => 'Trier',
             ])
         ;
     }
