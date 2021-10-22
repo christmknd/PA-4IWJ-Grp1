@@ -61,17 +61,15 @@ function initMap() {
     function codeAddress() {
         geocoder = new google.maps.Geocoder();
         var address = document.getElementById('annonce_address').value;
-        console.log(address)
         geocoder.geocode( { 'address': address}, function(results, status) {
             if (status == 'OK') {
                 LatLng = results[0].geometry.location
-                console.log(results)
-                console.log(results[0].geometry.location.toString())
-                var nodeA = document.createElement('p')
-                var nodeB = document.createTextNode(results[0].geometry.location.toString())
-                nodeA.appendChild(nodeB)
-                document.body.appendChild(nodeA)
-                return results[0].geometry.location
+                const nodeA = document.getElementsByClassName('LatLng')[0]
+                nodeA.value = results[0].geometry.location;
+                let body = nodeA.value.replace(/[(]/gm, "{")
+                body = body.replace(/[)]/gm, "}")
+                const obj = JSON.parse(body)
+                console.log(typeof obj + obj)
             } else {
                 alert('Geocode was not successful for the following reason: ' + status);
             }

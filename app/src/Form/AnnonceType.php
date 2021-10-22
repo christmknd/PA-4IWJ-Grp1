@@ -5,6 +5,7 @@ namespace App\Form;
 use App\Entity\Annonce;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -44,6 +45,9 @@ class AnnonceType extends AbstractType
             ->add('pays',TextType::class, [
                 'label' => 'Pays',
                 'attr' => ['class' => 'country'],
+            ])
+            ->add('LatLng', HiddenType::class, [
+                'attr' => ['class' => 'LatLng'],
             ])
             ->add('nomAnimal',TextType::class, [
                 'label' => 'Nom animal'

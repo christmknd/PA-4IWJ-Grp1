@@ -8,6 +8,7 @@ Dans migration insert Admin
 insert into "user" (id, email, roles, password, is_verified, type_de_compte, pseudo, siret)
 values (1,"admin@test.fr",["ROLE_ADMIN"],"admin@test.fr",false,"Admin","adminFirst",null);
 ```
+
 ### Init projet
 ```
 // Initialiser les images docker
@@ -21,6 +22,27 @@ Lien de creation d'un compte Admin, un seul compte par défaut
 ```
 http://localhost:8082/admin/new 
 admin@test.fr email & mdp
+```
+
+Creer champs hidden
+```
+input hiden
+```
+
+## Creer une migration
+Création du schema
+```
+docker-compose exec php bin/console doctrine:migrations:dump-schema
+```
+
+Update migration
+```
+docker-compose exec php bin/console migration:execute
+```
+
+Make migrate
+```
+docker-compose exec php bin/console d:make:migration (prev)
 ```
 
 ## Commande symfony Help
