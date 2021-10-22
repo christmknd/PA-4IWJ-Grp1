@@ -147,9 +147,9 @@ class Annonce
     private $utilisateur;
 
     /**
-     * @ORM\Column(type="array")
+     * @ORM\Column(type="string")
      */
-    private $LatLng = [];
+    private $LatLng;
 
 
     public function __construct()
@@ -395,16 +395,21 @@ class Annonce
         $this->pays = $pays;
     }
 
-    public function getLatLng(): ?array
+    /**
+     * @return mixed
+     */
+    public function getLatLng()
     {
         return $this->LatLng;
     }
 
-    public function setLatLng(array $LatLng): self
+    /**
+     * @param mixed $LatLng
+     */
+    public function setLatLng($LatLng): void
     {
         $this->LatLng = $LatLng;
-
-        return $this;
     }
+
 
 }

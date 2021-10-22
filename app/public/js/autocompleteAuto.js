@@ -65,11 +65,7 @@ function initMap() {
             if (status == 'OK') {
                 LatLng = results[0].geometry.location
                 const nodeA = document.getElementsByClassName('LatLng')[0]
-                nodeA.value = results[0].geometry.location;
-                let body = nodeA.value.replace(/[(]/gm, "{")
-                body = body.replace(/[)]/gm, "}")
-                const obj = JSON.parse(body)
-                console.log(typeof obj + obj)
+                nodeA.value = [results[0].geometry.location.lat(),results[0].geometry.location.lng()];
             } else {
                 alert('Geocode was not successful for the following reason: ' + status);
             }
