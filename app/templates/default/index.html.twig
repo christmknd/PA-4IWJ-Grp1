@@ -40,6 +40,7 @@
                             </div>
                         </div>
                     </div>
+                    <div id="annonceJson" class="annonceJson" style="display: none">{{ annonce.LatLng }}</div>
         {% endif %}
         {% else %}
             <div class="col s1 m4">
@@ -87,6 +88,9 @@
             </div>
         {% endfor %}
         </div>
+    <script>
+        annoncesJson()
+    </script>
     <script async
             src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAipTm3HoOVFjsVcePwaIRK9GhjqgvwS-U&callback=initMapIndex">
     </script>

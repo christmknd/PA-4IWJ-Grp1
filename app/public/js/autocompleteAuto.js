@@ -60,7 +60,7 @@ function initMap() {
 
     function codeAddress() {
         geocoder = new google.maps.Geocoder();
-        var address = document.getElementById('annonce_address').value;
+        const address = document.getElementById('annonce_address').value;
         geocoder.geocode( { 'address': address}, function(results, status) {
             if (status == 'OK') {
                 LatLng = results[0].geometry.location
