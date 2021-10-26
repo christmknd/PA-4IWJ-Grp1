@@ -24,11 +24,7 @@ function initMap() {
             return;
         }
         fillInAddress(place);
-        var mapOptions = {
-            zoom: 5,
-            center: codeAddress()
-        }
-        map = new google.maps.Map(document.getElementById('map'), mapOptions);
+        codeAddress();
     });
 
     function fillInAddress(place) {  // optional parameter
@@ -60,7 +56,13 @@ function initMap() {
 
     function codeAddress() {
         geocoder = new google.maps.Geocoder();
-        const address = document.getElementById('annonce_address').value;
+        let address = document.getElementById('annonce_address');
+        if (address !== null)
+        {
+            address = address.value;
+        }else{
+            address = document.getElementById('evenement_address').value;
+        }
         geocoder.geocode( { 'address': address}, function(results, status) {
             if (status == 'OK') {
                 LatLng = results[0].geometry.location

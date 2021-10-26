@@ -20,8 +20,20 @@
                 <td>{{ evenement.date ? evenement.date|date('Y-m-d H:i:s') : '' }}</td>
             </tr>
             <tr>
-                <th>Lieu</th>
-                <td>{{ evenement.lieu }}</td>
+                <th>Adress</th>
+                <td>{{ evenement.address }}</td>
+            </tr>
+            <tr>
+                <th>Ville</th>
+                <td>{{ evenement.ville }}</td>
+            </tr>
+            <tr>
+                <th>Code Postal</th>
+                <td>{{ evenement.zipCode }}</td>
+            </tr>
+            <tr>
+                <th>Pays</th>
+                <td>{{ evenement.pays }}</td>
             </tr>
             <tr>
                 <th>Description</th>
@@ -49,7 +61,7 @@
             <th>NbrViews</th>
             <th>NomAnimal</th>
             <th>Espece</th>
-            <th>Lieu</th>
+            <th>Ville</th>
             <th>Sexe</th>
             <th>Age</th>
         </tr>
@@ -65,7 +77,7 @@
                 <td>{{ annonce.nbrViews }}</td>
                 <td>{{ annonce.nomAnimal }}</td>
                 <td>{{ annonce.espece }}</td>
-                <td>{{ annonce.lieu }}</td>
+                <td>{{ annonce.ville }}</td>
                 <td>{{ annonce.sexe }}</td>
                 <td>{{ annonce.age }}</td>
                 {% if app.user == evenement.utilisateur %}
@@ -98,7 +110,7 @@
                 <th>NbrViews</th>
                 <th>NomAnimal</th>
                 <th>Espece</th>
-                <th>Lieu</th>
+                <th>Ville</th>
                 <th>Sexe</th>
                 <th>Age</th>
             </tr>
@@ -115,7 +127,7 @@
                         <td>{{ annonce.nbrViews }}</td>
                         <td>{{ annonce.nomAnimal }}</td>
                         <td>{{ annonce.espece }}</td>
-                        <td>{{ annonce.lieu }}</td>
+                        <td>{{ annonce.ville }}</td>
                         <td>{{ annonce.sexe }}</td>
                         <td>{{ annonce.age }}</td>
                         <td>

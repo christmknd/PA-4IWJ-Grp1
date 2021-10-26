@@ -37,6 +37,10 @@ class DefaultController extends AbstractController
                 $optionNbrViewsTriAnnonces = $formTriAnnonces->get('nbrViewTri')->getData();
                 $optionsTriAnnonces['nbrViews']=$optionNbrViewsTriAnnonces;
             }
+            if(!$formTriAnnonces->get('lieuTri')->isEmpty()){
+                $optionNbrViewsTriAnnonces = $formTriAnnonces->get('lieuTri')->getData();
+                $optionsTriAnnonces['ville']=$optionNbrViewsTriAnnonces;
+            }
         }
 
         $formTriEvenements = $this->createForm(TriEvenementType::class);
@@ -44,6 +48,10 @@ class DefaultController extends AbstractController
 
         $formTriEvenements->handleRequest($request);
         if ($formTriEvenements->isSubmitted() && $formTriEvenements->isValid()) {
+            if(!$formTriEvenements->get('lieuTri')->isEmpty()){
+                $optionNbrViewsTriEvenements = $formTriEvenements->get('lieuTri')->getData();
+                $optionsTriEvenements['ville']=$optionNbrViewsTriEvenements;
+            }
             if(!$formTriEvenements->get('dateAtCreatedTri')->isEmpty()){
                 $optionDateTriEvenements = $formTriEvenements->get('dateAtCreatedTri')->getData();
                 $optionsTriEvenements['atCreated']=$optionDateTriEvenements;

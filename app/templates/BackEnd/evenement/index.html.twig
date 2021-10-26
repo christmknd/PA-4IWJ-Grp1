@@ -10,7 +10,7 @@
             <tr>
                 <th>Titre</th>
                 <th>Date</th>
-                <th>Lieu</th>
+                <th>Ville</th>
                 <th>Description</th>
                 <th>Etat</th>
                 <th>Actions</th>
@@ -21,7 +21,7 @@
             <tr>
                 <td>{{ evenement.titre }}</td>
                 <td>{{ evenement.date ? evenement.date|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ evenement.lieu }}</td>
+                <td>{{ evenement.ville }}</td>
                 <td>{{ evenement.description }}</td>
                 <td>{{ evenement.etat ? 'Yes' : 'No' }}</td>
                 <td>

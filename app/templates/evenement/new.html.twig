@@ -2,10 +2,20 @@
 
 {% block title %}Ajouter Evenement{% endblock %}
 
+{% block javascripts %}
+    <script src="{{ asset('js/autocompleteAuto.js') }}"></script>
+{% endblock %}
+
 {% block body %}
     <h1>Créer Evenement</h1>
 
-    {{ include('evenement/_form.html.twig') }}
+    <div class="card-container">
+        <div class="panel">
+            {{ include('evenement/_form.html.twig') }}
+        </div>
+        <div class="map" id="map"></div>
+    </div>
 
     <a class="btn" href="{{ path('mes_evenements_index') }}">back to list</a>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAipTm3HoOVFjsVcePwaIRK9GhjqgvwS-U&libraries=places&callback=initMap&channel=GMPSB_addressselection_v1_cAB" async defer></script>
 {% endblock %}

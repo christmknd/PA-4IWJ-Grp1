@@ -2,31 +2,12 @@
 Un site d'annonce d'adoption et de perte d'animeaux
 
 ## Init projet avec Docker
-Webpack encore +> gestion assets
-Dans migration insert Admin
-```
-insert into "user" (id, email, roles, password, is_verified, type_de_compte, pseudo, siret)
-values (1,"admin@test.fr",["ROLE_ADMIN"],"admin@test.fr",false,"Admin","adminFirst",null);
-```
 
-### Init projet
 ```
 // Initialiser les images docker
 docker-compose build --no-cache
 // Lancer les containers docker
 docker-compose up -d
-```
-
-## Creer un compte Admin
-Lien de creation d'un compte Admin, un seul compte par défaut
-```
-http://localhost:8082/admin/new 
-admin@test.fr email & mdp
-```
-
-Creer champs hidden
-```
-input hiden
 ```
 
 ## Creer une migration
@@ -37,19 +18,19 @@ docker-compose exec php bin/console doctrine:migrations:dump-schema
 
 Update migration
 ```
-docker-compose exec php bin/console migration:execute
+docker-compose exec php bin/console doctrine:migrations:execute  
+```
+
+Création migration
+```
+docker-compose exec php bin/console make:mig
 ```
 
 Make migrate
 ```
-docker-compose exec php bin/console d:make:migration (prev)
+docker-compose exec php bin/console doc:migration:m (prev)
 ```
 
-regex LatLng
-
-```
-\((?<lat>-?\d+\.\d+),(?<lng>-?\d+\.\d+)\)
-```
 
 ## Commande symfony Help
 
@@ -94,7 +75,6 @@ make:resetpassword
 ### Voter
 ````bash
 make:voter
-
 ````
 
 ### Error Page

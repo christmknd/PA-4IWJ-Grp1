@@ -59,7 +59,8 @@ class AnnonceType extends AbstractType
                     'Chien' => 'chien',
                     'Chat' => 'chat',
                     'Serpent' => 'serpent',
-                    'Hamster' => 'Hamster'
+                    'Hamster' => 'Hamster',
+                    'Autre' => 'Autre',
                 ],
             ])
             ->add('sexe', ChoiceType::class, [

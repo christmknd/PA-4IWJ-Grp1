@@ -26,6 +26,7 @@
                             <div class="card-content white-text">
                                 <span class="card-title">{{ annonce.titre }} - {{ annonce.type }}</span>
                                 <p>{{ annonce.description }}</p>
+                                <p>Ville : {{ annonce.ville }}</p>
                             </div>
                             {% if is_granted('ROLE_USER') %}
                             <div class="card-content">
@@ -62,7 +63,7 @@
                     <div class="card-content white-text">
                         <span class="card-title">{{ evenement.titre }}</span>
                         <p>{{ evenement.description }}</p>
-                        <p>Le {{ evenement.dateEvent ? evenement.dateEvent|date('Y-m-d H:i:s') : '' }} à {{ evenement.lieu }}</p>
+                        <p>Le {{ evenement.dateEvent ? evenement.dateEvent|date('Y-m-d H:i:s') : '' }} à {{ evenement.ville }}</p>
                     </div>
                     {% if is_granted('ROLE_USER') %}
                     <div class="card-content">
@@ -82,6 +83,7 @@
                     </div>
                 </div>
             </div>
+            <div id="evenementJson" class="evenementJson" style="display: none">{{ evenement.LatLng }}</div>
         {% else %}
             <div class="col s1 m4">
                 <p>Pas d'evenements</p>
@@ -90,6 +92,7 @@
         </div>
     <script>
         annoncesJson()
+        evenementsJson()
     </script>
     <script async
             src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAipTm3HoOVFjsVcePwaIRK9GhjqgvwS-U&callback=initMapIndex">

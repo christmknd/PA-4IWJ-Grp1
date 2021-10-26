@@ -44,13 +44,39 @@ class Evenement
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @assert\NotBlank
+     * @Assert\NotBlank
      * @assert\Length(
      *     min = 2,
      *     max = 255
      *     )
      */
-    private $lieu;
+    private $address;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank
+     * @assert\Length(
+     *     min = 2,
+     *     max = 255
+     *     )
+     */
+    private $ville;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank
+     * @assert\Length(
+     *     min = 2,
+     *     max = 255
+     *     )
+     */
+    private $pays;
+
+    /**
+     * @ORM\Column(type="string", length=5)
+     * @Assert\NotBlank
+     */
+    private $zipCode;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -82,6 +108,11 @@ class Evenement
      * @ORM\Column(type="integer")
      */
     private $nbrViews;
+
+    /**
+     * @ORM\Column(type="string")
+     */
+    private $LatLng;
 
 
     public function __construct()
@@ -129,18 +160,6 @@ class Evenement
     public function setAtCreated(\DateTimeInterface $atCreated): self
     {
         $this->atCreated = $atCreated;
-
-        return $this;
-    }
-
-    public function getLieu(): ?string
-    {
-        return $this->lieu;
-    }
-
-    public function setLieu(string $lieu): self
-    {
-        $this->lieu = $lieu;
 
         return $this;
     }
@@ -222,4 +241,86 @@ class Evenement
 
         return $this;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getAddress()
+    {
+        return $this->address;
+    }
+
+    /**
+     * @param mixed $address
+     */
+    public function setAddress($address): void
+    {
+        $this->address = $address;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getVille()
+    {
+        return $this->ville;
+    }
+
+    /**
+     * @param mixed $ville
+     */
+    public function setVille($ville): void
+    {
+        $this->ville = $ville;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPays()
+    {
+        return $this->pays;
+    }
+
+    /**
+     * @param mixed $pays
+     */
+    public function setPays($pays): void
+    {
+        $this->pays = $pays;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getZipCode()
+    {
+        return $this->zipCode;
+    }
+
+    /**
+     * @param mixed $zipCode
+     */
+    public function setZipCode($zipCode): void
+    {
+        $this->zipCode = $zipCode;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getLatLng()
+    {
+        return $this->LatLng;
+    }
+
+    /**
+     * @param mixed $LatLng
+     */
+    public function setLatLng($LatLng): void
+    {
+        $this->LatLng = $LatLng;
+    }
+
+
 }
