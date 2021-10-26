@@ -1,18 +1,38 @@
-#La carte des Animaux
+# La carte des Animaux
+Un site d'annonce d'adoption et de perte d'animeaux
 
-Webpack encore +> gestion assets
-Dans migration insert Admin
-```
-insert into "user" (id, email, roles, password, is_verified, type_de_compte, pseudo, siret)
-values (1,"admin@test.fr",["ROLE_ADMIN"],"admin@test.fr",false,"Admin","adminFirst",null);
-```
-### Installation SF 5 avec docker
+## Init projet avec Docker
+
 ```
 // Initialiser les images docker
 docker-compose build --no-cache
 // Lancer les containers docker
 docker-compose up -d
 ```
+
+## Creer une migration
+Création du schema
+```
+docker-compose exec php bin/console doctrine:migrations:dump-schema
+```
+
+Update migration
+```
+docker-compose exec php bin/console doctrine:migrations:execute  
+```
+
+Création migration
+```
+docker-compose exec php bin/console make:mig
+```
+
+Make migrate
+```
+docker-compose exec php bin/console doc:migration:m (prev)
+```
+
+
+## Commande symfony Help
 
 ##### Debug docker
 ```
@@ -55,7 +75,6 @@ make:resetpassword
 ### Voter
 ````bash
 make:voter
-
 ````
 
 ### Error Page

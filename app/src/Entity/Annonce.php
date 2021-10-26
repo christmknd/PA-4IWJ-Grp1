@@ -75,6 +75,7 @@ class Annonce
      */
     private $nomAnimal;
 
+
     /**
      * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank
@@ -93,7 +94,33 @@ class Annonce
      *     max = 255
      *     )
      */
-    private $lieu;
+    private $address;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank
+     * @assert\Length(
+     *     min = 2,
+     *     max = 255
+     *     )
+     */
+    private $ville;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank
+     * @assert\Length(
+     *     min = 2,
+     *     max = 255
+     *     )
+     */
+    private $pays;
+
+    /**
+     * @ORM\Column(type="string", length=5)
+     * @Assert\NotBlank
+     */
+    private $zipCode;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -118,6 +145,11 @@ class Annonce
      * @ORM\JoinColumn(nullable=false)
      */
     private $utilisateur;
+
+    /**
+     * @ORM\Column(type="string")
+     */
+    private $LatLng;
 
 
     public function __construct()
@@ -229,17 +261,39 @@ class Annonce
         return $this;
     }
 
-    public function getLieu(): ?string
+    /**
+     * @return mixed
+     */
+    public function getAddress()
     {
-        return $this->lieu;
+        return $this->address;
     }
 
-    public function setLieu(string $lieu): self
+    /**
+     * @param mixed $address
+     */
+    public function setAddress($address): void
     {
-        $this->lieu = $lieu;
-
-        return $this;
+        $this->address = $address;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getZipCode()
+    {
+        return $this->zipCode;
+    }
+
+    /**
+     * @param mixed $zipCode
+     */
+    public function setZipCode($zipCode): void
+    {
+        $this->zipCode = $zipCode;
+    }
+
+
 
     public function getSexe(): ?string
     {
@@ -308,4 +362,54 @@ class Annonce
     {
         return $user->getAnnoncesFavoris()->contains($this);
     }
+
+    /**
+     * @return mixed
+     */
+    public function getVille()
+    {
+        return $this->ville;
+    }
+
+    /**
+     * @param mixed $ville
+     */
+    public function setVille($ville): void
+    {
+        $this->ville = $ville;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPays()
+    {
+        return $this->pays;
+    }
+
+    /**
+     * @param mixed $pays
+     */
+    public function setPays($pays): void
+    {
+        $this->pays = $pays;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getLatLng()
+    {
+        return $this->LatLng;
+    }
+
+    /**
+     * @param mixed $LatLng
+     */
+    public function setLatLng($LatLng): void
+    {
+        $this->LatLng = $LatLng;
+    }
+
+
 }

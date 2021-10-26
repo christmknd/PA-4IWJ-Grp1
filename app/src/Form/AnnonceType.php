@@ -5,6 +5,7 @@ namespace App\Form;
 use App\Entity\Annonce;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -27,7 +28,26 @@ class AnnonceType extends AbstractType
                 ],
             ])
             ->add('description',TextareaType::class, [
-                'label' => 'Description'
+                'label' => 'Description',
+            ])
+            ->add('address',TextType::class, [
+                'label' => 'Address',
+                'attr' => ['class' => 'location']
+            ])
+            ->add('ville',TextType::class, [
+                'label' => 'Ville',
+                'attr' => ['class' => 'locality'],
+            ])
+            ->add('zipCode',TextType::class, [
+                'label' => 'Code Postal',
+                'attr' => ['class' => 'postal_code'],
+            ])
+            ->add('pays',TextType::class, [
+                'label' => 'Pays',
+                'attr' => ['class' => 'country'],
+            ])
+            ->add('LatLng', HiddenType::class, [
+                'attr' => ['class' => 'LatLng'],
             ])
             ->add('nomAnimal',TextType::class, [
                 'label' => 'Nom animal'
@@ -39,11 +59,9 @@ class AnnonceType extends AbstractType
                     'Chien' => 'chien',
                     'Chat' => 'chat',
                     'Serpent' => 'serpent',
-                    'Hamster' => 'Hamster'
+                    'Hamster' => 'Hamster',
+                    'Autre' => 'Autre',
                 ],
-            ])
-            ->add('lieu',TextType::class, [
-                'label' => 'Lieu'
             ])
             ->add('sexe', ChoiceType::class, [
                 'label' => 'Sexe',

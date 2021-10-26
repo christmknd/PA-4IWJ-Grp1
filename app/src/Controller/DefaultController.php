@@ -39,7 +39,7 @@ class DefaultController extends AbstractController
             }
             if(!$formTriAnnonces->get('lieuTri')->isEmpty()){
                 $optionNbrViewsTriAnnonces = $formTriAnnonces->get('lieuTri')->getData();
-                $optionsTriAnnonces['lieu']=$optionNbrViewsTriAnnonces;
+                $optionsTriAnnonces['ville']=$optionNbrViewsTriAnnonces;
             }
         }
 
@@ -48,6 +48,10 @@ class DefaultController extends AbstractController
 
         $formTriEvenements->handleRequest($request);
         if ($formTriEvenements->isSubmitted() && $formTriEvenements->isValid()) {
+            if(!$formTriEvenements->get('lieuTri')->isEmpty()){
+                $optionNbrViewsTriEvenements = $formTriEvenements->get('lieuTri')->getData();
+                $optionsTriEvenements['ville']=$optionNbrViewsTriEvenements;
+            }
             if(!$formTriEvenements->get('dateAtCreatedTri')->isEmpty()){
                 $optionDateTriEvenements = $formTriEvenements->get('dateAtCreatedTri')->getData();
                 $optionsTriEvenements['atCreated']=$optionDateTriEvenements;
@@ -59,10 +63,6 @@ class DefaultController extends AbstractController
             if(!$formTriEvenements->get('nbrViewTri')->isEmpty()){
                 $optionNbrViewsTriEvenements = $formTriEvenements->get('nbrViewTri')->getData();
                 $optionsTriEvenements['nbrViews']=$optionNbrViewsTriEvenements;
-            }
-            if(!$formTriEvenements->get('lieuTri')->isEmpty()){
-                $optionNbrViewsTriEvenements = $formTriEvenements->get('lieuTri')->getData();
-                $optionsTriEvenements['lieu']=$optionNbrViewsTriEvenements;
             }
         }
 

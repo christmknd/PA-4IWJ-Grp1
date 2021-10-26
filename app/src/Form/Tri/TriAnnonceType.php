@@ -27,7 +27,7 @@ class TriAnnonceType extends AbstractType
                 ],
             ])
             ->add('lieuTri', ChoiceType::class, [
-                'label' => 'Lieu',
+                'label' => 'Ville',
                 'required' => false,
                 'choices'  => [
                     'Croissant' => 'ASC',

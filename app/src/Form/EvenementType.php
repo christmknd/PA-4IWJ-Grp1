@@ -7,6 +7,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -27,8 +28,24 @@ class EvenementType extends AbstractType
                 'label' => "Date de l'evenement",
                 'date_widget' => 'single_text'
             ])
-            ->add('lieu',TextType::class, [
-                'label' => 'Lieu'
+            ->add('address',TextType::class, [
+                'label' => 'Address',
+                'attr' => ['class' => 'location']
+            ])
+            ->add('ville',TextType::class, [
+                'label' => 'Ville',
+                'attr' => ['class' => 'locality'],
+            ])
+            ->add('zipCode',TextType::class, [
+                'label' => 'Code Postal',
+                'attr' => ['class' => 'postal_code'],
+            ])
+            ->add('pays',TextType::class, [
+                'label' => 'Pays',
+                'attr' => ['class' => 'country'],
+            ])
+            ->add('LatLng', HiddenType::class, [
+                'attr' => ['class' => 'LatLng'],
             ])
             //->add('annonces')
         ;
