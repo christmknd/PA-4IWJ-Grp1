@@ -92,7 +92,7 @@ class RegistrationController extends AbstractController
         $user->setRoles(["ROLE_ASSO"]);
         $form = $this->createForm(RegistrationFormType::class, $user);
         $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid()) {
+        if ($form->isSubmitted() && $form->isValid() && $user->isSiret($form->get('siret')->getData())) {
             // encode the plain password
             $user->setPassword(
                 $passwordEncoder->encodePassword(
