@@ -9,6 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints as assert;
+use Symfony\Component\HttpClient\HttpClient;
 
 
 /**
@@ -69,7 +70,7 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=255, unique=true)
-     * @assert\Length(
+     * @Assert\Length(
      *     min = 2,
      *     max = 255
      *     )
@@ -77,11 +78,10 @@ class User implements UserInterface
     private $pseudo;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     * Assert\NotNull
+     * @ORM\Column(type="string", length=14, nullable=true, unique=true)
      * @Assert\Length(
-     *     min = 2,
-     *     max = 255
+     *     min = 14,
+     *     max = 14
      *     )
      */
     private $siret;
@@ -293,6 +293,42 @@ class User implements UserInterface
 
         return $this;
     }
+
+    // $user->isSiret($form->get('siret')->getData())
+    public function isSiret(?int $siret): bool
+    {
+        if (strlen($siret) > 0)
+        {
+            $client = HttpClient::create();
+            $response = null;
+            try {
+                $response = $client
+                    ->request(
+                        'GET',
+                        'https://api.insee.fr/entreprises/sirene/V3/siret/' . $siret,
+                        [
+                            'headers' => [
+                                'Accept' => 'application/json',
+                                'Authorization' => 'Bearer 9c3feff0-bdc0-3afa-9e8c-0cd1a1b1b4a3',
+                            ],
+                        ]
+                    );
+
+                if ($response->getStatusCode() === 200){
+                    $content = $response->getContent();
+                    $content = json_decode($content, true);
+                    if ($content['etablissement']['siret'] == $siret)
+                    {
+                        return true;
+                    }
+                }
+            } catch (TransportExceptionInterface $e) {
+            }
+        }
+        return false;
+    }
+
+
 
     /**
      * @return Collection|Annonce[]

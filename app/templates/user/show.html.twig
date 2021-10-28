@@ -24,9 +24,9 @@
                 <th>Type de compte</th>
                 <td>{{ user.typeDeCompte }}</td>
             </tr>
-            {% if app.user.typeDeCompte == "association" %}
+            {% if app.user.typeDeCompte == "Association" %}
             <tr>
-                <th>Siret</th>
+                <th>Siret (Valide par INSEE)</th>
                 <td>{{ user.siret }}</td>
             </tr>
             {% endif %}
