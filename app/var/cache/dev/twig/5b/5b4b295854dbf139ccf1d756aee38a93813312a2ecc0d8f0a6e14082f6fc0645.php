@@ -98,7 +98,7 @@ class __TwigTemplate_819572f8cadb827376cbd97487eede38d75ec200462e0d2b896b0bbe75c
                 <th>Nombre de Vue</th>
                 <th>Nom Animal</th>
                 <th>Espece</th>
-                <th>Lieu</th>
+                <th>Ville</th>
                 <th>Sexe</th>
                 <th>Age</th>
             </tr>
@@ -159,7 +159,7 @@ class __TwigTemplate_819572f8cadb827376cbd97487eede38d75ec200462e0d2b896b0bbe75c
             echo "</td>
                 <td>";
             // line 35
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["annonce"], "lieu", [], "any", false, false, false, 35), "html", null, true);
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["annonce"], "ville", [], "any", false, false, false, 35), "html", null, true);
             echo "</td>
                 <td>";
             // line 36
@@ -268,7 +268,7 @@ class __TwigTemplate_819572f8cadb827376cbd97487eede38d75ec200462e0d2b896b0bbe75c
                 <th>Nombre de Vue</th>
                 <th>Nom Animal</th>
                 <th>Espece</th>
-                <th>Lieu</th>
+                <th>Ville</th>
                 <th>Sexe</th>
                 <th>Age</th>
             </tr>
@@ -284,7 +284,7 @@ class __TwigTemplate_819572f8cadb827376cbd97487eede38d75ec200462e0d2b896b0bbe75c
                 <td>{{ annonce.nbrViews }}</td>
                 <td>{{ annonce.nomAnimal }}</td>
                 <td>{{ annonce.espece }}</td>
-                <td>{{ annonce.lieu }}</td>
+                <td>{{ annonce.ville }}</td>
                 <td>{{ annonce.sexe }}</td>
                 <td>{{ annonce.age }}</td>
                 <td>

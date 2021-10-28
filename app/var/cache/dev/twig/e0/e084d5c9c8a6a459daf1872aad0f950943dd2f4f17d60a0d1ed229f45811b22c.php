@@ -153,39 +153,60 @@ class __TwigTemplate_4109a2c474badca3a7665484aaa0f02a3e42dab3a88b15984b4cfc4dbb4
         echo "</td>
             </tr>
             <tr>
-                <th>Lieu</th>
+                <th>Adress</th>
                 <td>";
         // line 48
-        echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, (isset($context["annonce"]) || array_key_exists("annonce", $context) ? $context["annonce"] : (function () { throw new RuntimeError('Variable "annonce" does not exist.', 48, $this->source); })()), "lieu", [], "any", false, false, false, 48), "html", null, true);
+        echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, (isset($context["annonce"]) || array_key_exists("annonce", $context) ? $context["annonce"] : (function () { throw new RuntimeError('Variable "annonce" does not exist.', 48, $this->source); })()), "address", [], "any", false, false, false, 48), "html", null, true);
+        echo "</td>
+            </tr>
+            <tr>
+                <th>Ville</th>
+                <td>";
+        // line 52
+        echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, (isset($context["annonce"]) || array_key_exists("annonce", $context) ? $context["annonce"] : (function () { throw new RuntimeError('Variable "annonce" does not exist.', 52, $this->source); })()), "ville", [], "any", false, false, false, 52), "html", null, true);
+        echo "</td>
+            </tr>
+            <tr>
+                <th>Code Postal</th>
+                <td>";
+        // line 56
+        echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, (isset($context["annonce"]) || array_key_exists("annonce", $context) ? $context["annonce"] : (function () { throw new RuntimeError('Variable "annonce" does not exist.', 56, $this->source); })()), "zipCode", [], "any", false, false, false, 56), "html", null, true);
+        echo "</td>
+            </tr>
+            <tr>
+                <th>Pays</th>
+                <td>";
+        // line 60
+        echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, (isset($context["annonce"]) || array_key_exists("annonce", $context) ? $context["annonce"] : (function () { throw new RuntimeError('Variable "annonce" does not exist.', 60, $this->source); })()), "pays", [], "any", false, false, false, 60), "html", null, true);
         echo "</td>
             </tr>
             <tr>
                 <th>Sexe</th>
                 <td>";
-        // line 52
-        echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, (isset($context["annonce"]) || array_key_exists("annonce", $context) ? $context["annonce"] : (function () { throw new RuntimeError('Variable "annonce" does not exist.', 52, $this->source); })()), "sexe", [], "any", false, false, false, 52), "html", null, true);
+        // line 64
+        echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, (isset($context["annonce"]) || array_key_exists("annonce", $context) ? $context["annonce"] : (function () { throw new RuntimeError('Variable "annonce" does not exist.', 64, $this->source); })()), "sexe", [], "any", false, false, false, 64), "html", null, true);
         echo "</td>
             </tr>
             <tr>
                 <th>Age</th>
                 <td>";
-        // line 56
-        echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, (isset($context["annonce"]) || array_key_exists("annonce", $context) ? $context["annonce"] : (function () { throw new RuntimeError('Variable "annonce" does not exist.', 56, $this->source); })()), "age", [], "any", false, false, false, 56), "html", null, true);
+        // line 68
+        echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, (isset($context["annonce"]) || array_key_exists("annonce", $context) ? $context["annonce"] : (function () { throw new RuntimeError('Variable "annonce" does not exist.', 68, $this->source); })()), "age", [], "any", false, false, false, 68), "html", null, true);
         echo "</td>
             </tr>
         </tbody>
     </table>
 
     <a class=\"btn\" href=\"";
-        // line 61
-        echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("admin_annonces_edit", ["id" => twig_get_attribute($this->env, $this->source, (isset($context["annonce"]) || array_key_exists("annonce", $context) ? $context["annonce"] : (function () { throw new RuntimeError('Variable "annonce" does not exist.', 61, $this->source); })()), "id", [], "any", false, false, false, 61)]), "html", null, true);
+        // line 73
+        echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("admin_annonces_edit", ["id" => twig_get_attribute($this->env, $this->source, (isset($context["annonce"]) || array_key_exists("annonce", $context) ? $context["annonce"] : (function () { throw new RuntimeError('Variable "annonce" does not exist.', 73, $this->source); })()), "id", [], "any", false, false, false, 73)]), "html", null, true);
         echo "\">Modifier</a>
     ";
-        // line 62
+        // line 74
         echo twig_include($this->env, $context, "BackEnd/annonce/_delete_form.html.twig");
         echo "
     <a class=\"btn\" href=\"";
-        // line 63
+        // line 75
         echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("admin_annonces");
         echo "\">Revenir à la liste</a>
 ";
@@ -209,7 +230,7 @@ class __TwigTemplate_4109a2c474badca3a7665484aaa0f02a3e42dab3a88b15984b4cfc4dbb4
 
     public function getDebugInfo()
     {
-        return array (  189 => 63,  185 => 62,  181 => 61,  173 => 56,  166 => 52,  159 => 48,  152 => 44,  145 => 40,  138 => 36,  131 => 32,  124 => 28,  117 => 24,  110 => 20,  103 => 16,  96 => 12,  88 => 6,  78 => 5,  59 => 3,  36 => 1,);
+        return array (  210 => 75,  206 => 74,  202 => 73,  194 => 68,  187 => 64,  180 => 60,  173 => 56,  166 => 52,  159 => 48,  152 => 44,  145 => 40,  138 => 36,  131 => 32,  124 => 28,  117 => 24,  110 => 20,  103 => 16,  96 => 12,  88 => 6,  78 => 5,  59 => 3,  36 => 1,);
     }
 
     public function getSourceContext()
@@ -260,8 +281,20 @@ class __TwigTemplate_4109a2c474badca3a7665484aaa0f02a3e42dab3a88b15984b4cfc4dbb4
                 <td>{{ annonce.espece }}</td>
             </tr>
             <tr>
-                <th>Lieu</th>
-                <td>{{ annonce.lieu }}</td>
+                <th>Adress</th>
+                <td>{{ annonce.address }}</td>
+            </tr>
+            <tr>
+                <th>Ville</th>
+                <td>{{ annonce.ville }}</td>
+            </tr>
+            <tr>
+                <th>Code Postal</th>
+                <td>{{ annonce.zipCode }}</td>
+            </tr>
+            <tr>
+                <th>Pays</th>
+                <td>{{ annonce.pays }}</td>
             </tr>
             <tr>
                 <th>Sexe</th>

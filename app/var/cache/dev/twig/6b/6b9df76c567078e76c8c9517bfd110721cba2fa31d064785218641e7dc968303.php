@@ -68,7 +68,7 @@ class __TwigTemplate_e0e268fd7513e3b97447cd1fa72f00cd87af0294a97a6e0cd27b717ea68
 <body>
 <div class=\"navbar-fixed\">
     <nav>
-        <div class=\"nav-wrapper deep-orange darken-2\">
+        <div class=\"nav-wrapper green darken-2\">
             <a href=\"";
         // line 38
         echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("default");
@@ -94,31 +94,32 @@ class __TwigTemplate_e0e268fd7513e3b97447cd1fa72f00cd87af0294a97a6e0cd27b717ea68
             echo "                    <li><a href=\"";
             echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("mes_annonces_index");
             echo "\">Mes annonces</a></li>
-                    <ul id=\"dropdown1\" class=\"dropdown-content\">
-                        <li><a href=\"";
-            // line 47
-            echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("favori_annonce");
-            echo "\">Annonces</a></li>
-                        <li><a href=\"";
-            // line 48
-            echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("favori_evenement");
-            echo "\">Evenements</a></li>
-                    </ul>
-                    <li><a class=\"dropdown-trigger\" href=\"";
-            // line 50
-            echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("favori");
-            echo "\" data-target=\"dropdown1\">Mes favoris<i class=\"material-icons right\">arrow_drop_down</i></a></li>
                     ";
-            // line 51
+            // line 46
             if ($this->extensions['Symfony\Bridge\Twig\Extension\SecurityExtension']->isGranted("ROLE_ASSO")) {
-                // line 52
+                // line 47
                 echo "                        <li><a href=\"";
                 echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("mes_evenements_index");
                 echo "\">Mes evenements</a></li>
                     ";
             }
+            // line 49
+            echo "                    <ul id=\"dropdown1\" class=\"dropdown-content\">
+                        <li><a href=\"";
+            // line 50
+            echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("favori_annonce");
+            echo "\">Annonces</a></li>
+                        <li><a href=\"";
+            // line 51
+            echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("favori_evenement");
+            echo "\">Evenements</a></li>
+                    </ul>
+                    <li><a class=\"dropdown-trigger\" href=\"";
+            // line 53
+            echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("favori");
+            echo "\" data-target=\"dropdown1\">Mes favoris<i class=\"material-icons right\">arrow_drop_down</i></a></li>
+                    <li><a href=\"";
             // line 54
-            echo "                    <li><a href=\"";
             echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("user_show");
             echo "\">Mon compte</a></li>
                     <li><a href=\"";
@@ -150,7 +151,7 @@ class __TwigTemplate_e0e268fd7513e3b97447cd1fa72f00cd87af0294a97a6e0cd27b717ea68
         // line 67
         echo "</div>
 
-<footer class=\"page-footer deep-orange darken-2\">
+<footer class=\"page-footer green darken-2\">
     <div class=\"container \">
         <div class=\"row\">
             <div class=\"col l6 s12\">
@@ -388,7 +389,7 @@ class __TwigTemplate_e0e268fd7513e3b97447cd1fa72f00cd87af0294a97a6e0cd27b717ea68
 
     public function getDebugInfo()
     {
-        return array (  362 => 66,  344 => 32,  314 => 9,  304 => 8,  285 => 5,  265 => 118,  259 => 117,  250 => 114,  246 => 113,  243 => 112,  238 => 111,  234 => 110,  218 => 96,  213 => 94,  208 => 93,  203 => 91,  198 => 90,  192 => 88,  190 => 87,  186 => 86,  181 => 84,  177 => 83,  171 => 81,  169 => 80,  165 => 79,  151 => 67,  149 => 66,  141 => 60,  136 => 58,  131 => 57,  126 => 55,  121 => 54,  115 => 52,  113 => 51,  109 => 50,  104 => 48,  100 => 47,  94 => 45,  92 => 44,  87 => 43,  81 => 41,  79 => 40,  74 => 38,  67 => 33,  65 => 32,  61 => 30,  59 => 8,  53 => 5,  47 => 1,);
+        return array (  363 => 66,  345 => 32,  315 => 9,  305 => 8,  286 => 5,  266 => 118,  260 => 117,  251 => 114,  247 => 113,  244 => 112,  239 => 111,  235 => 110,  219 => 96,  214 => 94,  209 => 93,  204 => 91,  199 => 90,  193 => 88,  191 => 87,  187 => 86,  182 => 84,  178 => 83,  172 => 81,  170 => 80,  166 => 79,  152 => 67,  150 => 66,  142 => 60,  137 => 58,  132 => 57,  127 => 55,  123 => 54,  119 => 53,  114 => 51,  110 => 50,  107 => 49,  101 => 47,  99 => 46,  94 => 45,  92 => 44,  87 => 43,  81 => 41,  79 => 40,  74 => 38,  67 => 33,  65 => 32,  61 => 30,  59 => 8,  53 => 5,  47 => 1,);
     }
 
     public function getSourceContext()
@@ -429,7 +430,7 @@ class __TwigTemplate_e0e268fd7513e3b97447cd1fa72f00cd87af0294a97a6e0cd27b717ea68
 <body>
 <div class=\"navbar-fixed\">
     <nav>
-        <div class=\"nav-wrapper deep-orange darken-2\">
+        <div class=\"nav-wrapper green darken-2\">
             <a href=\"{{path(\"default\")}}\" class=\"brand-logo\" style=\"margin-left: 20px\">La carte des Animaux</a>
             <ul id=\"nav-mobile\" class=\"right hide-on-med-and-down\">
                 {% if is_granted('ROLE_ADMIN') %}
@@ -438,14 +439,14 @@ class __TwigTemplate_e0e268fd7513e3b97447cd1fa72f00cd87af0294a97a6e0cd27b717ea68
                 <li><a href=\"{{path(\"default\")}}\">Accueil</a></li>
                 {% if app.user %}
                     <li><a href=\"{{path(\"mes_annonces_index\")}}\">Mes annonces</a></li>
+                    {% if is_granted('ROLE_ASSO') %}
+                        <li><a href=\"{{path(\"mes_evenements_index\")}}\">Mes evenements</a></li>
+                    {% endif %}
                     <ul id=\"dropdown1\" class=\"dropdown-content\">
                         <li><a href=\"{{path(\"favori_annonce\")}}\">Annonces</a></li>
                         <li><a href=\"{{path(\"favori_evenement\")}}\">Evenements</a></li>
                     </ul>
                     <li><a class=\"dropdown-trigger\" href=\"{{path(\"favori\")}}\" data-target=\"dropdown1\">Mes favoris<i class=\"material-icons right\">arrow_drop_down</i></a></li>
-                    {% if is_granted('ROLE_ASSO') %}
-                        <li><a href=\"{{path(\"mes_evenements_index\")}}\">Mes evenements</a></li>
-                    {% endif %}
                     <li><a href=\"{{path(\"user_show\")}}\">Mon compte</a></li>
                     <li><a href=\"{{path(\"app_logout\")}}\">Se deconnecter</a></li>
                 {% else %}
@@ -461,7 +462,7 @@ class __TwigTemplate_e0e268fd7513e3b97447cd1fa72f00cd87af0294a97a6e0cd27b717ea68
     {% block body %}{% endblock %}
 </div>
 
-<footer class=\"page-footer deep-orange darken-2\">
+<footer class=\"page-footer green darken-2\">
     <div class=\"container \">
         <div class=\"row\">
             <div class=\"col l6 s12\">

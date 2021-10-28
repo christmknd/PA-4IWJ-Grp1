@@ -92,7 +92,7 @@ class __TwigTemplate_f703d3f4e4c61dee30503627ef86f5de45da214b0e21d2e405e615797c0
             <tr>
                 <th>Titre</th>
                 <th>Date</th>
-                <th>Lieu</th>
+                <th>Ville</th>
                 <th>Description</th>
                 <th>Etat</th>
                 <th>Actions</th>
@@ -130,7 +130,7 @@ class __TwigTemplate_f703d3f4e4c61dee30503627ef86f5de45da214b0e21d2e405e615797c0
             echo "</td>
                 <td>";
             // line 24
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["evenement"], "lieu", [], "any", false, false, false, 24), "html", null, true);
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["evenement"], "ville", [], "any", false, false, false, 24), "html", null, true);
             echo "</td>
                 <td>";
             // line 25
@@ -229,7 +229,7 @@ class __TwigTemplate_f703d3f4e4c61dee30503627ef86f5de45da214b0e21d2e405e615797c0
             <tr>
                 <th>Titre</th>
                 <th>Date</th>
-                <th>Lieu</th>
+                <th>Ville</th>
                 <th>Description</th>
                 <th>Etat</th>
                 <th>Actions</th>
@@ -240,7 +240,7 @@ class __TwigTemplate_f703d3f4e4c61dee30503627ef86f5de45da214b0e21d2e405e615797c0
             <tr>
                 <td>{{ evenement.titre }}</td>
                 <td>{{ evenement.date ? evenement.date|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ evenement.lieu }}</td>
+                <td>{{ evenement.ville }}</td>
                 <td>{{ evenement.description }}</td>
                 <td>{{ evenement.etat ? 'Yes' : 'No' }}</td>
                 <td>

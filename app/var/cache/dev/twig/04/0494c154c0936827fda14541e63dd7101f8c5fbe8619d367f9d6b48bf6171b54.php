@@ -92,7 +92,7 @@ class __TwigTemplate_68356487d9c83cb44af82ed4407380607411a82df7a02b24492490e78ce
             <tr>
                 <th>Titre</th>
                 <th>Date</th>
-                <th>Lieu</th>
+                <th>Ville</th>
                 <th>Description</th>
                 <th>Etat</th>
                 <th>Actions</th>
@@ -126,11 +126,11 @@ class __TwigTemplate_68356487d9c83cb44af82ed4407380607411a82df7a02b24492490e78ce
             echo "</td>
                 <td>";
             // line 23
-            ((twig_get_attribute($this->env, $this->source, $context["evenement"], "date", [], "any", false, false, false, 23)) ? (print (twig_escape_filter($this->env, twig_date_format_filter($this->env, twig_get_attribute($this->env, $this->source, $context["evenement"], "date", [], "any", false, false, false, 23), "Y-m-d H:i:s"), "html", null, true))) : (print ("")));
+            ((twig_get_attribute($this->env, $this->source, $context["evenement"], "dateEvent", [], "any", false, false, false, 23)) ? (print (twig_escape_filter($this->env, twig_date_format_filter($this->env, twig_get_attribute($this->env, $this->source, $context["evenement"], "dateEvent", [], "any", false, false, false, 23), "Y-m-d H:i:s"), "html", null, true))) : (print ("")));
             echo "</td>
                 <td>";
             // line 24
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["evenement"], "lieu", [], "any", false, false, false, 24), "html", null, true);
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["evenement"], "ville", [], "any", false, false, false, 24), "html", null, true);
             echo "</td>
                 <td>";
             // line 25
@@ -233,7 +233,7 @@ class __TwigTemplate_68356487d9c83cb44af82ed4407380607411a82df7a02b24492490e78ce
             <tr>
                 <th>Titre</th>
                 <th>Date</th>
-                <th>Lieu</th>
+                <th>Ville</th>
                 <th>Description</th>
                 <th>Etat</th>
                 <th>Actions</th>
@@ -243,8 +243,8 @@ class __TwigTemplate_68356487d9c83cb44af82ed4407380607411a82df7a02b24492490e78ce
         {% for evenement in evenements %}
             <tr>
                 <td>{{ evenement.titre }}</td>
-                <td>{{ evenement.date ? evenement.date|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ evenement.lieu }}</td>
+                <td>{{ evenement.dateEvent ? evenement.dateEvent|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ evenement.ville }}</td>
                 <td>{{ evenement.description }}</td>
                 <td>{{ evenement.etat ? 'Yes' : 'No' }}</td>
                 <td>
