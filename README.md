@@ -82,3 +82,30 @@ Affichage seulement en prod
 ````bash
 composer require symfony/twig-pack
 ````
+
+### Design : Webpack Encore 
+
+````bash
+
+1) composer require symfony/webpack-encore-bundle
+
+npm install OU yarn  
+ 
+
+2)Configurer webpack.config.js
+Pour utiliser Sass : décommenter .enableSassLoader()
+npm install sass-loader   
+OU yarn add sass-loader
+
+3) Modifier template/base.html.twig
+Déplacer son code css dans assets/styles
+
+Ajouter dans base.html.twig
+{{ encore_entry_link_tags('nom_du_fichier_css') }} dans le block stylesheets
+{{ encore_entry_script_tags('app') }} dans le block javascript 
+
+4)Executer ces commandes 
+npm run dev 
+OU
+yarn encore dev 
+````
