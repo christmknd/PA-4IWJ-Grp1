@@ -70,7 +70,7 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=255, unique=true)
-     * @assert\Length(
+     * @Assert\Length(
      *     min = 2,
      *     max = 255
      *     )
@@ -78,11 +78,10 @@ class User implements UserInterface
     private $pseudo;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     * Assert\NotNull
+     * @ORM\Column(type="string", length=14, nullable=true, unique=true)
      * @Assert\Length(
-     *     min = 2,
-     *     max = 255
+     *     min = 14,
+     *     max = 14
      *     )
      */
     private $siret;
@@ -296,7 +295,7 @@ class User implements UserInterface
     }
 
     // $user->isSiret($form->get('siret')->getData())
-    public function isSiret(int $siret): bool
+    public function isSiret(?int $siret): bool
     {
         if (strlen($siret) > 0)
         {
@@ -315,24 +314,17 @@ class User implements UserInterface
                         ]
                     );
 
-                var_dump($response->getStatusCode());
                 if ($response->getStatusCode() === 200){
                     $content = $response->getContent();
                     $content = json_decode($content, true);
-                    var_dump($content);
                     if ($content['etablissement']['siret'] == $siret)
                     {
-                        var_dump("\nGOOD");
                         return true;
                     }
                 }
             } catch (TransportExceptionInterface $e) {
             }
-
-
         }
-
-        var_dump("\nFALSE");
         return false;
     }
 
