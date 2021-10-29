@@ -39,5 +39,11 @@
     </button>
     </a>
 
+    <a href="{{ path('app_forgot_password_request') }}">
+        <button style ="background-color:#ffcc00; margin: 5px" class="btn">
+            Modifier mot de passe
+        </button>
+    </a>
+
     {{ include('user/_delete_form.html.twig') }}
 {% endblock %}
