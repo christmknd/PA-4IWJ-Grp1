@@ -14,6 +14,9 @@
             {{ form_row(registrationForm.email) }}
             {% if typeDeCompte == "association" %}
                 {{ form_row(registrationForm.siret) }}
+                {% for errorMessage in errorMessages %}
+                    <div class="alert alert-danger" role="alert">{{ errorMessage }}</div>
+                {% endfor %}
             {% endif %}
             {{ form_row(registrationForm.plainPassword, {
                 label: 'Password'

@@ -92,7 +92,18 @@ class RegistrationController extends AbstractController
         $user->setRoles(["ROLE_ASSO"]);
         $form = $this->createForm(RegistrationFormType::class, $user);
         $form->handleRequest($request);
+        $errorMessages = [];
         if ($form->isSubmitted() && $form->isValid()) {
+            if (!$user->isSiret($form->get('siret')->getData()))
+            {
+                array_push($errorMessages, 'Numero de Siret invalide');
+                return $this->render('registration/register.html.twig', [
+                    'user' => $user,
+                    'registrationForm' => $form->createView(),
+                    'typeDeCompte' => "association",
+                    'errorMessages' => $errorMessages
+                ]);
+            }
             // encode the plain password
             $user->setPassword(
                 $passwordEncoder->encodePassword(
@@ -122,10 +133,12 @@ class RegistrationController extends AbstractController
                 'main' // firewall name in security.yaml
             );
         }
+
         return $this->render('registration/register.html.twig', [
             'user' => $user,
             'registrationForm' => $form->createView(),
             'typeDeCompte' => "association",
+            'errorMessages' => $errorMessages
         ]);
     }
 
