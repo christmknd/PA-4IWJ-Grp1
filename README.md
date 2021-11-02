@@ -10,6 +10,10 @@ docker-compose build --no-cache
 docker-compose up -d
 ```
 
+## Mercure 
+```
+./mercure/mercure --jwt-key='aVerySecretKey' --addr='localhost:3000' --allow-anonymous=1 --cors-allowed-origins='*'
+```
 ## Creer une migration
 Création du schema
 ```
