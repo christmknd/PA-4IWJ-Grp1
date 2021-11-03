@@ -20,10 +20,16 @@ class PublishController extends AbstractController
             json_encode(['status' => 'OutOfStock'])
         );
 
+        var_dump("PROVIDER\n");
+        var_dump($hub->getProvider());
+        var_dump("JWTTTT\n");
+        var_dump($hub->getProvider()->getJwt());
+
         // Publisher's JWT must contain this topic, a URI template it matches or * in mercure.publish or you'll get a 401
         // Subscriber's JWT must contain this topic, a URI template it matches or * in mercure.subscribe to receive the update
         $hub->publish($update);
 
+        //return $this->redirectToRoute('default');
         return new Response('published!');
     }
 }

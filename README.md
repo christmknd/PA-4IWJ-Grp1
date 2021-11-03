@@ -12,8 +12,11 @@ docker-compose up -d
 
 ## Mercure 
 ```
-./mercure/mercure --jwt-key='aVerySecretKey' --addr='localhost:3000' --allow-anonymous=1 --cors-allowed-origins='*'
+./mercure --jwt-key='aVerySecretKey' --addr='localhost:3000' --allow-anonymous=1 --cors-allowed-origins='*'
 ```
+POST https://localhost/.well-known/mercure: to publish updates \
+GET https://localhost/.well-known/mercure: to subscribe to updates
+
 ## Creer une migration
 Création du schema
 ```

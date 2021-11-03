@@ -13,6 +13,10 @@
         <button class="btn btn-primary"> Ping !</button>
     </form>
 
+    <div id="mercure">
+
+    </div>
+
     <h3>My Google Maps Demo</h3>
     <!--The div element for the map -->
     <div id="map" style="height: 400px; width: 100%"></div>
@@ -102,10 +106,11 @@
             src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAipTm3HoOVFjsVcePwaIRK9GhjqgvwS-U&callback=initMapIndex">
     </script>
     <script>
-        const eventSource = new EventSource("{{ mercure('https://example.com/ping')|escape('js') }}");
+
+        const eventSource = new EventSource("{{ mercure('https://example.com/ping') }}");
         eventSource.onmessage = event => {
             // Will be called every time an update is published by the server
-            console.log(JSON.parse(event.data));
+            document.getElementById("mercure").insertAdjacentHTML('afterbegin', "<p>Pinger !!"+ event.data +"</p>");
         }
 
     </script>
