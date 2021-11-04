@@ -3,24 +3,28 @@
 {% block title %}Mon profil{% endblock %}
 
 {% block body %}
-    <h1>Mon profil</h1>
+    <h1>{{ user.pseudo }}</h1>
 
-    <table class="table">
+    <table class="table" style="border: 1px solid black">
         <tbody>
 
             <tr>
+                <th> <i class="small material-icons"> account_box</i> </th>
                 <th>Pseudo</th>
                 <td>{{ user.pseudo }}</td>
             </tr>
             <tr>
+                <th> <i class="small material-icons">email</i> </th>
                 <th>Email</th>
                 <td>{{ user.email }}</td>
             </tr>
             <tr>
+                <th> <i class="small material-icons">verified_user</i> </th>
                 <th>Compte vérifié</th>
                 <td>{{ user.isVerified ? 'Oui' : 'Non' }}</td>
             </tr>
             <tr>
+                <th> <i class="small material-icons">supervisor_account</i> </th>
                 <th>Type de compte</th>
                 <td>{{ user.typeDeCompte }}</td>
             </tr>
@@ -33,17 +37,27 @@
         </tbody>
     </table>
 
-    <a href="{{ path('user_edit') }}">
-    <button style ="background-color:#ffcc00; margin: 5px" class="btn">
-        Modifier profil
-    </button>
-    </a>
+    <div class="container" style="margin: 25px">
+        <div class="row">
+                <div class="col s12">
+                    <a href="{{ path('user_edit') }}">
+                        <button style ="background-color:#ffcc00; margin: 5px" class="btn">
+                            Modifier profil
+                        </button>
+                    </a>
+                </div>
+                <div class="col s12">
+                    <a href="{{ path('app_forgot_password_request') }}">
+                        <button style ="background-color:#ffcc00; margin: 5px" class="btn">
+                            Modifier mot de passe
+                        </button>
+                    </a>
+                </div>
+                <div class="col s12">
+                    {{ include('user/_delete_form.html.twig') }}
+                </div>
+        </div>
+    </div>
 
-    <a href="{{ path('app_forgot_password_request') }}">
-        <button style ="background-color:#ffcc00; margin: 5px" class="btn">
-            Modifier mot de passe
-        </button>
-    </a>
 
-    {{ include('user/_delete_form.html.twig') }}
 {% endblock %}

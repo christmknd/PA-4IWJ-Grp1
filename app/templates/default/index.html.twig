@@ -21,10 +21,10 @@
             {{ form(formFilterAnnonce) }}
 
 
-            <div class="row ">
+            <div class="row">
                 {% for annonce in annonces %}
                     {% if annonce.etat  %}
-                        <div class="col s1 m4">
+                        <div class="col s12">
                             <div class="card blue-grey darken-1">
                                 <div class="card-content white-text">
                                     <span class="card-title">{{ annonce.titre }} - {{ annonce.type }}</span>
@@ -61,7 +61,7 @@
 
             <div class="collection ">
                 {% for evenement in evenements %}
-                    <div class="col s1 m6">
+                    <div class="col s12">
                         <div class="card blue-grey darken-1">
                             <div class="card-content white-text">
                                 <span class="card-title">{{ evenement.titre }}</span>
