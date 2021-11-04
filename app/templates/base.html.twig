@@ -15,7 +15,6 @@
     <nav>
         <div class="nav-wrapper green darken-2">
             <a href="{{path("default")}}" class="brand-logo" style="margin-left: 20px">La carte des Animaux</a>
-            <a href="" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
             <ul id="nav-mobile" class="right hide-on-med-and-down">
                 {% if is_granted('ROLE_ADMIN') %}
                     <a class="btn" href="{{ path('admin') }}">Mode Admin</a>
@@ -40,28 +39,6 @@
             </ul>
         </div>
     </nav>
-    <ul class="sidenav" id="mobile-demo">
-            {% if is_granted('ROLE_ADMIN') %}
-                <a class="btn" href="{{ path('admin') }}">Mode Admin</a>
-            {% endif %}
-            <li><a href="{{path("default")}}">Accueil</a></li>
-            {% if app.user %}
-                <li><a href="{{path("mes_annonces_index")}}">Mes annonces</a></li>
-                {% if is_granted('ROLE_ASSO') %}
-                    <li><a href="{{path("mes_evenements_index")}}">Mes evenements</a></li>
-                {% endif %}
-                <ul id="dropdown1" class="dropdown-content">
-                    <li><a href="{{path("favori_annonce")}}">Annonces</a></li>
-                    <li><a href="{{path("favori_evenement")}}">Evenements</a></li>
-                </ul>
-                <li><a class="dropdown-trigger" href="{{path("favori")}}" data-target="dropdown1">Mes favoris<i class="material-icons right">arrow_drop_down</i></a></li>
-                <li><a href="{{path("user_show")}}">Mon compte</a></li>
-                <li><a href="{{path("app_logout")}}">Se deconnecter</a></li>
-            {% else %}
-                <li><a href="{{path("app_register")}}">S'incrire</a></li>
-                <li><a href="{{path("app_login")}}">Se connecter</a></li>
-            {% endif %}
-    </ul>
 </div>
 
 <div class="container">
