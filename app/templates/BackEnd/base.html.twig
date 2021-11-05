@@ -36,6 +36,7 @@
     <nav>
         <div class="nav-wrapper  purple lighten-3">
             <a href="{{path("admin")}}" class="brand-logo" style="margin-left: 20px">La carte des Animaux - ADMIN</a>
+            <a href="#" data-target="sidenav" class="sidenav-trigger"><i class="material-icons">menu</i></a>
             <ul id="nav-mobile" class="right hide-on-med-and-down">
                 <a class="btn" href="{{ path('default') }}">Mode User</a>
                 <li><a href="{{path("admin")}}">Accueil</a></li>
@@ -80,7 +81,6 @@
         </div>
     </div>
 </footer>
-
 
 <script>
     {% for type, messages in app.flashes %}

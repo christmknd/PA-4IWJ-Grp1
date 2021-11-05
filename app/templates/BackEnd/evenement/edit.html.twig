@@ -15,9 +15,12 @@
         </div>
     </div>
 
-    <a class="btn" href="{{ path('admin_evenements') }}">Revenir à la liste</a>
+    <div class="last-btn" style="margin-top : 5px; margin-bottom: 20px;">
+        <a class="btn" href="{{ path('admin_evenements') }}">Revenir à la liste</a>
+        {{ include('BackEnd/evenement/_delete_form.html.twig') }}
+    </div>
 
-    {{ include('BackEnd/evenement/_delete_form.html.twig') }}
+
 
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAipTm3HoOVFjsVcePwaIRK9GhjqgvwS-U&libraries=places&callback=initMap&channel=GMPSB_addressselection_v1_cAB" async defer></script>
 
