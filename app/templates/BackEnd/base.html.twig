@@ -12,6 +12,10 @@
                 min-height: 50vh;
                 flex-direction: column;
             }
+            .navbar-fixed {
+                z-index: 998;
+            }
+
 
             main {
                 flex: 1 0 auto;
@@ -36,18 +40,19 @@
     <nav>
         <div class="nav-wrapper  purple lighten-3">
             <a href="{{path("admin")}}" class="brand-logo" style="margin-left: 20px">La carte des Animaux - ADMIN</a>
-            <a href="#" data-target="sidenav" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+            <a href="#" data-target="sidenav-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
             <ul id="nav-mobile" class="right hide-on-med-and-down">
                 <a class="btn" href="{{ path('default') }}">Mode User</a>
                 <li><a href="{{path("admin")}}">Accueil</a></li>
-                <li><a href="{{path("admin_annonces")}}">Les annonces</a></li>
-                <li><a href="{{path("admin_evenements")}}">Les evenements</a></li>
-                <li><a href="{{path("admin_users")}}">Les comptes</a></li>
-                <li><a href="{{path("admin_show")}}">Mon compte</a></li>
                 <li><a href="{{path("app_logout")}}">Se deconnecter</a></li>
             </ul>
         </div>
     </nav>
+    <ul class="sidenav" id="sidenav-demo">
+        <a class="btn" href="{{ path('default') }}">Mode User</a>
+        <li><a href="{{path("admin")}}">Accueil</a></li>
+        <li><a href="{{path("app_logout")}}">Se deconnecter</a></li>
+    </ul>
 </div>
 
 <div class="container">
@@ -65,10 +70,10 @@
                 <h5 class="white-text">Menu</h5>
                 <ul id="nav-mobile" class="right hide-on-med-and-down">
                     <li><a href="{{path("admin")}}">Accueil</a></li>
-                    <li><a href="{{path("admin_annonces")}}">Les annonces</a></li>
-                    <li><a href="{{path("admin_evenements")}}">Les evenements</a></li>
+                    <li><a href="{{path("admin_annonces")}}">Annonces</a></li>
+                    <li><a href="{{path("admin_evenements")}}">Evenements</a></li>
                     <li><a href="{{path("admin_users")}}">Les comptes</a></li>
-                    <li><a href="{{path("admin_show")}}">Mon compte</a></li>
+                    <li><a href="{{path("admin_show")}}">Mon profil</a></li>
                     <li><a href="{{path("app_logout")}}">Se deconnecter</a></li>
                 </ul>
             </div>
@@ -98,6 +103,10 @@
     document.addEventListener('DOMContentLoaded', function() {
         var elems = document.querySelectorAll('select');
         var instances = M.FormSelect.init(elems);
+    });
+    document.addEventListener('DOMContentLoaded', function() {
+        let elems = document.querySelectorAll('.sidenav');
+        let instances = M.Sidenav.init(elems);
     });
 </script>
 </body>

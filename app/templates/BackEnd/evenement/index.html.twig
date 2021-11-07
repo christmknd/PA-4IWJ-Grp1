@@ -3,42 +3,61 @@
 {% block title %}Les evenements en ligne{% endblock %}
 
 {% block body %}
-    <h1>Les evenements en ligne</h1>
+    <h1>Evenements en ligne</h1>
 
-    <table class="responsive-table striped" style="margin-bottom : 20px">
-        <thead>
-            <tr>
-                <th>Titre</th>
-                <th>Date</th>
-                <th>Ville</th>
-                <th>Description</th>
-                <th>Etat</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for evenement in evenements %}
-            <tr>
-                <td>{{ evenement.titre }}</td>
-                <td>{{ evenement.dateEvent ? evenement.dateEvent|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ evenement.ville }}</td>
-                <td>{{ evenement.description }}</td>
-                <td>{{ evenement.etat ? 'Yes' : 'No' }}</td>
-                <td>
-                    <a class="btn" href="{{ path('admin_evenements_show', {'id': evenement.id}) }}">visualiser</a>
-                    <a class="btn" href="{{ path('admin_evenements_edit', {'id': evenement.id}) }}">modifier</a>
-                    {{ include('BackEnd/evenement/_delete_form.html.twig') }}
-                    <form method="post" action="{{ path('admin_evenements_toggle_etat', {'id': evenement.id}) }}">
-                        <button class="btn" style="background-color: {{ evenement.etat ? 'red' : 'blue' }}">{{ evenement.etat ? 'Desactiver' : 'Activer' }}</button>
-                    </form>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="7">Pas d'evenement</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col m3">
+                <div class="collection">
+                    <a href="#" class="collection-item"><span class="badge"><i class=" small material-icons">home</i></span>Interface Admin</a>
+                    <a href="{{path("admin_annonces")}}" class="collection-item"><span class="badge"><i class=" small material-icons">border_color</i></span>Annonce</a>
+                    <a href="{{path("admin_evenements")}}" class="collection-item"><span class="badge"><i class=" small material-icons">event</i></span>Evenements</a>
+                    <a href="{{path("admin_users")}}" class="collection-item"><span class="badge"><i class=" small material-icons">group</i></span>Comptes</a>
+                    <a href="{{path("admin_show")}}" class="collection-item"><span class="badge"><i class=" small material-icons">account_box</i></span>Admin</a>
+                </div>
+            </div>
+            <div class="col m9">
+                <table class="responsive-table striped" style="margin-bottom : 20px">
+                    <thead>
+                    <tr>
+                        <th>Titre</th>
+                        <th>Date</th>
+                        <th>Ville</th>
+                        <th>Description</th>
+                        <th>Etat</th>
+                        <th>Actions</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for evenement in evenements %}
+                        <tr>
+                            <td>{{ evenement.titre }}</td>
+                            <td>{{ evenement.dateEvent ? evenement.dateEvent|date('Y-m-d H:i:s') : '' }}</td>
+                            <td>{{ evenement.ville }}</td>
+                            <td>{{ evenement.description }}</td>
+                            <td>{{ evenement.etat ? 'Yes' : 'No' }}</td>
+                            <td>
+                                <a class="btn" href="{{ path('admin_evenements_show', {'id': evenement.id}) }}">visualiser</a>
+                                <a class="btn" href="{{ path('admin_evenements_edit', {'id': evenement.id}) }}">modifier</a>
+                                {{ include('BackEnd/evenement/_delete_form.html.twig') }}
+                                <form method="post" action="{{ path('admin_evenements_toggle_etat', {'id': evenement.id}) }}">
+                                    <button class="btn" style="background-color: {{ evenement.etat ? 'red' : 'blue' }}">{{ evenement.etat ? 'Desactiver' : 'Activer' }}</button>
+                                </form>
+                            </td>
+                        </tr>
+                    {% else %}
+                        <tr>
+                            <td colspan="7">Pas d'evenement</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+
+
+
 
 {% endblock %}
