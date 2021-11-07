@@ -52,9 +52,9 @@ class UserController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
 
             // Si le numero de siret a été modifié, verifier le numero de siret
-
+            if($user->getSiret()!==null) {
                 // Si le numero de siret existe via l'API Insee
-                if (!$user->isSiret($form->get('siret')->getData())){
+                if (!$user->isSiret($form->get('siret')->getData())) {
                     array_push($errorMessages, 'Numero de Siret invalide');
                     return $this->render('user/edit.html.twig', [
                         'user' => $user,
@@ -62,6 +62,7 @@ class UserController extends AbstractController
                         'errorMessages' => $errorMessages
                     ]);
                 }
+            }
 
             // Si le mail a été modifié, le compte n'est pas vérifier
             if($email!==$form->get('email')->getData()){

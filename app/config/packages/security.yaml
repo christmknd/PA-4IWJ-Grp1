@@ -37,11 +37,11 @@ security:
     access_control:
         - { path: ^/admin/new, roles: PUBLIC_ACCESS }
         - { path: ^/admin, roles: ROLE_ADMIN }
-        - { path: ^/mes_annonces, roles: ROLE_USER }
+        - { path: ^/annonces, roles: ROLE_USER }
         - { path: ^/favori, roles: ROLE_USER }
         - { path: ^/user, roles: ROLE_USER }
-        - { path: ^/mes_evenements/show, roles: ROLE_USER }
-        - { path: ^/mes_evenements, roles: ROLE_ASSO }
+        - { path: ^/evenements/show, roles: ROLE_USER }
+        - { path: ^/evenements, roles: ROLE_ASSO }
         - { path: ^/profile, roles: ROLE_USER }
         -
     role_hierarchy:
