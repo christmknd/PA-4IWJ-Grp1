@@ -7,7 +7,7 @@
 */app/public/bundles/
 */app/var/
 app/vendor/
-app/node_modules/
+node_modules/
 ###< symfony/framework-bundle ###
 
 ###> symfony/phpunit-bridge ###
