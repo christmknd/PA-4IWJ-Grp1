@@ -16,6 +16,9 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Security\Guard\GuardAuthenticatorHandler;
 use SymfonyCasts\Bundle\VerifyEmail\Exception\VerifyEmailExceptionInterface;
 
+/**
+ * @Route("/register")
+ */
 class RegistrationController extends AbstractController
 {
     private $emailVerifier;
@@ -26,21 +29,28 @@ class RegistrationController extends AbstractController
     }
 
     /**
-     * @Route("/register", name="app_register", methods={"GET"})
+     * @Route("/", name="app_register", methods={"GET"})
      */
     public function register(Request $request, UserPasswordEncoderInterface $passwordEncoder, GuardAuthenticatorHandler $guardHandler, AppCustomAuthenticator $authenticator): Response
     {
+
+        if ($this->getUser()) {
+            return $this->redirectToRoute('default');
+        }
         return $this->render('registration/register.html.twig', [
             'typeDeCompte' => '',
         ]);
     }
 
     /**
-     * @Route("/register/person", name="register_person", methods={"GET", "POST"})
+     * @Route("/person", name="register_person", methods={"GET", "POST"})
      * ToDo: remove 1 controller
      */
     public function registerPerson(Request $request, UserPasswordEncoderInterface $passwordEncoder, GuardAuthenticatorHandler $guardHandler, AppCustomAuthenticator $authenticator): Response
     {
+        if ($this->getUser()) {
+            return $this->redirectToRoute('default');
+        }
         $user = new User();
         $user->setTypeDeCompte("Personne");
         $form = $this->createForm(RegistrationFormType::class, $user);
@@ -83,10 +93,13 @@ class RegistrationController extends AbstractController
     }
 
     /**
-     * @Route("/register/association", name="register_association", methods={"GET", "POST"})
+     * @Route("/association", name="register_association", methods={"GET", "POST"})
      */
     public function registerAssociation(Request $request, UserPasswordEncoderInterface $passwordEncoder, GuardAuthenticatorHandler $guardHandler, AppCustomAuthenticator $authenticator): Response
     {
+        if ($this->getUser()) {
+            return $this->redirectToRoute('default');
+        }
         $user = new User();
         $user->setTypeDeCompte("Association");
         $user->setRoles(["ROLE_ASSO"]);
