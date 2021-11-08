@@ -15,7 +15,6 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 /**
  * @Route("/favori", name="favori")
- * @IsGranted("ROLE_USER")
  */
 class FavoriController extends AbstractController
 {
