@@ -23,8 +23,6 @@ use Symfony\Component\Security\Guard\GuardAuthenticatorHandler;
  */
 class UserController extends AbstractController
 {
-
-
     /**
      * @Route("", name="user_show", methods={"GET"})
      */
@@ -42,25 +40,31 @@ class UserController extends AbstractController
     {
         $user = $this->getUser();
         $email = $user->getEmail();
+        $siret = $user->getSiret();
+        var_dump($siret);
         $form = $this->createForm(UserType::class, $user);
         if ($user->getTypeDeCompte()!=="Association"){
             $form->remove('siret');
         }
         $form->handleRequest($request);
         $errorMessages = [];
+        var_dump($form->get('siret')->getData());
 
         if ($form->isSubmitted() && $form->isValid()) {
 
-            // Si le numero de siret a été modifié, verifier le numero de siret
-            if($user->getSiret()!==null) {
-                // Si le numero de siret existe via l'API Insee
-                if (!$user->isSiret($form->get('siret')->getData())) {
-                    array_push($errorMessages, 'Numero de Siret invalide');
-                    return $this->render('user/edit.html.twig', [
-                        'user' => $user,
-                        'form' => $form->createView(),
-                        'errorMessages' => $errorMessages
-                    ]);
+            // Si le numero de siret n'est pas null => Association
+            if($siret!==null) {
+                // Si le numero de siret a été modifié => Verifier le numero de siret
+                if($siret!=$form->get('siret')->getData()) {
+                    // Si le numero de siret n'existe pas via l'API Insee
+                    if (!$user->isSiret($form->get('siret')->getData())) {
+                        array_push($errorMessages, 'Numero de Siret invalide');
+                        return $this->render('user/edit.html.twig', [
+                            'user' => $user,
+                            'form' => $form->createView(),
+                            'errorMessages' => $errorMessages
+                        ]);
+                    }
                 }
             }
 

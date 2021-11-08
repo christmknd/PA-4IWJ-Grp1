@@ -16,7 +16,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 /**
- * @Route("/admin/mes_evenements", name="admin_evenements")
+ * @Route("/admin/evenements", name="admin_evenements")
  */
 class EvenementController extends AbstractController
 {
