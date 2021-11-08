@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Annonce;
+use App\Entity\User;
 use App\Form\AnnonceType;
 use App\Security\Voter\AnnonceVoter;
 use App\Repository\AnnonceRepository;
@@ -34,8 +35,13 @@ class AnnonceController extends AbstractController
      */
     public function new(Request $request): Response
     {
+        $user = $this->getUser();
+        if(!$user->isVerified()){
+            $this->addFlash('success', 'Compte restreint ! Validez votre compte en cliquant sur le lien reçu par email.');
+            return $this->redirectToRoute('mes_annonces_index');
+        }
         $annonce = new Annonce();
-        $annonce->setUtilisateur($this->getUser());
+        $annonce->setUtilisateur($user);
         $form = $this->createForm(AnnonceType::class, $annonce);
         $form->handleRequest($request);
 
@@ -71,6 +77,11 @@ class AnnonceController extends AbstractController
      */
     public function edit(Request $request, Annonce $annonce): Response
     {
+        $user = $this->getUser();
+        if(!$user->isVerified()){
+            $this->addFlash('success', 'Compte restreint ! Validez votre compte en cliquant sur le lien reçu par email.');
+            return $this->redirectToRoute('mes_annonces_index');
+        }
         $form = $this->createForm(AnnonceType::class, $annonce);
         $form->handleRequest($request);
 
@@ -92,6 +103,11 @@ class AnnonceController extends AbstractController
      */
     public function delete(Request $request, Annonce $annonce): Response
     {
+        $user = $this->getUser();
+        if(!$user->isVerified()){
+            $this->addFlash('success', 'Compte restreint ! Validez votre compte en cliquant sur le lien reçu par email.');
+            return $this->redirectToRoute('mes_annonces_index');
+        }
         if ($this->isCsrfTokenValid('delete'.$annonce->getId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($annonce);
@@ -106,6 +122,12 @@ class AnnonceController extends AbstractController
      */
     public function toggle_etat(Request $request, Annonce $annonce): Response
     {
+        $user = $this->getUser();
+        if(!$user->isVerified()){
+            $this->addFlash('success', 'Compte restreint ! Validez votre compte en cliquant sur le lien reçu par email.');
+            $annonce->setEtat(true);
+            return $this->redirectToRoute('mes_annonces_index');
+        }
         $annonce->setEtat(!$annonce->getEtat());
         $this->getDoctrine()->getManager()->flush();
         return $this->redirectToRoute('mes_annonces_index');
