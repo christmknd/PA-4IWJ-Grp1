@@ -1,9 +1,0 @@
-{
-    "type": "project",
-    "license": "proprietary",
-    "scripts": {
-        "auto-scripts": {
-            "go app": "cd ./app"
-        }
-    }
-}
