@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Annonce;
+use App\Entity\User;
 use App\Entity\Evenement;
 use App\Form\EvenementType;
 use App\Repository\AnnonceRepository;
@@ -35,8 +36,13 @@ class EvenementController extends AbstractController
      */
     public function new(Request $request): Response
     {
+        $user = $this->getUser();
+        if(!$user->isVerified()){
+            $this->addFlash('success', 'Compte restreint ! Validez votre compte en cliquant sur le lien reçu par email.');
+            return $this->redirectToRoute('mes_evenements_index');
+        }
         $evenement = new Evenement();
-        $evenement->setUtilisateur($this->getUser());
+        $evenement->setUtilisateur($user);
         $form = $this->createForm(EvenementType::class, $evenement);
         $form->handleRequest($request);
 
@@ -70,6 +76,11 @@ class EvenementController extends AbstractController
      */
     public function edit(Request $request, Evenement $evenement): Response
     {
+        $user = $this->getUser();
+        if(!$user->isVerified()){
+            $this->addFlash('success', 'Compte restreint ! Validez votre compte en cliquant sur le lien reçu par email.');
+            return $this->redirectToRoute('mes_evenements_index');
+        }
         $form = $this->createForm(EvenementType::class, $evenement);
         $form->handleRequest($request);
 
@@ -91,6 +102,11 @@ class EvenementController extends AbstractController
      */
     public function delete(Request $request, Evenement $evenement): Response
     {
+        $user = $this->getUser();
+        if(!$user->isVerified()){
+            $this->addFlash('success', 'Compte restreint ! Validez votre compte en cliquant sur le lien reçu par email.');
+            return $this->redirectToRoute('mes_evenements_index');
+        }
         if ($this->isCsrfTokenValid('delete'.$evenement->getId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($evenement);
@@ -133,6 +149,12 @@ class EvenementController extends AbstractController
      */
     public function toggle_etat(Request $request, Evenement $evenement): Response
     {
+        $user = $this->getUser();
+        if(!$user->isVerified()){
+            $this->addFlash('success', 'Compte restreint ! Validez votre compte en cliquant sur le lien reçu par email.');
+            $evenement->setEtat(false);
+            return $this->redirectToRoute('mes_annonces_index');
+        }
         $evenement->setEtat(!$evenement->getEtat());
         $this->getDoctrine()->getManager()->flush();
         return $this->redirectToRoute('mes_evenements_index');
