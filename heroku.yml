@@ -2,10 +2,11 @@ setup:
   addons:
     - plan: heroku-postgresql
       as: DATABASE
-  config:
-    POSTGRES_DB: db
-    POSTGRES_USER: user
-    POSTGRES_PASSWORD: pwd
 build:
   docker:
-    web: app/Dockerfile
+    web:
+      dockerfile: app/Dockerfile
+      target: app_nginx
+    worker:
+      dockerfile: app/Dockerfile
+      target: app_php
