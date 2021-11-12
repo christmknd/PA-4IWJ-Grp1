@@ -8,7 +8,4 @@ setup:
     POSTGRES_PASSWORD: pwd
 build:
   docker:
-    release:
-      dockerfile: app/Dockerfile
-      target: app_php
     web: app/Dockerfile

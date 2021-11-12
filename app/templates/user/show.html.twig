@@ -19,6 +19,13 @@
             <tr>
                 <th>Compte vérifié</th>
                 <td>{{ user.isVerified ? 'Oui' : 'Non' }}</td>
+                {% if not user.isVerified %}
+                    <td>
+                        <form  method="post" action="{{ path('user_post_mail') }}">
+                            <button style ="background-color: #2446af; margin: 5px" class="btn">Envoyer lien d'activation</button>
+                        </form>
+                    </td>
+                {% endif %}
             </tr>
             <tr>
                 <th>Type de compte</th>

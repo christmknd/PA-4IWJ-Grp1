@@ -41,14 +41,12 @@ class UserController extends AbstractController
         $user = $this->getUser();
         $email = $user->getEmail();
         $siret = $user->getSiret();
-        var_dump($siret);
         $form = $this->createForm(UserType::class, $user);
         if ($user->getTypeDeCompte()!=="Association"){
             $form->remove('siret');
         }
         $form->handleRequest($request);
         $errorMessages = [];
-        var_dump($form->get('siret')->getData());
 
         if ($form->isSubmitted() && $form->isValid()) {
 
@@ -111,4 +109,30 @@ class UserController extends AbstractController
         }
         return $this->redirectToRoute('default');
     }
+
+
+    /**
+     * @Route("/user-post-mail", name="user_post_mail", methods={"POST"})
+     */
+    public function envoiMailConfirmation(EmailVerifier $emailVerifier): Response
+    {
+        $user = $this->getUser();
+        $email = $user->getEmail();
+        $email_new = (new TemplatedEmail())
+            ->from(new Address('esgipa2021@gmail.com', 'Carte des Pets'))
+            ->to($email)
+            ->subject('Carte des Pets - Confirmation Email')
+            ->htmlTemplate('registration/confirmation_email.html.twig')
+            ->context([
+                'user' => $user,
+            ]);
+        // generate a signed url and email it to the user
+        $emailVerifier->sendEmailConfirmation('app_verify_email', $user, $email_new);
+
+        $this->addFlash('success', 'Lien de confirmation envoyé');
+        return $this->redirectToRoute('user_show');
+    }
+
+
+
 }
