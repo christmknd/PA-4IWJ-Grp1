@@ -4,7 +4,7 @@ setup:
       as: DATABASE
 build:
   docker:
-    release:
+    worker:
       dockerfile: app/Dockerfile
       target: app_php
     web :
