@@ -4,10 +4,10 @@ setup:
       as: DATABASE
 build:
   docker:
-    php :
+    release:
       dockerfile: app/Dockerfile
       target: app_php
-    nginx:
+    web :
       dockerfile: app/Dockerfile
       target: app_nginx
 
