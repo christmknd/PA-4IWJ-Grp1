@@ -3,7 +3,7 @@
 {% block title %}Mes événements{% endblock %}
 
 {% block body %}
-    <h1>List d'evenement</h1>
+    <h1>Liste des evenements</h1>
 
     <table class="responsive-table striped">
         <thead>
@@ -41,5 +41,7 @@
         </tbody>
     </table>
 
-    <a class="btn" href="{{ path('evenement_new') }}">Créer evenement</a>
+    <div class="last-button" style="margin-top: 20px ; margin-bottom: 20px" >
+        <a class="btn" href="{{ path('evenement_new') }}">Créer evenement</a>
+    </div>
 {% endblock %}

@@ -17,7 +17,7 @@
             </tr>
             <tr>
                 <th>Date</th>
-                <td>{{ evenement.date ? evenement.date|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ evenement.dateEvent ? evenement.dateEvent|date('Y-m-d H:i:s') : '' }}</td>
             </tr>
             <tr>
                 <th>Adress</th>
@@ -46,11 +46,15 @@
         </tbody>
     </table>
 
-    <a class="btn" href="{{ path('admin_evenements_edit', {'id': evenement.id}) }}">edit</a>
-    {{ include('BackEnd/evenement/_delete_form.html.twig') }}
+    <div class="last-button" style="padding-top: 10px;">
+        <a class="btn" href="{{ path('admin_evenements_edit', {'id': evenement.id}) }}">edit</a>
+        {{ include('BackEnd/evenement/_delete_form.html.twig') }}
+    </div>
+
+    <hr style="margin-top: 20px ; border: 1px solid black"/>
 
     <h2>Annonces dans cet evenement</h2>
-    <table class="table">
+    <table class="table" style="margin-bottom: 20px">
         <thead>
         <tr>
             <th>Titre</th>
@@ -96,10 +100,13 @@
 
         </tbody>
     </table>
+
+    <hr style="margin-top: 20px ; border: 1px solid black"/>
+
     {% if app.user == evenement.utilisateur %}
         <h2>Mes annonces exclues de l'événement</h2>
 
-        <table class="table">
+        <table class="table" style="margin-bottom: 20px">
             <thead>
             <tr>
                 <th>Titre</th>

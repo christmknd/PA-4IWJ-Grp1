@@ -5,37 +5,17 @@
     <title>{% block title %}Bienvenue!{% endblock %}</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    {% block stylesheets %}
-        <style>
-            body {
-                display: flex;
-                min-height: 50vh;
-                flex-direction: column;
-            }
-
-            main {
-                flex: 1 0 auto;
-            }
-            .page-footer a{
-                color: white;
-            }
-            footer{
-                position:static;
-                bottom: 0px;
-                right: 0px;
-                left: 0px;
-            }
-        </style>
-    {% endblock %}
+    {% block stylesheets %} {{ encore_entry_link_tags('base') }}{% endblock %}
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-    {% block javascripts %}{% endblock %}
+    {% block javascripts %}{{ encore_entry_script_tags('app') }}{% endblock %}
 </head>
 <body>
 <div class="navbar-fixed">
     <nav>
-        <div class="nav-wrapper deep-orange darken-2">
+        <div class="nav-wrapper green darken-2">
             <a href="{{path("default")}}" class="brand-logo" style="margin-left: 20px">La carte des Animaux</a>
+            <a href="#" data-target="sidenav-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
             <ul id="nav-mobile" class="right hide-on-med-and-down">
                 {% if is_granted('ROLE_ADMIN') %}
                     <a class="btn" href="{{ path('admin') }}">Mode Admin</a>
@@ -60,13 +40,35 @@
             </ul>
         </div>
     </nav>
+    <ul class="sidenav" id="sidenav-demo">
+        {% if is_granted('ROLE_ADMIN') %}
+            <a class="btn" href="{{ path('admin') }}">Mode Admin</a>
+        {% endif %}
+        <li><a href="{{path("default")}}">Accueil</a></li>
+        {% if app.user %}
+            <li><a href="{{path("mes_annonces_index")}}">Mes annonces</a></li>
+            {% if is_granted('ROLE_ASSO') %}
+                <li><a href="{{path("mes_evenements_index")}}">Mes evenements</a></li>
+            {% endif %}
+            <ul id="dropdown1" class="dropdown-content">
+                <li><a href="{{path("favori_annonce")}}">Annonces</a></li>
+                <li><a href="{{path("favori_evenement")}}">Evenements</a></li>
+            </ul>
+            <li><a class="dropdown-trigger" href="{{path("favori")}}" data-target="dropdown1">Mes favoris<i class="material-icons right">arrow_drop_down</i></a></li>
+            <li><a href="{{path("user_show")}}">Mon compte</a></li>
+            <li><a href="{{path("app_logout")}}">Se deconnecter</a></li>
+        {% else %}
+            <li><a href="{{path("app_register")}}">S'incrire</a></li>
+            <li><a href="{{path("app_login")}}">Se connecter</a></li>
+        {% endif %}
+    </ul>
 </div>
 
-<div class="container">
+<div class="container" style="width: 1000px">
     {% block body %}{% endblock %}
 </div>
 
-<footer class="page-footer deep-orange darken-2">
+<footer class="page-footer green darken-2">
     <div class="container ">
         <div class="row">
             <div class="col l6 s12">
@@ -122,6 +124,11 @@
     document.addEventListener('DOMContentLoaded', function() {
         var elems = document.querySelectorAll('select');
         var instances = M.FormSelect.init(elems);
+    });
+    //navbar
+    document.addEventListener('DOMContentLoaded', function() {
+        let elems = document.querySelectorAll('.sidenav');
+        let instances = M.Sidenav.init(elems);
     });
 </script>
 </body>

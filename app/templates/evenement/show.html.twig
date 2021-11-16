@@ -3,7 +3,7 @@
 {% block title %}Evenement{% endblock %}
 
 {% block body %}
-    <h1>Evenement</h1>
+    <h1>{{ evenement.titre }}</h1>
 
     <table class="table">
         <tbody>
@@ -47,10 +47,15 @@
     </table>
 
     {% if app.user == evenement.utilisateur %}
-        <a class="btn" href="{{ path('evenement_edit', {'id': evenement.id}) }}">edit</a>
-        {{ include('evenement/_delete_form.html.twig') }}
+        <div class="last-button" style="padding-top: 10px;">
+            <a class="btn" href="{{ path('evenement_edit', {'id': evenement.id}) }}">edit</a>
+            {{ include('evenement/_delete_form.html.twig') }}
+        </div>
     {% endif %}
-    <h2>Annonces dans cet evenement</h2>
+
+    <hr style="margin-top: 20px ; border: 1px solid black"/>
+
+    <h2>Annonces contenues dans cet evenement</h2>
 
     <table class="table">
         <thead>
@@ -98,10 +103,13 @@
 
         </tbody>
     </table>
+
+    <hr style="margin-top: 20px ; border: 1px solid black"/>
+
     {% if app.user == evenement.utilisateur %}
         <h2>Mes annonces exclues de l'événement</h2>
 
-        <table class="table">
+        <table class="table" style="margin-bottom: 20px;">
             <thead>
             <tr>
                 <th>Titre</th>
@@ -132,6 +140,8 @@
                         <td>{{ annonce.ville }}</td>
                         <td>{{ annonce.sexe }}</td>
                         <td>{{ annonce.age }}</td>
+                    </tr>
+                    <tr>
                         <td>
                             <a class="btn" href="{{ path('annonce_show', {'id': annonce.id}) }}">visualiser</a>
                             <form method="post" action="{{ path('add_annonce_to_evenement', {'id': evenement.id, 'annonce_id':annonce.id}) }}">

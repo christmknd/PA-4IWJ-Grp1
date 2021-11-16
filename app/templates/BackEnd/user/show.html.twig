@@ -3,43 +3,69 @@
 {% block title %}Le profil{% endblock %}
 
 {% block body %}
-    <h1>Le profil</h1>
+    <h1>{{ user.pseudo }}</h1>
 
-    <table class="table">
-        <tbody>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col m3">
+                <div class="collection">
+                    <a href="#" class="collection-item"><span class="badge"><i class=" small material-icons">home</i></span>Interface Admin</a>
+                    <a href="{{path("admin_annonces")}}" class="collection-item"><span class="badge"><i class=" small material-icons">border_color</i></span>Annonce</a>
+                    <a href="{{path("admin_evenements")}}" class="collection-item"><span class="badge"><i class=" small material-icons">event</i></span>Evenements</a>
+                    <a href="{{path("admin_users")}}" class="collection-item"><span class="badge"><i class=" small material-icons">group</i></span>Comptes</a>
+                    <a href="{{path("admin_show")}}" class="collection-item"><span class="badge"><i class=" small material-icons">account_box</i></span>Admin</a>
+                </div>
+            </div>
+            <div class="col m9">
+                <table class="table">
+                    <tbody>
+                    <tr>
+                        <th> <i class="small material-icons"> account_box</i> </th>
+                        <th>Pseudo</th>
+                        <td>{{ user.pseudo }}</td>
+                    </tr>
+                    <tr>
+                        <th> <i class="small material-icons">email</i> </th>
+                        <th>Email</th>
+                        <td>{{ user.email }}</td>
+                    </tr>
+                    <tr>
+                        <th> <i class="small material-icons">verified_user</i> </th>
+                        <th>Compte vérifié</th>
+                        <td>{{ user.isVerified ? 'Oui' : 'Non' }}</td>
+                    </tr>
+                    <tr>
+                        <th> <i class="small material-icons">supervisor_account</i> </th>
+                        <th>Type de compte</th>
+                        <td>{{ user.typeDeCompte }}</td>
+                    </tr>
+                    {% if app.user.typeDeCompte == "association" %}
+                        <tr>
+                            <th>Siret</th>
+                            <td>{{ user.siret }}</td>
+                        </tr>
+                    {% endif %}
+                    </tbody>
+                </table>
 
-            <tr>
-                <th>Pseudo</th>
-                <td>{{ user.pseudo }}</td>
-            </tr>
-            <tr>
-                <th>Email</th>
-                <td>{{ user.email }}</td>
-            </tr>
-            <tr>
-                <th>Compte vérifié</th>
-                <td>{{ user.isVerified ? 'Oui' : 'Non' }}</td>
-            </tr>
-            <tr>
-                <th>Type de compte</th>
-                <td>{{ user.typeDeCompte }}</td>
-            </tr>
-            {% if app.user.typeDeCompte == "association" %}
-            <tr>
-                <th>Siret</th>
-                <td>{{ user.siret }}</td>
-            </tr>
-            {% endif %}
-        </tbody>
-    </table>
-
-    <a href="{{ path('admin_users_edit', {'id': user.id}) }}">
-    <button style ="background-color:#ffcc00; margin: 5px" class="btn">
-        Modifier profil
-    </button>
-    </a>
-
-    {{ include('BackEnd/user/_delete_form.html.twig') }}
-
-    <a class="btn" href="{{ path('admin_users') }}">Revenir à la liste</a>
+                <div class="container" style="margin: 25px">
+                    <div class="row">
+                        <div class="col s12">
+                            <a href="{{ path('admin_users_edit', {'id': user.id}) }}">
+                                <button style ="background-color:#ffcc00" class="btn">
+                                    Modifier profil
+                                </button>
+                            </a>
+                        </div>
+                        <div class="col s12">
+                            {{ include('BackEnd/user/_delete_form.html.twig') }}
+                        </div>
+                        <div class="col s12">
+                            <a class="btn" href="{{ path('admin_users') }}">Revenir à la liste</a>
+                        </div>
+                    </div>
+                 </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}
