@@ -155,6 +155,8 @@ $catalogue = new MessageCatalogue('pt_BR', array (
     'Account is locked.' => 'A conta está travada.',
     'Too many failed login attempts, please try again later.' => 'Muitas tentativas de login malsucedidas, tente novamente mais tarde.',
     'Invalid or expired login link.' => 'Link de login inválido ou expirado.',
+    'Too many failed login attempts, please try again in %minutes% minute.' => 'Muitas tentativas de login inválidas, por favor, tente novamente em um minuto.',
+    'Too many failed login attempts, please try again in %minutes% minutes.' => 'Muitas tentativas de login inválidas, por favor, tente novamente em %minutes% minutos.',
   ),
 ));
 
@@ -311,6 +313,8 @@ $cataloguePt = new MessageCatalogue('pt', array (
     'Account is locked.' => 'A conta está trancada.',
     'Too many failed login attempts, please try again later.' => 'Várias tentativas de login falhadas, por favor tente mais tarde.',
     'Invalid or expired login link.' => 'Ligação de login inválida ou expirada.',
+    'Too many failed login attempts, please try again in %minutes% minute.' => 'Demasiadas tentativas de login, tente novamente num minuto.',
+    'Too many failed login attempts, please try again in %minutes% minutes.' => 'Demasiadas tentativas de login, tente novamente em %minutes% minutos.',
   ),
   'VerifyEmailBundle' => 
   array (
@@ -483,6 +487,8 @@ $catalogueFr = new MessageCatalogue('fr', array (
     'Account is locked.' => 'Le compte est bloqué.',
     'Too many failed login attempts, please try again later.' => 'Plusieurs tentatives de connexion ont échoué, veuillez réessayer plus tard.',
     'Invalid or expired login link.' => 'Lien de connexion invalide ou expiré.',
+    'Too many failed login attempts, please try again in %minutes% minute.' => 'Plusieurs tentatives de connexion ont échoué, veuillez réessayer dans %minutes% minute.',
+    'Too many failed login attempts, please try again in %minutes% minutes.' => 'Plusieurs tentatives de connexion ont échoué, veuillez réessayer dans %minutes% minutes.',
   ),
   'VerifyEmailBundle' => 
   array (

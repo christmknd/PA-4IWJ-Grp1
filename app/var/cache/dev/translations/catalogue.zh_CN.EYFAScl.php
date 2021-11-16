@@ -155,6 +155,8 @@ $catalogue = new MessageCatalogue('zh_CN', array (
     'Account is locked.' => '帐号已被锁定。',
     'Too many failed login attempts, please try again later.' => '登入失败的次数过多，请稍后再试。',
     'Invalid or expired login link.' => '失效或过期的登入链接。',
+    'Too many failed login attempts, please try again in %minutes% minute.' => '登入失败的次数过多，请在%minutes%分钟后再试。',
+    'Too many failed login attempts, please try again in %minutes% minutes.' => '登入失败的次数过多，请在%minutes%分钟后再试。',
   ),
 ));
 
@@ -314,6 +316,8 @@ $catalogueFr = new MessageCatalogue('fr', array (
     'Account is locked.' => 'Le compte est bloqué.',
     'Too many failed login attempts, please try again later.' => 'Plusieurs tentatives de connexion ont échoué, veuillez réessayer plus tard.',
     'Invalid or expired login link.' => 'Lien de connexion invalide ou expiré.',
+    'Too many failed login attempts, please try again in %minutes% minute.' => 'Plusieurs tentatives de connexion ont échoué, veuillez réessayer dans %minutes% minute.',
+    'Too many failed login attempts, please try again in %minutes% minutes.' => 'Plusieurs tentatives de connexion ont échoué, veuillez réessayer dans %minutes% minutes.',
   ),
   'VerifyEmailBundle' => 
   array (

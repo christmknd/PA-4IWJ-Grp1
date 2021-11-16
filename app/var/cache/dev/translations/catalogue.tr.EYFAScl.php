@@ -154,6 +154,8 @@ $catalogue = new MessageCatalogue('tr', array (
     'Account is locked.' => 'Hesap kilitlenmiş.',
     'Too many failed login attempts, please try again later.' => 'Çok fazla başarısız giriş denemesi, lütfen daha sonra tekrar deneyin.',
     'Invalid or expired login link.' => 'Geçersiz veya süresi dolmuş oturum açma bağlantısı.',
+    'Too many failed login attempts, please try again in %minutes% minute.' => 'Çok fazla başarısız giriş denemesi, lütfen %minutes% dakika sonra tekrar deneyin.',
+    'Too many failed login attempts, please try again in %minutes% minutes.' => 'Çok fazla başarısız giriş denemesi, lütfen %minutes% dakika sonra tekrar deneyin.',
   ),
   'VerifyEmailBundle' => 
   array (
@@ -326,6 +328,8 @@ $catalogueFr = new MessageCatalogue('fr', array (
     'Account is locked.' => 'Le compte est bloqué.',
     'Too many failed login attempts, please try again later.' => 'Plusieurs tentatives de connexion ont échoué, veuillez réessayer plus tard.',
     'Invalid or expired login link.' => 'Lien de connexion invalide ou expiré.',
+    'Too many failed login attempts, please try again in %minutes% minute.' => 'Plusieurs tentatives de connexion ont échoué, veuillez réessayer dans %minutes% minute.',
+    'Too many failed login attempts, please try again in %minutes% minutes.' => 'Plusieurs tentatives de connexion ont échoué, veuillez réessayer dans %minutes% minutes.',
   ),
   'VerifyEmailBundle' => 
   array (

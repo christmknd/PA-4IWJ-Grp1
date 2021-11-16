@@ -153,8 +153,10 @@ $catalogue = new MessageCatalogue('it', array (
     'Credentials have expired.' => 'Credenziali scadute.',
     'Account is disabled.' => 'L\'account è disabilitato.',
     'Account is locked.' => 'L\'account è bloccato.',
-    'Too many failed login attempts, please try again later.' => 'Troppi tentaivi di login falliti. Riprova tra un po\'.',
+    'Too many failed login attempts, please try again later.' => 'Troppi tentativi di login falliti, riprova tra un po\'.',
     'Invalid or expired login link.' => 'Link di login scaduto o non valido.',
+    'Too many failed login attempts, please try again in %minutes% minute.' => 'Troppi tentativi di login falliti, riprova tra %minutes% minuto.',
+    'Too many failed login attempts, please try again in %minutes% minutes.' => 'Troppi tentativi di login falliti, riprova tra %minutes% minuti.',
   ),
   'VerifyEmailBundle' => 
   array (
@@ -327,6 +329,8 @@ $catalogueFr = new MessageCatalogue('fr', array (
     'Account is locked.' => 'Le compte est bloqué.',
     'Too many failed login attempts, please try again later.' => 'Plusieurs tentatives de connexion ont échoué, veuillez réessayer plus tard.',
     'Invalid or expired login link.' => 'Lien de connexion invalide ou expiré.',
+    'Too many failed login attempts, please try again in %minutes% minute.' => 'Plusieurs tentatives de connexion ont échoué, veuillez réessayer dans %minutes% minute.',
+    'Too many failed login attempts, please try again in %minutes% minutes.' => 'Plusieurs tentatives de connexion ont échoué, veuillez réessayer dans %minutes% minutes.',
   ),
   'VerifyEmailBundle' => 
   array (

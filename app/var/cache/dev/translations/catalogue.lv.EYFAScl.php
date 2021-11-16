@@ -154,6 +154,8 @@ $catalogue = new MessageCatalogue('lv', array (
     'Account is locked.' => 'Konts ir slēgts.',
     'Too many failed login attempts, please try again later.' => 'Pārāk daudz atteiktu ieejas mēģinājumu, lūdzu, mēģiniet vēlreiz vēlāk.',
     'Invalid or expired login link.' => 'Ieejas saite ir nederīga vai arī tai ir beidzies derīguma termiņš.',
+    'Too many failed login attempts, please try again in %minutes% minute.' => 'Pārāk daudz nesekmīgu autentifikācijas mēģinājumu, lūdzu mēģiniet vēlreiz pēc %minutes% minūtes.',
+    'Too many failed login attempts, please try again in %minutes% minutes.' => 'Pārāk daudz nesekmīgu autentifikācijas mēģinājumu, lūdzu mēģiniet vēlreiz pēc %minutes% minūtēm.',
   ),
 ));
 
@@ -310,6 +312,8 @@ $catalogueFr = new MessageCatalogue('fr', array (
     'Account is locked.' => 'Le compte est bloqué.',
     'Too many failed login attempts, please try again later.' => 'Plusieurs tentatives de connexion ont échoué, veuillez réessayer plus tard.',
     'Invalid or expired login link.' => 'Lien de connexion invalide ou expiré.',
+    'Too many failed login attempts, please try again in %minutes% minute.' => 'Plusieurs tentatives de connexion ont échoué, veuillez réessayer dans %minutes% minute.',
+    'Too many failed login attempts, please try again in %minutes% minutes.' => 'Plusieurs tentatives de connexion ont échoué, veuillez réessayer dans %minutes% minutes.',
   ),
   'VerifyEmailBundle' => 
   array (

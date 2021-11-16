@@ -154,6 +154,8 @@ $catalogue = new MessageCatalogue('sk', array (
     'Account is locked.' => 'Účet je zablokovaný.',
     'Too many failed login attempts, please try again later.' => 'Príliš mnoho neúspešných pokusov o prihlásenie. Skúste to prosím znovu neskôr.',
     'Invalid or expired login link.' => 'Neplatný alebo expirovaný odkaz na prihlásenie.',
+    'Too many failed login attempts, please try again in %minutes% minute.' => 'Príliš veľa neúspešných pokusov o prihlásenie. Skúste to znova o %minutes% minútu.',
+    'Too many failed login attempts, please try again in %minutes% minutes.' => 'Príliš veľa neúspešných pokusov o prihlásenie. Skúste to znova o %minutes% minút.',
   ),
 ));
 
@@ -310,6 +312,8 @@ $catalogueFr = new MessageCatalogue('fr', array (
     'Account is locked.' => 'Le compte est bloqué.',
     'Too many failed login attempts, please try again later.' => 'Plusieurs tentatives de connexion ont échoué, veuillez réessayer plus tard.',
     'Invalid or expired login link.' => 'Lien de connexion invalide ou expiré.',
+    'Too many failed login attempts, please try again in %minutes% minute.' => 'Plusieurs tentatives de connexion ont échoué, veuillez réessayer dans %minutes% minute.',
+    'Too many failed login attempts, please try again in %minutes% minutes.' => 'Plusieurs tentatives de connexion ont échoué, veuillez réessayer dans %minutes% minutes.',
   ),
   'VerifyEmailBundle' => 
   array (

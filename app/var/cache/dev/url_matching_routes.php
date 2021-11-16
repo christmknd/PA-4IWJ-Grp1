@@ -19,7 +19,7 @@ return [
         '/admin/show' => [[['_route' => 'admin_show', '_controller' => 'App\\Controller\\BackEnd\\AdminController::show'], null, ['GET' => 0], null, false, false, null]],
         '/admin/new' => [[['_route' => 'adminregister_admin', '_controller' => 'App\\Controller\\BackEnd\\AdminController::registerAdmin'], null, ['GET' => 0, 'POST' => 1], null, false, false, null]],
         '/admin/annonces' => [[['_route' => 'admin_annonces', '_controller' => 'App\\Controller\\BackEnd\\AnnonceController::index'], null, ['GET' => 0], null, true, false, null]],
-        '/admin/mes_evenements' => [[['_route' => 'admin_evenements', '_controller' => 'App\\Controller\\BackEnd\\EvenementController::index'], null, ['GET' => 0], null, true, false, null]],
+        '/admin/evenements' => [[['_route' => 'admin_evenements', '_controller' => 'App\\Controller\\BackEnd\\EvenementController::index'], null, ['GET' => 0], null, true, false, null]],
         '/admin/user' => [[['_route' => 'admin_users', '_controller' => 'App\\Controller\\BackEnd\\UserController::index'], null, ['GET' => 0], null, true, false, null]],
         '/admin/user/new' => [[['_route' => 'admin_users_new', '_controller' => 'App\\Controller\\BackEnd\\UserController::new'], null, ['GET' => 0, 'POST' => 1], null, false, false, null]],
         '/' => [[['_route' => 'default', '_controller' => 'App\\Controller\\DefaultController::index'], null, ['GET' => 0, 'POST' => 1], null, false, false, null]],
@@ -28,10 +28,10 @@ return [
         '/favori' => [[['_route' => 'favori', '_controller' => 'App\\Controller\\FavoriController::indexFavori'], null, null, null, true, false, null]],
         '/favori/favori-annonce' => [[['_route' => 'favori_annonce', '_controller' => 'App\\Controller\\FavoriController::indexFavoriAnnonce'], null, null, null, false, false, null]],
         '/favori/favori-evenement' => [[['_route' => 'favori_evenement', '_controller' => 'App\\Controller\\FavoriController::indexFavoriEvenement'], null, null, null, false, false, null]],
-        '/register' => [[['_route' => 'app_register', '_controller' => 'App\\Controller\\RegistrationController::register'], null, ['GET' => 0], null, false, false, null]],
+        '/register' => [[['_route' => 'app_register', '_controller' => 'App\\Controller\\RegistrationController::register'], null, ['GET' => 0], null, true, false, null]],
         '/register/person' => [[['_route' => 'register_person', '_controller' => 'App\\Controller\\RegistrationController::registerPerson'], null, ['GET' => 0, 'POST' => 1], null, false, false, null]],
         '/register/association' => [[['_route' => 'register_association', '_controller' => 'App\\Controller\\RegistrationController::registerAssociation'], null, ['GET' => 0, 'POST' => 1], null, false, false, null]],
-        '/verify/email' => [[['_route' => 'app_verify_email', '_controller' => 'App\\Controller\\RegistrationController::verifyUserEmail'], null, null, null, false, false, null]],
+        '/register/verify/email' => [[['_route' => 'app_verify_email', '_controller' => 'App\\Controller\\RegistrationController::verifyUserEmail'], null, null, null, false, false, null]],
         '/reset-password' => [[['_route' => 'app_forgot_password_request', '_controller' => 'App\\Controller\\ResetPasswordController::request'], null, null, null, false, false, null]],
         '/reset-password/check-email' => [[['_route' => 'app_check_email', '_controller' => 'App\\Controller\\ResetPasswordController::checkEmail'], null, null, null, false, false, null]],
         '/login' => [[['_route' => 'app_login', '_controller' => 'App\\Controller\\SecurityController::login'], null, null, null, false, false, null]],
@@ -77,40 +77,40 @@ return [
                             .')'
                             .'|(*:318)'
                         .')'
-                        .'|mes_evenements/([^/]++)(?'
-                            .'|(*:353)'
+                        .'|evenements/([^/]++)(?'
+                            .'|(*:349)'
                             .'|/(?'
-                                .'|edit(*:369)'
-                                .'|remove_annonce/([^/]++)(*:400)'
-                                .'|add_annonce/([^/]++)(*:428)'
-                                .'|toggle_etat(*:447)'
+                                .'|edit(*:365)'
+                                .'|remove_annonce/([^/]++)(*:396)'
+                                .'|add_annonce/([^/]++)(*:424)'
+                                .'|toggle_etat(*:443)'
                             .')'
-                            .'|(*:456)'
+                            .'|(*:452)'
                         .')'
                         .'|user/([^/]++)(?'
-                            .'|(*:481)'
-                            .'|/edit(*:494)'
-                            .'|(*:502)'
+                            .'|(*:477)'
+                            .'|/edit(*:490)'
+                            .'|(*:498)'
                         .')'
                     .')'
                 .')'
                 .'|/evenements/(?'
-                    .'|show([^/]++)(*:540)'
+                    .'|show([^/]++)(*:536)'
                     .'|([^/]++)(?'
                         .'|/(?'
-                            .'|edit(*:567)'
-                            .'|remove_annonce/([^/]++)(*:598)'
-                            .'|add_annonce/([^/]++)(*:626)'
-                            .'|toggle_etat(*:645)'
+                            .'|edit(*:563)'
+                            .'|remove_annonce/([^/]++)(*:594)'
+                            .'|add_annonce/([^/]++)(*:622)'
+                            .'|toggle_etat(*:641)'
                         .')'
-                        .'|(*:654)'
+                        .'|(*:650)'
                     .')'
                 .')'
                 .'|/favori/([^/]++)/(?'
-                    .'|annonce\\-toggle(*:699)'
-                    .'|evenement\\-toggle(*:724)'
+                    .'|annonce\\-toggle(*:695)'
+                    .'|evenement\\-toggle(*:720)'
                 .')'
-                .'|/reset\\-password/reset(?:/([^/]++))?(*:769)'
+                .'|/reset\\-password/reset(?:/([^/]++))?(*:765)'
             .')/?$}sDu',
     ],
     [ // $dynamicRoutes
@@ -129,24 +129,24 @@ return [
         290 => [[['_route' => 'admin_annonces_edit', '_controller' => 'App\\Controller\\BackEnd\\AnnonceController::edit'], ['id'], ['GET' => 0, 'POST' => 1], null, false, false, null]],
         309 => [[['_route' => 'admin_annonces_toggle_etat', '_controller' => 'App\\Controller\\BackEnd\\AnnonceController::toggle_etat'], ['id'], ['POST' => 0], null, false, false, null]],
         318 => [[['_route' => 'admin_annonces_delete', '_controller' => 'App\\Controller\\BackEnd\\AnnonceController::delete'], ['id'], ['POST' => 0], null, false, true, null]],
-        353 => [[['_route' => 'admin_evenements_show', '_controller' => 'App\\Controller\\BackEnd\\EvenementController::show'], ['id'], ['GET' => 0], null, false, true, null]],
-        369 => [[['_route' => 'admin_evenements_edit', '_controller' => 'App\\Controller\\BackEnd\\EvenementController::edit'], ['id'], ['GET' => 0, 'POST' => 1], null, false, false, null]],
-        400 => [[['_route' => 'admin_evenements_remove_annonce', '_controller' => 'App\\Controller\\BackEnd\\EvenementController::remove_annonce_from_evenement'], ['id', 'annonce_id'], ['POST' => 0], null, false, true, null]],
-        428 => [[['_route' => 'admin_evenements_add_annonce', '_controller' => 'App\\Controller\\BackEnd\\EvenementController::add_annonce_to_evenement'], ['id', 'annonce_id'], ['POST' => 0], null, false, true, null]],
-        447 => [[['_route' => 'admin_evenements_toggle_etat', '_controller' => 'App\\Controller\\BackEnd\\EvenementController::toggle_etat'], ['id'], ['POST' => 0], null, false, false, null]],
-        456 => [[['_route' => 'admin_evenements_delete', '_controller' => 'App\\Controller\\BackEnd\\EvenementController::delete'], ['id'], ['POST' => 0], null, false, true, null]],
-        481 => [[['_route' => 'admin_users_show', '_controller' => 'App\\Controller\\BackEnd\\UserController::show'], ['id'], ['GET' => 0], null, false, true, null]],
-        494 => [[['_route' => 'admin_users_edit', '_controller' => 'App\\Controller\\BackEnd\\UserController::edit'], ['id'], ['GET' => 0, 'POST' => 1], null, false, false, null]],
-        502 => [[['_route' => 'admin_users_delete', '_controller' => 'App\\Controller\\BackEnd\\UserController::delete'], ['id'], ['POST' => 0], null, false, true, null]],
-        540 => [[['_route' => 'evenement_show', '_controller' => 'App\\Controller\\EvenementController::show'], ['id'], ['GET' => 0], null, false, true, null]],
-        567 => [[['_route' => 'evenement_edit', '_controller' => 'App\\Controller\\EvenementController::edit'], ['id'], ['GET' => 0, 'POST' => 1], null, false, false, null]],
-        598 => [[['_route' => 'remove_annonce_from_evenement', '_controller' => 'App\\Controller\\EvenementController::remove_annonce_from_evenement'], ['id', 'annonce_id'], ['POST' => 0], null, false, true, null]],
-        626 => [[['_route' => 'add_annonce_to_evenement', '_controller' => 'App\\Controller\\EvenementController::add_annonce_to_evenement'], ['id', 'annonce_id'], ['POST' => 0], null, false, true, null]],
-        645 => [[['_route' => 'evenement_toggle_etat', '_controller' => 'App\\Controller\\EvenementController::toggle_etat'], ['id'], ['POST' => 0], null, false, false, null]],
-        654 => [[['_route' => 'evenement_delete', '_controller' => 'App\\Controller\\EvenementController::delete'], ['id'], ['POST' => 0], null, false, true, null]],
-        699 => [[['_route' => 'favori_annonce_toggle', '_controller' => 'App\\Controller\\FavoriController::annonce_toggle_favori'], ['id'], ['POST' => 0], null, false, false, null]],
-        724 => [[['_route' => 'favori_evenement_toggle', '_controller' => 'App\\Controller\\FavoriController::evenement_toggle_favori'], ['id'], ['POST' => 0], null, false, false, null]],
-        769 => [
+        349 => [[['_route' => 'admin_evenements_show', '_controller' => 'App\\Controller\\BackEnd\\EvenementController::show'], ['id'], ['GET' => 0], null, false, true, null]],
+        365 => [[['_route' => 'admin_evenements_edit', '_controller' => 'App\\Controller\\BackEnd\\EvenementController::edit'], ['id'], ['GET' => 0, 'POST' => 1], null, false, false, null]],
+        396 => [[['_route' => 'admin_evenements_remove_annonce', '_controller' => 'App\\Controller\\BackEnd\\EvenementController::remove_annonce_from_evenement'], ['id', 'annonce_id'], ['POST' => 0], null, false, true, null]],
+        424 => [[['_route' => 'admin_evenements_add_annonce', '_controller' => 'App\\Controller\\BackEnd\\EvenementController::add_annonce_to_evenement'], ['id', 'annonce_id'], ['POST' => 0], null, false, true, null]],
+        443 => [[['_route' => 'admin_evenements_toggle_etat', '_controller' => 'App\\Controller\\BackEnd\\EvenementController::toggle_etat'], ['id'], ['POST' => 0], null, false, false, null]],
+        452 => [[['_route' => 'admin_evenements_delete', '_controller' => 'App\\Controller\\BackEnd\\EvenementController::delete'], ['id'], ['POST' => 0], null, false, true, null]],
+        477 => [[['_route' => 'admin_users_show', '_controller' => 'App\\Controller\\BackEnd\\UserController::show'], ['id'], ['GET' => 0], null, false, true, null]],
+        490 => [[['_route' => 'admin_users_edit', '_controller' => 'App\\Controller\\BackEnd\\UserController::edit'], ['id'], ['GET' => 0, 'POST' => 1], null, false, false, null]],
+        498 => [[['_route' => 'admin_users_delete', '_controller' => 'App\\Controller\\BackEnd\\UserController::delete'], ['id'], ['POST' => 0], null, false, true, null]],
+        536 => [[['_route' => 'evenement_show', '_controller' => 'App\\Controller\\EvenementController::show'], ['id'], ['GET' => 0], null, false, true, null]],
+        563 => [[['_route' => 'evenement_edit', '_controller' => 'App\\Controller\\EvenementController::edit'], ['id'], ['GET' => 0, 'POST' => 1], null, false, false, null]],
+        594 => [[['_route' => 'remove_annonce_from_evenement', '_controller' => 'App\\Controller\\EvenementController::remove_annonce_from_evenement'], ['id', 'annonce_id'], ['POST' => 0], null, false, true, null]],
+        622 => [[['_route' => 'add_annonce_to_evenement', '_controller' => 'App\\Controller\\EvenementController::add_annonce_to_evenement'], ['id', 'annonce_id'], ['POST' => 0], null, false, true, null]],
+        641 => [[['_route' => 'evenement_toggle_etat', '_controller' => 'App\\Controller\\EvenementController::toggle_etat'], ['id'], ['POST' => 0], null, false, false, null]],
+        650 => [[['_route' => 'evenement_delete', '_controller' => 'App\\Controller\\EvenementController::delete'], ['id'], ['POST' => 0], null, false, true, null]],
+        695 => [[['_route' => 'favori_annonce_toggle', '_controller' => 'App\\Controller\\FavoriController::annonce_toggle_favori'], ['id'], ['POST' => 0], null, false, false, null]],
+        720 => [[['_route' => 'favori_evenement_toggle', '_controller' => 'App\\Controller\\FavoriController::evenement_toggle_favori'], ['id'], ['POST' => 0], null, false, false, null]],
+        765 => [
             [['_route' => 'app_reset_password', 'token' => null, '_controller' => 'App\\Controller\\ResetPasswordController::reset'], ['token'], null, null, false, true, null],
             [null, null, null, null, false, false, 0],
         ],

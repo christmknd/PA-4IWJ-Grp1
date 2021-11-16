@@ -155,6 +155,8 @@ $catalogue = new MessageCatalogue('hu', array (
     'Account is locked.' => 'Zárolt fiók.',
     'Too many failed login attempts, please try again later.' => 'Túl sok sikertelen bejelentkezési kísérlet, kérjük próbálja újra később.',
     'Invalid or expired login link.' => 'Érvénytelen vagy lejárt bejelentkezési link.',
+    'Too many failed login attempts, please try again in %minutes% minute.' => 'Túl sok sikertelen bejelentkezési kísérlet, kérjük próbálja újra %minutes% perc múlva.',
+    'Too many failed login attempts, please try again in %minutes% minutes.' => 'Túl sok sikertelen bejelentkezési kísérlet, kérjük próbálja újra %minutes% perc múlva.',
   ),
 ));
 
@@ -311,6 +313,8 @@ $catalogueFr = new MessageCatalogue('fr', array (
     'Account is locked.' => 'Le compte est bloqué.',
     'Too many failed login attempts, please try again later.' => 'Plusieurs tentatives de connexion ont échoué, veuillez réessayer plus tard.',
     'Invalid or expired login link.' => 'Lien de connexion invalide ou expiré.',
+    'Too many failed login attempts, please try again in %minutes% minute.' => 'Plusieurs tentatives de connexion ont échoué, veuillez réessayer dans %minutes% minute.',
+    'Too many failed login attempts, please try again in %minutes% minutes.' => 'Plusieurs tentatives de connexion ont échoué, veuillez réessayer dans %minutes% minutes.',
   ),
   'VerifyEmailBundle' => 
   array (

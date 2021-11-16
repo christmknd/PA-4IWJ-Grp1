@@ -154,6 +154,8 @@ $catalogue = new MessageCatalogue('sr_Cyrl', array (
     'Account is locked.' => 'Налог је закључан.',
     'Too many failed login attempts, please try again later.' => 'Превише неуспешних покушаја пријављивања, молим покушајте поново касније.',
     'Invalid or expired login link.' => 'Линк за пријављивање је истекао или је неисправан.',
+    'Too many failed login attempts, please try again in %minutes% minute.' => 'Превише неуспешних покушаја пријављивања, молим покушајте поново за %minutes% минут.',
+    'Too many failed login attempts, please try again in %minutes% minutes.' => 'Превише неуспешних покушаја пријављивања, молим покушајте поново за %minutes% минута.',
   ),
 ));
 
@@ -329,6 +331,8 @@ $catalogueFr = new MessageCatalogue('fr', array (
     'Account is locked.' => 'Le compte est bloqué.',
     'Too many failed login attempts, please try again later.' => 'Plusieurs tentatives de connexion ont échoué, veuillez réessayer plus tard.',
     'Invalid or expired login link.' => 'Lien de connexion invalide ou expiré.',
+    'Too many failed login attempts, please try again in %minutes% minute.' => 'Plusieurs tentatives de connexion ont échoué, veuillez réessayer dans %minutes% minute.',
+    'Too many failed login attempts, please try again in %minutes% minutes.' => 'Plusieurs tentatives de connexion ont échoué, veuillez réessayer dans %minutes% minutes.',
   ),
   'VerifyEmailBundle' => 
   array (

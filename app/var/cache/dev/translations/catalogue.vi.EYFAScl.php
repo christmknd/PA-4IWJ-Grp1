@@ -155,6 +155,8 @@ $catalogue = new MessageCatalogue('vi', array (
     'Account is locked.' => 'Tài khoản bị khóa.',
     'Too many failed login attempts, please try again later.' => 'Đăng nhập sai quá nhiều lần, vui lòng thử lại lần nữa.',
     'Invalid or expired login link.' => 'Liên kết đăng nhập không hợp lệ hoặc quá hạn.',
+    'Too many failed login attempts, please try again in %minutes% minute.' => 'Quá nhiều lần thử đăng nhập không thành công, vui lòng thử lại sau %minutes% phút.',
+    'Too many failed login attempts, please try again in %minutes% minutes.' => 'Quá nhiều lần thử đăng nhập không thành công, vui lòng thử lại sau %minutes% phút.',
   ),
 ));
 
@@ -311,6 +313,8 @@ $catalogueFr = new MessageCatalogue('fr', array (
     'Account is locked.' => 'Le compte est bloqué.',
     'Too many failed login attempts, please try again later.' => 'Plusieurs tentatives de connexion ont échoué, veuillez réessayer plus tard.',
     'Invalid or expired login link.' => 'Lien de connexion invalide ou expiré.',
+    'Too many failed login attempts, please try again in %minutes% minute.' => 'Plusieurs tentatives de connexion ont échoué, veuillez réessayer dans %minutes% minute.',
+    'Too many failed login attempts, please try again in %minutes% minutes.' => 'Plusieurs tentatives de connexion ont échoué, veuillez réessayer dans %minutes% minutes.',
   ),
   'VerifyEmailBundle' => 
   array (

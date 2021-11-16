@@ -166,7 +166,7 @@ class RegistrationController extends AbstractController
         try {
             $this->emailVerifier->handleEmailConfirmation($request, $this->getUser());
         } catch (VerifyEmailExceptionInterface $exception) {
-            $this->addFlash('verify_email_error', $exception->getReason());
+            $this->addFlash('verify_email_error', 'Le lien de confirmation est invalide. Envoyez un nouveau lien SVP');
 
             return $this->redirectToRoute('app_register');
         }

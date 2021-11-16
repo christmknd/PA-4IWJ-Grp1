@@ -41,14 +41,12 @@ class UserController extends AbstractController
         $user = $this->getUser();
         $email = $user->getEmail();
         $siret = $user->getSiret();
-        var_dump($siret);
         $form = $this->createForm(UserType::class, $user);
         if ($user->getTypeDeCompte()!=="Association"){
             $form->remove('siret');
         }
         $form->handleRequest($request);
         $errorMessages = [];
-        var_dump($form->get('siret')->getData());
 
         if ($form->isSubmitted() && $form->isValid()) {
 

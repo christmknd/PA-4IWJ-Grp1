@@ -145,7 +145,7 @@ $catalogue = new MessageCatalogue('hy', array (
     'Not privileged to request the resource.' => 'Ռեսուրսի հարցման համար չկա թույլատվություն։',
     'Invalid CSRF token.' => 'Անվավեր CSRF թոքեն։',
     'No authentication provider found to support the authentication token.' => 'Նույնականացման ոչ մի մատակարար չի գտնվել, որ աջակցի նույնականացման թոքենը։',
-    'No session available, it either timed out or cookies are not enabled.' => 'No session available, it either timed out or cookies are not enabled.',
+    'No session available, it either timed out or cookies are not enabled.' => 'Հասանելի սեսիա չկա, կամ այն սպառվել է կամ cookie-ները անջատված են:',
     'No token could be found.' => 'Թոքենը չի գտնվել։',
     'Username could not be found.' => 'Օգտանունը չի գտնվել։',
     'Account has expired.' => 'Հաշիվը ժամկետանց է։',
@@ -154,6 +154,8 @@ $catalogue = new MessageCatalogue('hy', array (
     'Account is locked.' => 'Հաշիվն արգելափակված է։',
     'Too many failed login attempts, please try again later.' => 'Չափից շատ մուտքի փորձեր, խնդրում ենք փորձել մի փոքր ուշ',
     'Invalid or expired login link.' => 'Անվավեր կամ ժամկետանց մուտքի հղում։',
+    'Too many failed login attempts, please try again in %minutes% minute.' => 'Մուտքի չափազանց շատ անհաջող փորձեր: Խնդրում ենք կրկին փորձել %minutes րոպե:',
+    'Too many failed login attempts, please try again in %minutes% minutes.' => 'Մուտքի չափազանց շատ անհաջող փորձեր: Խնդրում ենք կրկին փորձել %minutes րոպե:',
   ),
 ));
 
@@ -310,6 +312,8 @@ $catalogueFr = new MessageCatalogue('fr', array (
     'Account is locked.' => 'Le compte est bloqué.',
     'Too many failed login attempts, please try again later.' => 'Plusieurs tentatives de connexion ont échoué, veuillez réessayer plus tard.',
     'Invalid or expired login link.' => 'Lien de connexion invalide ou expiré.',
+    'Too many failed login attempts, please try again in %minutes% minute.' => 'Plusieurs tentatives de connexion ont échoué, veuillez réessayer dans %minutes% minute.',
+    'Too many failed login attempts, please try again in %minutes% minutes.' => 'Plusieurs tentatives de connexion ont échoué, veuillez réessayer dans %minutes% minutes.',
   ),
   'VerifyEmailBundle' => 
   array (

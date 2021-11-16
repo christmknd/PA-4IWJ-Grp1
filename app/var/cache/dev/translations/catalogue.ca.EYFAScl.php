@@ -154,6 +154,8 @@ $catalogue = new MessageCatalogue('ca', array (
     'Account is locked.' => 'El compte està bloquejat.',
     'Too many failed login attempts, please try again later.' => 'Massa intents d\'inici de sessió fallits, torneu-ho a provar més tard.',
     'Invalid or expired login link.' => 'Enllaç d\'inici de sessió no vàlid o caducat.',
+    'Too many failed login attempts, please try again in %minutes% minute.' => 'Massa intents d\'inici de sessió fallits, torneu-ho a provar en %minutes% minut.',
+    'Too many failed login attempts, please try again in %minutes% minutes.' => 'Massa intents d\'inici de sessió fallits, torneu-ho a provar en %minutes% minuts.',
   ),
 ));
 
@@ -310,6 +312,8 @@ $catalogueFr = new MessageCatalogue('fr', array (
     'Account is locked.' => 'Le compte est bloqué.',
     'Too many failed login attempts, please try again later.' => 'Plusieurs tentatives de connexion ont échoué, veuillez réessayer plus tard.',
     'Invalid or expired login link.' => 'Lien de connexion invalide ou expiré.',
+    'Too many failed login attempts, please try again in %minutes% minute.' => 'Plusieurs tentatives de connexion ont échoué, veuillez réessayer dans %minutes% minute.',
+    'Too many failed login attempts, please try again in %minutes% minutes.' => 'Plusieurs tentatives de connexion ont échoué, veuillez réessayer dans %minutes% minutes.',
   ),
   'VerifyEmailBundle' => 
   array (

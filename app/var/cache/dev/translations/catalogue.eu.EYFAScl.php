@@ -155,6 +155,8 @@ $catalogue = new MessageCatalogue('eu', array (
     'Account is locked.' => 'Kontua blokeatuta dago.',
     'Too many failed login attempts, please try again later.' => 'Saioa hasteko saio huts gehiegi, saiatu berriro geroago.',
     'Invalid or expired login link.' => 'Sartzeko esteka baliogabea edo iraungia.',
+    'Too many failed login attempts, please try again in %minutes% minute.' => 'Saioa hasteko huts gehiegi egin dira, saiatu berriro minutu %minutes% geroago.',
+    'Too many failed login attempts, please try again in %minutes% minutes.' => 'Saioa hasteko huts gehiegi egin dira, saiatu berriro %minutes% minututan.',
   ),
 ));
 
@@ -311,6 +313,8 @@ $catalogueFr = new MessageCatalogue('fr', array (
     'Account is locked.' => 'Le compte est bloqué.',
     'Too many failed login attempts, please try again later.' => 'Plusieurs tentatives de connexion ont échoué, veuillez réessayer plus tard.',
     'Invalid or expired login link.' => 'Lien de connexion invalide ou expiré.',
+    'Too many failed login attempts, please try again in %minutes% minute.' => 'Plusieurs tentatives de connexion ont échoué, veuillez réessayer dans %minutes% minute.',
+    'Too many failed login attempts, please try again in %minutes% minutes.' => 'Plusieurs tentatives de connexion ont échoué, veuillez réessayer dans %minutes% minutes.',
   ),
   'VerifyEmailBundle' => 
   array (

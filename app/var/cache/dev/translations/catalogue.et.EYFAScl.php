@@ -100,6 +100,28 @@ $catalogue = new MessageCatalogue('et', array (
     'The uploaded file was too large. Please try to upload a smaller file.' => 'Üleslaaditud fail oli liiga suur. Palun proovi uuesti väiksema failiga.',
     'The CSRF token is invalid. Please try to resubmit the form.' => 'CSRF-märgis on vigane. Palun proovi vormi uuesti esitada.',
   ),
+  'security' => 
+  array (
+    'An authentication exception occurred.' => 'Autentimisel juhtus ootamatu viga.',
+    'Authentication credentials could not be found.' => 'Autentimisandmeid ei leitud.',
+    'Authentication request could not be processed due to a system problem.' => 'Autentimispäring ei õnnestunud süsteemi probleemi tõttu.',
+    'Invalid credentials.' => 'Vigased autentimisandmed.',
+    'Cookie has already been used by someone else.' => 'Küpsis on juba kellegi teise poolt kasutuses.',
+    'Not privileged to request the resource.' => 'Ressursi pärimiseks pole piisavalt õiguseid.',
+    'Invalid CSRF token.' => 'Vigane CSRF märgis.',
+    'No authentication provider found to support the authentication token.' => 'Ei leitud sobivat autentimismeetodit, mis toetaks autentimismärgist.',
+    'No session available, it either timed out or cookies are not enabled.' => 'Seanss puudub, see on kas aegunud või pole küpsised lubatud.',
+    'No token could be found.' => 'Identsustõendit ei leitud.',
+    'Username could not be found.' => 'Kasutajanime ei leitud.',
+    'Account has expired.' => 'Kasutajakonto on aegunud.',
+    'Credentials have expired.' => 'Autentimistunnused on aegunud.',
+    'Account is disabled.' => 'Kasutajakonto on keelatud.',
+    'Account is locked.' => 'Kasutajakonto on lukustatud.',
+    'Too many failed login attempts, please try again later.' => 'Liiga palju ebaõnnestunud autentimise katseid, palun proovi hiljem uuesti.',
+    'Invalid or expired login link.' => 'Vigane või aegunud sisselogimise link.',
+    'Too many failed login attempts, please try again in %minutes% minute.' => 'Liiga palju ebaõnnestunud autentimise katseid, palun proovi uuesti %minutes% minuti pärast.',
+    'Too many failed login attempts, please try again in %minutes% minutes.' => 'Liiga palju ebaõnnestunud autentimise katseid, palun proovi uuesti %minutes% minuti pärast.',
+  ),
 ));
 
 $catalogueFr = new MessageCatalogue('fr', array (
@@ -255,6 +277,8 @@ $catalogueFr = new MessageCatalogue('fr', array (
     'Account is locked.' => 'Le compte est bloqué.',
     'Too many failed login attempts, please try again later.' => 'Plusieurs tentatives de connexion ont échoué, veuillez réessayer plus tard.',
     'Invalid or expired login link.' => 'Lien de connexion invalide ou expiré.',
+    'Too many failed login attempts, please try again in %minutes% minute.' => 'Plusieurs tentatives de connexion ont échoué, veuillez réessayer dans %minutes% minute.',
+    'Too many failed login attempts, please try again in %minutes% minutes.' => 'Plusieurs tentatives de connexion ont échoué, veuillez réessayer dans %minutes% minutes.',
   ),
   'VerifyEmailBundle' => 
   array (
