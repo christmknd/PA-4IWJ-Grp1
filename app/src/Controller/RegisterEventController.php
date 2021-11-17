@@ -12,7 +12,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Route("/register/event")
+ * @Route("/user/register/event")
  */
 class RegisterEventController extends AbstractController
 {
