@@ -22,7 +22,7 @@ final class Version20211022114853 extends AbstractMigration
 
         $this-> addSql(<<<SQL
             INSERT INTO "user" (id, email, roles, password, is_verified, type_de_compte, pseudo, siret) 
-            values (nextval('public.user_id_seq'),'admin@test.fr','["ROLE_ADMIN"]','\$argon2id\$v=19\$m=65536,t=4,p=1$81COPPNq4C0lMb5yNt7fnw$8c7V9voW0nFVj18erpH9/drlXdNKxnMXwql6IsFDnao',false,'Admin','adminFirst',null)
+            values (nextval('public.user_id_seq'),'admin@test.fr','["ROLE_ADMIN"]','\$argon2id\$v=19\$m=65536,t=4,p=1$81COPPNq4C0lMb5yNt7fnw$8c7V9voW0nFVj18erpH9/drlXdNKxnMXwql6IsFDnao',true,'Admin','adminFirst',null)
         SQL);
 
     }

@@ -96,12 +96,18 @@ class User implements UserInterface
      */
     private $evenements_favoris;
 
+    /**
+     * @ORM\ManyToMany(targetEntity=Evenement::class, inversedBy="list_user_registered")
+     */
+    private $list_event_registered;
+
     public function __construct()
     {
         $this->evenements = new ArrayCollection();
         $this->annonces = new ArrayCollection();
         $this->annonces_favoris = new ArrayCollection();
         $this->evenements_favoris = new ArrayCollection();
+        $this->list_event_registered = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -374,6 +380,30 @@ class User implements UserInterface
     public function removeEvenementsFavori(Evenement $evenementsFavori): self
     {
         $this->evenements_favoris->removeElement($evenementsFavori);
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Evenement[]
+     */
+    public function getListEventRegistered(): Collection
+    {
+        return $this->list_event_registered;
+    }
+
+    public function addListEventRegistered(Evenement $listEventRegistered): self
+    {
+        if (!$this->list_event_registered->contains($listEventRegistered)) {
+            $this->list_event_registered[] = $listEventRegistered;
+        }
+
+        return $this;
+    }
+
+    public function removeListEventRegistered(Evenement $listEventRegistered): self
+    {
+        $this->list_event_registered->removeElement($listEventRegistered);
 
         return $this;
     }

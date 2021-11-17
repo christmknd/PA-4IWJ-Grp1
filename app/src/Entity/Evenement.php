@@ -114,6 +114,11 @@ class Evenement
      */
     private $LatLng;
 
+    /**
+     * @ORM\ManyToMany(targetEntity=User::class, mappedBy="list_event_registered")
+     */
+    private $list_user_registered;
+
 
     public function __construct()
     {
@@ -121,6 +126,7 @@ class Evenement
         $this->atCreated = Carbon::now();
         $this->etat = true;
         $this->nbrViews = 0;
+        $this->list_user_registered = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -320,6 +326,33 @@ class Evenement
     public function setLatLng($LatLng): void
     {
         $this->LatLng = $LatLng;
+    }
+
+    /**
+     * @return Collection|User[]
+     */
+    public function getListUserRegistered(): Collection
+    {
+        return $this->list_user_registered;
+    }
+
+    public function addListUserRegistered(User $listUserRegistered): self
+    {
+        if (!$this->list_user_registered->contains($listUserRegistered)) {
+            $this->list_user_registered[] = $listUserRegistered;
+            $listUserRegistered->addListEventRegistered($this);
+        }
+
+        return $this;
+    }
+
+    public function removeListUserRegistered(User $listUserRegistered): self
+    {
+        if ($this->list_user_registered->removeElement($listUserRegistered)) {
+            $listUserRegistered->removeListEventRegistered($this);
+        }
+
+        return $this;
     }
 
 

@@ -23,6 +23,7 @@
                 <li><a href="{{path("default")}}">Accueil</a></li>
                 {% if app.user %}
                     <li><a href="{{path("mes_annonces_index")}}">Mes annonces</a></li>
+                    <li><a href="{{path("evenements_registred")}}">Evenements</a></li>
                     {% if is_granted('ROLE_ASSO') %}
                         <li><a href="{{path("mes_evenements_index")}}">Mes evenements</a></li>
                     {% endif %}

@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Événements inscrits{% endblock %}
+
+{% block body %}
+    <h1>Événements inscrits</h1>
+
+    <table class="responsive-table striped">
+        <thead>
+        <tr>
+            <th>Titre</th>
+            <th>Date</th>
+            <th>Ville</th>
+            <th>Description</th>
+            <th>Etat</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for evenement in evenements %}
+            <tr>
+                <td>{{ evenement.titre }}</td>
+                <td>{{ evenement.dateEvent ? evenement.dateEvent|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ evenement.ville }}</td>
+                <td>{{ evenement.description }}</td>
+                <td>{{ evenement.etat ? 'Yes' : 'No' }}</td>
+                <td>
+                    <a class="btn" href="{{ path('evenement_show', {'id': evenement.id}) }}">visualiser</a>
+                    <form method="post" action="{{ path('remove_user_from_evenement', {'id': evenement.id}) }}" >
+                        <button class="btn" type="submit">Se désinscrire</button>
+                    </form>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">Pas d'evenement</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
