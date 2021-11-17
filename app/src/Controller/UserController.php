@@ -71,9 +71,9 @@ class UserController extends AbstractController
                 $user->setIsVerified(false);
 
                 $email_new = (new TemplatedEmail())
-                    ->from(new Address('esgipa2021@gmail.com', 'Carte des Pets'))
+                    ->from(new Address('esgipa2021@gmail.com', 'Carte des Animeaux'))
                     ->to($user->getEmail())
-                    ->subject('Carte des Pets - Confirmation Email')
+                    ->subject('Carte des Animeaux - Confirmation Email')
                     ->htmlTemplate('registration/confirmation_email.html.twig')
                     ->context([
                         'user' => $user,
@@ -119,9 +119,9 @@ class UserController extends AbstractController
         $user = $this->getUser();
         $email = $user->getEmail();
         $email_new = (new TemplatedEmail())
-            ->from(new Address('esgipa2021@gmail.com', 'Carte des Pets'))
+            ->from(new Address('esgipa2021@gmail.com', 'Carte des Animeaux'))
             ->to($email)
-            ->subject('Carte des Pets - Confirmation Email')
+            ->subject('Carte des Animeaux - Confirmation Email')
             ->htmlTemplate('registration/confirmation_email.html.twig')
             ->context([
                 'user' => $user,

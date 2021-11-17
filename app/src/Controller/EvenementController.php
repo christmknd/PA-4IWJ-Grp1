@@ -8,6 +8,7 @@ use App\Entity\Evenement;
 use App\Form\EvenementType;
 use App\Repository\AnnonceRepository;
 use App\Repository\EvenementRepository;
+use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -65,8 +66,11 @@ class EvenementController extends AbstractController
      */
     public function show(Evenement $evenement): Response
     {
+        $user = $this->getUser();
+        $isContain = $user->getListEventRegistered()->contains($evenement);;
         return $this->render('evenement/show.html.twig', [
             'evenement' => $evenement,
+            'isContain' => $isContain
         ]);
     }
 

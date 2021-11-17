@@ -39,12 +39,18 @@
                 <th>Description</th>
                 <td>{{ evenement.description }}</td>
             </tr>
-            <tr>
-                <th>Etat</th>
-                <td>{{ evenement.etat ? 'Yes' : 'No' }}</td>
-            </tr>
         </tbody>
     </table>
+
+    {% if not isContain %}
+        <form method="post" action="{{ path('add_user_to_evenement', {'id': evenement.id}) }}" >
+            <button class="btn" type="submit">S'inscrire</button>
+        </form>
+    {% else %}
+        <form method="post" action="{{ path('remove_user_from_evenement', {'id': evenement.id}) }}" >
+            <button class="btn" type="submit">Se désinscrire</button>
+        </form>
+    {% endif %}
 
     {% if app.user == evenement.utilisateur %}
         <div class="last-button" style="padding-top: 10px;">
