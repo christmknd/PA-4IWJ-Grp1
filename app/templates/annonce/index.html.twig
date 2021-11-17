@@ -8,33 +8,21 @@
     <table class="responsive-table striped">
         <thead>
             <tr>
-                <th>Titre</th>
-                <th>Type</th>
-                <th>Description</th>
-                <th>Etat</th>
-                <th>Date de création</th>
-                <th>Nombre de Vue</th>
                 <th>Nom Animal</th>
                 <th>Espece</th>
                 <th>Ville</th>
-                <th>Sexe</th>
-                <th>Age</th>
+                <th>Date de création</th>
+                <th>Nombre de Vue</th>
             </tr>
         </thead>
         <tbody>
         {% for annonce in annonces %}
             <tr>
-                <td>{{ annonce.titre }}</td>
-                <td>{{ annonce.type }}</td>
-                <td>{{ annonce.description }}</td>
-                <td>{{ annonce.etat ? 'Yes' : 'No' }}</td>
-                <td>{{ annonce.atCreated ? annonce.atCreated|date('Y-m-d') : '' }}</td>
-                <td>{{ annonce.nbrViews }}</td>
                 <td>{{ annonce.nomAnimal }}</td>
                 <td>{{ annonce.espece }}</td>
                 <td>{{ annonce.ville }}</td>
-                <td>{{ annonce.sexe }}</td>
-                <td>{{ annonce.age }}</td>
+                <td>{{ annonce.atCreated ? annonce.atCreated|date('d-m-Y') : '' }}</td>
+                <td>{{ annonce.nbrViews }}</td>
                 <td>
                     <a class="btn" href="{{ path('annonce_show', {'id': annonce.id}) }}">visualiser</a>
                     <a class="btn" href="{{ path('annonce_edit', {'id': annonce.id}) }}">Modifier</a>

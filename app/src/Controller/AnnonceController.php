@@ -25,7 +25,7 @@ class AnnonceController extends AbstractController
     public function index(AnnonceRepository $annonceRepository): Response
     {
         return $this->render('annonce/index.html.twig', [
-            'annonces' => $annonceRepository->findBy(['utilisateur' =>$this->getUser()]),
+            'annonces' => $annonceRepository->findBy(['utilisateur' =>$this->getUser()],['titre'=> 'ASC']),
         ]);
     }
 

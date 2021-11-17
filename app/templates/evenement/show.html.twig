@@ -8,16 +8,16 @@
     <table class="table">
         <tbody>
             <tr>
-                <th>Utilisateur</th>
+                <th>Association</th>
                 <td>{{ evenement.utilisateur.pseudo }}</td>
             </tr>
             <tr>
-                <th>Titre</th>
-                <td>{{ evenement.titre }}</td>
+                <th>Description</th>
+                <td>{{ evenement.description }}</td>
             </tr>
             <tr>
-                <th>Date</th>
-                <td>{{ evenement.dateEvent ? evenement.dateEvent|date('Y-m-d H:i:s') : '' }}</td>
+                <th>Date de l'évènement</th>
+                <td>{{ evenement.dateEvent ? evenement.dateEvent|date('d-m-Y à H:i') : '' }}</td>
             </tr>
             <tr>
                 <th>Adress</th>
@@ -36,20 +36,22 @@
                 <td>{{ evenement.pays }}</td>
             </tr>
             <tr>
-                <th>Description</th>
-                <td>{{ evenement.description }}</td>
+                <th>Publié le</th>
+                <td>{{ evenement.getAtCreated ? evenement.getAtCreated|date('d-m-Y') : '' }}</td>
             </tr>
         </tbody>
     </table>
 
-    {% if not isContain %}
-        <form method="post" action="{{ path('add_user_to_evenement', {'id': evenement.id}) }}" >
-            <button class="btn" type="submit">S'inscrire</button>
-        </form>
-    {% else %}
-        <form method="post" action="{{ path('remove_user_from_evenement', {'id': evenement.id}) }}" >
-            <button class="btn" type="submit">Se désinscrire</button>
-        </form>
+    {% if not is_granted('ROLE_ASSO') %}
+        {% if not isContain %}
+            <form method="post" action="{{ path('add_user_to_evenement', {'id': evenement.id}) }}" >
+                <button style ="background-color:#50acec" class="btn" type="submit">S'inscrire</button>
+            </form>
+        {% else %}
+            <form method="post" action="{{ path('remove_user_from_evenement', {'id': evenement.id}) }}" >
+                <button style ="background-color:#fa4545" class="btn" type="submit">Se désinscrire</button>
+            </form>
+        {% endif %}
     {% endif %}
 
     {% if app.user == evenement.utilisateur %}
