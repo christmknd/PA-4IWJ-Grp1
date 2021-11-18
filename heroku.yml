@@ -10,4 +10,3 @@ build:
     web :
       dockerfile: app/Dockerfile
       target: app_nginx
-

@@ -6,16 +6,26 @@ use App\Entity\Evenement;
 use App\Entity\User;
 use App\Repository\EvenementRepository;
 use App\Repository\UserRepository;
+use App\Security\EmailVerifier;
+use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Mime\Address;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * @Route("/user/register/event")
  */
 class RegisterEventController extends AbstractController
 {
+    private $emailVerifier;
+
+    public function __construct(EmailVerifier $emailVerifier)
+    {
+        $this->emailVerifier = $emailVerifier;
+    }
 
     /**
      * @Route("/", name="evenements_registred", methods={"GET"})
@@ -33,7 +43,7 @@ class RegisterEventController extends AbstractController
      */
     public function remove_user_from_evenement(Request $request, Evenement $evenement, UserRepository $userRepository): Response
     {
-        $user = $userRepository->find($this->getUser()->getId());
+        $user = $this->getUser();
         $evenement->removeListUserRegistered($user);
         $entityManager = $this->getDoctrine()->getManager();
         $entityManager->persist($evenement);
@@ -47,11 +57,24 @@ class RegisterEventController extends AbstractController
      */
     public function add_user_to_evenement(Request $request, Evenement $evenement, UserRepository $userRepository): Response
     {
-        $user = $userRepository->find($this->getUser()->getId());
+        $user = $this->getUser();
         $evenement->addListUserRegistered($user);
         $entityManager = $this->getDoctrine()->getManager();
         $entityManager->persist($evenement);
         $entityManager->flush();
+
+        $email = (new TemplatedEmail())
+            ->from(new Address('esgipa2021@gmail.com', 'Carte des Animaux'))
+            ->to($user->getEmail())
+            ->subject('Carte des Animaux - Confirmation Inscription Evenement '.$evenement->getTitre())
+            ->htmlTemplate('register_event/inscription_event_email.html.twig')
+            ->context([
+                'user' => $user,
+                'evenement' => $evenement
+            ]);
+        // generate a signed url and email it to the user
+        $this->emailVerifier->sendEmailConfirmation("app_verify_email", $user, $email);
+
 
         return $this->redirectToRoute('evenement_show', ['id'=>$request->attributes->get('id')]);
     }

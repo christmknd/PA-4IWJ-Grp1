@@ -6,10 +6,11 @@ use App\Repository\UserRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\JoinTable;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
-use Symfony\Component\Validator\Constraints as assert;
 use Symfony\Component\HttpClient\HttpClient;
+use Symfony\Component\Validator\Constraints as Assert;
 
 
 /**
@@ -98,6 +99,7 @@ class User implements UserInterface
 
     /**
      * @ORM\ManyToMany(targetEntity=Evenement::class, inversedBy="list_user_registered")
+     * @JoinTable(name="User_toEvent")
      */
     private $list_event_registered;
 
@@ -368,18 +370,18 @@ class User implements UserInterface
         return $this->evenements_favoris;
     }
 
-    public function addEvenementsFavori(Evenement $evenementsFavori): self
+    public function addEvenementsFavori(Evenement $evenementFavori): self
     {
-        if (!$this->evenements_favoris->contains($evenementsFavori)) {
-            $this->evenements_favoris[] = $evenementsFavori;
+        if (!$this->evenements_favoris->contains($evenementFavori)) {
+            $this->evenements_favoris[] = $evenementFavori;
         }
 
         return $this;
     }
 
-    public function removeEvenementsFavori(Evenement $evenementsFavori): self
+    public function removeEvenementsFavori(Evenement $evenementFavori): self
     {
-        $this->evenements_favoris->removeElement($evenementsFavori);
+        $this->evenements_favoris->removeElement($evenementFavori);
 
         return $this;
     }
@@ -392,18 +394,18 @@ class User implements UserInterface
         return $this->list_event_registered;
     }
 
-    public function addListEventRegistered(Evenement $listEventRegistered): self
+    public function addListEventRegistered(Evenement $eventRegistered): self
     {
-        if (!$this->list_event_registered->contains($listEventRegistered)) {
-            $this->list_event_registered[] = $listEventRegistered;
+        if (!$this->list_event_registered->contains($eventRegistered)) {
+            $this->list_event_registered[] = $eventRegistered;
         }
 
         return $this;
     }
 
-    public function removeListEventRegistered(Evenement $listEventRegistered): self
+    public function removeListEventRegistered(Evenement $eventRegistered): self
     {
-        $this->list_event_registered->removeElement($listEventRegistered);
+        $this->list_event_registered->removeElement($eventRegistered);
 
         return $this;
     }

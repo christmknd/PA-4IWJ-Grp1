@@ -70,7 +70,8 @@ class EvenementController extends AbstractController
         $isContain = $user->getListEventRegistered()->contains($evenement);;
         return $this->render('evenement/show.html.twig', [
             'evenement' => $evenement,
-            'isContain' => $isContain
+            'isContain' => $isContain,
+            'usersRegisted' => $evenement->getListUserRegistered()
         ]);
     }
 
