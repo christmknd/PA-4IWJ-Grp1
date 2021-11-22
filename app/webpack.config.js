@@ -22,6 +22,7 @@ Encore
      */
     .addEntry('app', './assets/app.js')
     .addEntry('base','./assets/styles/base.css')
+    .addEntry('animaux','./assets/img/animaux.webp')
 
 
 
