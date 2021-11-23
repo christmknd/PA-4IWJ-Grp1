@@ -11,118 +11,160 @@
 {% endblock %}
 
 {% block body %}
-<div class="container-fluid">
-    <div class="parallax-container">
-        <div class="parallax">
-            <img src="{{ asset('build/images/animaux.e87a0d26.webp') }}">
+    <!-- BANNIERE -->
+    <div class="container-fluid">
+        <div class="parallax-container">
+            <div class="parallax">
+                <img src="{{ asset('build/images/animaux.e87a0d26.webp') }}">
+            </div>
         </div>
+        <h2 style="text-align : center">Une plateforme pour les amoureux des animaux</h2>
     </div>
     </div>
-</div>
 
+    <!-- SLIDERS  -->
 
-<div class="container-fluid">
-    <div class="row">
-        <div class="col m6 s12">
-                <h3>My Google Maps Demo</h3>
-                <!--The div element for the map -->
-                <div id="map" style="height: 500px; width: 100%"></div>
+    <div class="container">
+        <div class="slider">
+            <ul class="slides">
+                <li>
+                    <img src="{{ asset('build/images/chien-perdu.407f5e75.jpeg') }}">
+                    <div class="caption center-align">
+                        <h3>Adoptez ou déclarer la perte de votre animal</h3>
+                        <h5>Grace à notre système d'annonces</h5>
+                        <a class="waves-effect waves-light btn">Déposer une annoonce</a>
+                    </div>
+                </li>
+                <li>
+                    <img src="{{ asset('build/images/carte.3680e1fd.png') }}">
+                    <div class="caption left-align">
+                        <h3>Visualisez toutes les annonces de la plateforme</h3>
+                        <h5>Avec notre carte interactive</h5>
+                        <a class="waves-effect waves-light btn">Explorer la carte</a>
+                    </div>
+                </li>
+                <li>
+                    <img src="{{ asset('build/images/salon.064a3242.jpeg') }}">
+                    <div class="caption right-align">
+                        <h3>Venez participer aux évenements</h3>
+                        <h5>Organisé par des utilisateurs de la plateforme <br/>
+                        Afin de discuter et d'échanger , ou de peut être rencontrer votre futur
+                        animal de compagnie</h5>
+                        <a class="waves-effect waves-light btn">Participer à un evenement</a>
+                    </div>
+                </li>
+            </ul>
         </div>
-
-        <div class="col m6 s12">
-            <h1>Annonces en ligne</h1>
-            {{ form(formTriAnnonces) }}
-            {{ form(formFilterAnnonce) }}
+    </div>
 
 
-            <div class="row">
-                {% for annonce in annonces %}
-                    {% if annonce.etat  %}
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col m6 s12">
+                    <h3>Carte Interactive</h3>
+                    <!--The div element for the map -->
+                    <div id="map" style="height: 500px; width: 100%"></div>
+            </div>
+
+            <div class="col m6 s12">
+                <h3>Annonces en ligne</h3>
+                {{ form(formTriAnnonces) }}
+                {{ form(formFilterAnnonce) }}
+
+
+                <div class="row">
+                    {% for annonce in annonces %}
+                        {% if annonce.etat  %}
+                            <div class="col s12">
+                                <div class="card blue-grey darken-1">
+                                    <div class="card-content white-text">
+                                        <span class="card-title">{{ annonce.titre }} - {{ annonce.type }}</span>
+                                        <p>{{ annonce.description }}</p>
+                                        <p>Ville : {{ annonce.ville }}</p>
+                                    </div>
+                                    {% if is_granted('ROLE_USER') %}
+                                        <div class="card-content">
+                                            <form method="post" action="{{ path('favori_annonce_toggle', {'id': annonce.id}) }}">
+                                                <button class="material-icons">{{ annonce.isFavori(app.user) ? 'star' : 'star_border' }}</button>
+                                            </form>
+                                        </div>
+                                    {% endif %}
+                                    <div class="card-action">
+                                        <a href="{{ path('annonce_show', {'id': annonce.id}) }}">visualiser</a><span style="height: auto; width: auto" class="badge yellow"><i class="material-icons">remove_red_eye</i>{{ annonce.nbrViews }}</span>
+                                        <p>Publié par {{ annonce.utilisateur.pseudo }}, le {{ annonce.atCreated ? annonce.atCreated|date('Y-m-d') : '' }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="annonceJson" class="annonceJson" style="display: none">{{ annonce.LatLng }}</div>
+                        {% endif %}
+                    {% else %}
+                        <div class="col s1 m4">
+                            <p>Pas d'annonces</p>
+                        </div>
+                    {% endfor %}
+                </div>
+
+                <h1>Évènements à venir</h1>
+
+
+                {{ form(formTriEvenements) }}
+
+
+                <div class="collection ">
+                    {% for evenement in evenements %}
                         <div class="col s12">
                             <div class="card blue-grey darken-1">
                                 <div class="card-content white-text">
-                                    <span class="card-title">{{ annonce.titre }} - {{ annonce.type }}</span>
-                                    <p>{{ annonce.description }}</p>
-                                    <p>Ville : {{ annonce.ville }}</p>
+                                    <span class="card-title">{{ evenement.titre }}</span>
+                                    <p>{{ evenement.description }}</p>
+                                    <p>Le {{ evenement.dateEvent ? evenement.dateEvent|date('Y-m-d H:i:s') : '' }} à {{ evenement.ville }}</p>
                                 </div>
                                 {% if is_granted('ROLE_USER') %}
                                     <div class="card-content">
-                                        <form method="post" action="{{ path('favori_annonce_toggle', {'id': annonce.id}) }}">
-                                            <button class="material-icons">{{ annonce.isFavori(app.user) ? 'star' : 'star_border' }}</button>
+                                        <form method="post" action="{{ path('favori_evenement_toggle', {'id': evenement.id}) }}">
+                                            <button class="material-icons">{{ evenement.isFavori(app.user) ? 'star' : 'star_border' }}</button>
                                         </form>
                                     </div>
                                 {% endif %}
                                 <div class="card-action">
-                                    <a href="{{ path('annonce_show', {'id': annonce.id}) }}">visualiser</a><span style="height: auto; width: auto" class="badge yellow"><i class="material-icons">remove_red_eye</i>{{ annonce.nbrViews }}</span>
-                                    <p>Publié par {{ annonce.utilisateur.pseudo }}, le {{ annonce.atCreated ? annonce.atCreated|date('Y-m-d') : '' }}</p>
+                                    <a href="{{ path('evenement_show', {'id': evenement.id}) }}">visualiser</a>
+                                    {% if evenement.etat  %}
+                                        <span class="badge green">Valide</span>
+                                    {% else %}
+                                        <span class="badge red">Annulé</span>
+                                    {% endif %}
+                                    <p>Publié par {{ evenement.utilisateur.pseudo }}</p>
                                 </div>
                             </div>
                         </div>
-                        <div id="annonceJson" class="annonceJson" style="display: none">{{ annonce.LatLng }}</div>
-                    {% endif %}
-                {% else %}
-                    <div class="col s1 m4">
-                        <p>Pas d'annonces</p>
-                    </div>
-                {% endfor %}
-            </div>
-
-            <h1>Évènements à venir</h1>
-
-
-            {{ form(formTriEvenements) }}
-
-
-            <div class="collection ">
-                {% for evenement in evenements %}
-                    <div class="col s12">
-                        <div class="card blue-grey darken-1">
-                            <div class="card-content white-text">
-                                <span class="card-title">{{ evenement.titre }}</span>
-                                <p>{{ evenement.description }}</p>
-                                <p>Le {{ evenement.dateEvent ? evenement.dateEvent|date('Y-m-d H:i:s') : '' }} à {{ evenement.ville }}</p>
-                            </div>
-                            {% if is_granted('ROLE_USER') %}
-                                <div class="card-content">
-                                    <form method="post" action="{{ path('favori_evenement_toggle', {'id': evenement.id}) }}">
-                                        <button class="material-icons">{{ evenement.isFavori(app.user) ? 'star' : 'star_border' }}</button>
-                                    </form>
-                                </div>
-                            {% endif %}
-                            <div class="card-action">
-                                <a href="{{ path('evenement_show', {'id': evenement.id}) }}">visualiser</a>
-                                {% if evenement.etat  %}
-                                    <span class="badge green">Valide</span>
-                                {% else %}
-                                    <span class="badge red">Annulé</span>
-                                {% endif %}
-                                <p>Publié par {{ evenement.utilisateur.pseudo }}</p>
-                            </div>
+                        <div id="evenementJson" class="evenementJson" style="display: none">{{ evenement.LatLng }}</div>
+                    {% else %}
+                        <div class="col s1 m4">
+                            <p>Pas d'evenements</p>
                         </div>
-                    </div>
-                    <div id="evenementJson" class="evenementJson" style="display: none">{{ evenement.LatLng }}</div>
-                {% else %}
-                    <div class="col s1 m4">
-                        <p>Pas d'evenements</p>
-                    </div>
-                {% endfor %}
+                    {% endfor %}
+                </div>
             </div>
         </div>
+
+
+        <script>
+            annoncesJson()
+            evenementsJson()
+        </script>
+        <script async
+                 src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAipTm3HoOVFjsVcePwaIRK9GhjqgvwS-U&callback=initMapIndex">
+        </script>
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                var elems = document.querySelectorAll('.parallax');
+                var instances = M.Parallax.init(elems);
+            });
+
+            document.addEventListener('DOMContentLoaded', function() {
+                var elems = document.querySelectorAll('.slider');
+                var instances = M.Slider.init(elems);
+            });
+        </script>
     </div>
-
-
-    <script>
-        annoncesJson()
-        evenementsJson()
-    </script>
-    <script async
-             src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAipTm3HoOVFjsVcePwaIRK9GhjqgvwS-U&callback=initMapIndex">
-    </script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            var elems = document.querySelectorAll('.parallax');
-            var instances = M.Parallax.init(elems);
-        });
-    </script>
-</div>
 {% endblock %}
