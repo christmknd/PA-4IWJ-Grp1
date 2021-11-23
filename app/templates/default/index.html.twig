@@ -14,22 +14,12 @@
 <div class="container-fluid">
     <div class="parallax-container">
         <div class="parallax">
-            <h1>Pour tout les amoureux des animaux</h1>
+            <img src="{{ asset('build/images/animaux.e87a0d26.webp') }}">
         </div>
     </div>
     </div>
 </div>
 
-
-<div class="container-fluid">
-    <div class="slider">
-        <ul class="slides">
-            <li><p>Lorem ipsum</p></li>
-            <li><p>Lorem ipsum</p></li>
-            <li><p>Lorem ipsum</p></li>
-        </ul>
-    </div>
-</div>
 
 <div class="container-fluid">
     <div class="row">
@@ -127,6 +117,12 @@
     </script>
     <script async
              src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAipTm3HoOVFjsVcePwaIRK9GhjqgvwS-U&callback=initMapIndex">
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var elems = document.querySelectorAll('.parallax');
+            var instances = M.Parallax.init(elems);
+        });
     </script>
 </div>
 {% endblock %}
