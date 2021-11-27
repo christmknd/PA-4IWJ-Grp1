@@ -78,7 +78,7 @@
                 <div class="col m6 s12" style="position: sticky ; top: 0; left: 0">
                     <h3>Carte Interactive</h3>
                     <!--The div element for the map -->
-                    <div id="map" style="height: 500px; width: 100%"></div>
+                    <div id="map" style="height: 500px; width: 100%; box-shadow: 5px 5px 5px lightgrey;"></div>
                 </div>
 
                 <div class="hide-on-small-only col m6 s12" style="overflow: auto">
@@ -91,7 +91,7 @@
                         {% for annonce in annonces %}
                             {% if annonce.etat  %}
                                 <div class="col s12">
-                                    <div class="card grey darken-1">
+                                    <div class="card grey darken-1" style="border-style: ridge ; box-shadow: 10px 5px 5px lightgrey;">
                                         <div class="card-content white-text">
                                             <span class="card-title" style="font-family: Lato;text-shadow: 1px 1px 10px lightgrey;">{{ annonce.titre }} - {{ annonce.type }}</span>
                                             <p>{{ annonce.description }}</p>
@@ -125,10 +125,10 @@
                     {{ form(formTriEvenements) }}
 
 
-                    <div class="collection ">
+                    <div class="row">
                         {% for evenement in evenements %}
                             <div class="col s12">
-                                <div class="card grey darken-1">
+                                <div class="card grey darken-1" style="border-style: ridge; box-shadow: 10px 5px 5px lightgrey;">
                                     <div class="card-content white-text" style="font-family: Lato;text-shadow: 1px 1px 10px lightgrey;">
                                         <span class="card-title">{{ evenement.titre }}</span>
                                         <p>{{ evenement.description }}</p>

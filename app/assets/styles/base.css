@@ -13,6 +13,7 @@ main {
   width: 100%;
 }
 
+
 .banner{
   margin-top: 100px;
   margin-bottom: 100px;
@@ -23,13 +24,21 @@ main {
   margin-bottom: 100px;
 }
 
-h1, h2, h3 , h5 {
+h1, h2, h3 , th {
   font-family: Lato;
+  text-shadow: 1px 1px 10px lightgrey;
 }
 
+table , responsive-table {
+  border-style: ridge;
+  box-shadow: 10px 5px 5px lightgrey;
+  overflow-x: auto;
+  margin-bottom: 50px;
+}
 
-image {
+.parallax img {
   margin: auto;
+  opacity: 0.25;
 }
 
 .page-footer a{
