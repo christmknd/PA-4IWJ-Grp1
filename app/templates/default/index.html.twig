@@ -25,11 +25,11 @@
             <!-- BANNIERE -->
             <div class="container-fluid">
                 <div class="parallax-container">
-                    <div class="parallax">
-                        <img style="opacity: 0.25" src="{{ asset('build/images/animaux.e87a0d26.webp') }}">
+                    <div class="parallax" style="opacity: 0.6">
+                        <img style="margin: auto" src="{{ asset('build/images/animaux.e87a0d26.webp') }}">
                     </div>
                 </div>
-                <h2 style="text-align : center">Une plateforme pour les amoureux des animaux</h2>
+                <h2 style="text-align : center; font-family: Arial">Une plateforme pour les amoureux des animaux</h2>
             </div>
             </div>
 
@@ -37,12 +37,12 @@
 
             <div class="container">
                 <div class="slider">
-                    <ul class="slides">
+                    <ul class="slides" style="box-shadow: 10px 5px 5px lightgrey;">
                         <li>
                             <img style="opacity: 0.6" src="{{ asset('build/images/chien-perdu.407f5e75.jpeg') }}">
                             <div class="caption center-align">
                                 <h3>Adoptez ou déclarer la perte de votre animal</h3>
-                                <h5>Grace à notre système d'annonces</h5>
+                                <h5 style="font-family: Arial">Grace à notre système d'annonces</h5>
                                 <a class="waves-effect waves-light btn" href="{{ path('annonce_new') }}"> Déposer une annoonce</a>
                             </div>
                         </li>
@@ -50,14 +50,14 @@
                             <img style="opacity: 0.6" src="{{ asset('build/images/carte.3680e1fd.png') }}">
                             <div class="caption left-align">
                                 <h3>Visualisez toutes les annonces de la plateforme</h3>
-                                <h5>Avec notre carte interactive</h5>
+                                <h5 style="font-family: Arial">Avec notre carte interactive</h5>
                             </div>
                         </li>
                         <li>
                             <img style="opacity: 0.6" src="{{ asset('build/images/salon.064a3242.jpeg') }}">
                             <div class="caption right-align">
                                 <h3>Venez participer aux évenements</h3>
-                                <h5>Organisé par des utilisateurs de la plateforme <br/>
+                                <h5 style="font-family: Arial">Organisé par des utilisateurs de la plateforme <br/>
                                     Afin de discuter et d'échanger , ou de peut être rencontrer votre futur
                                     animal de compagnie</h5>
                             </div>
@@ -92,8 +92,8 @@
                                     <div class="card grey darken-1" style="border-style: ridge ; box-shadow: 10px 5px 5px lightgrey;">
                                         <div class="card-content white-text">
                                             <span class="card-title" style="font-family: Lato;text-shadow: 1px 1px 10px lightgrey;">{{ annonce.titre }} - {{ annonce.type }}</span>
-                                            <p>{{ annonce.description }}</p>
-                                            <p>Ville : {{ annonce.ville }}</p>
+                                            <p style="font-family: Arial">{{ annonce.description }}</p>
+                                            <p style="font-family: Arial">Ville : {{ annonce.ville }}</p>
                                         </div>
                                         {% if is_granted('ROLE_USER') %}
                                             <div class="card-content">
@@ -104,7 +104,7 @@
                                         {% endif %}
                                         <div class="card-action">
                                             <a href="{{ path('annonce_show', {'id': annonce.id}) }}">visualiser</a><span style="height: auto; width: auto" class="badge yellow"><i class="material-icons">remove_red_eye</i>{{ annonce.nbrViews }}</span>
-                                            <p>Publié par {{ annonce.utilisateur.pseudo }}, le {{ annonce.atCreated ? annonce.atCreated|date('Y-m-d') : '' }}</p>
+                                            <p style="font-family: Arial">Publié par {{ annonce.utilisateur.pseudo }}, le {{ annonce.atCreated ? annonce.atCreated|date('Y-m-d') : '' }}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -112,7 +112,7 @@
                             {% endif %}
                         {% else %}
                             <div class="col s1 m4">
-                                <p>Pas d'annonces</p>
+                                <p style="font-family: Arial">Pas d'annonces</p>
                             </div>
                         {% endfor %}
                     </div>
@@ -129,8 +129,8 @@
                                 <div class="card grey darken-1" style="border-style: ridge; box-shadow: 10px 5px 5px lightgrey;">
                                     <div class="card-content white-text" style="font-family: Lato;text-shadow: 1px 1px 10px lightgrey;">
                                         <span class="card-title">{{ evenement.titre }}</span>
-                                        <p>{{ evenement.description }}</p>
-                                        <p>Le {{ evenement.dateEvent ? evenement.dateEvent|date('Y-m-d H:i:s') : '' }} à {{ evenement.ville }}</p>
+                                        <p style="font-family: Arial">{{ evenement.description }}</p>
+                                        <p style="font-family: Arial">Le {{ evenement.dateEvent ? evenement.dateEvent|date('Y-m-d H:i:s') : '' }} à {{ evenement.ville }}</p>
                                     </div>
                                     {% if is_granted('ROLE_USER') %}
                                         <div class="card-content">
@@ -146,14 +146,14 @@
                                         {% else %}
                                             <span class="badge red">Annulé</span>
                                         {% endif %}
-                                        <p>Publié par {{ evenement.utilisateur.pseudo }}</p>
+                                        <p style="font-family: Arial">Publié par {{ evenement.utilisateur.pseudo }}</p>
                                     </div>
                                 </div>
                             </div>
                             <div id="evenementJson" class="evenementJson" style="display: none">{{ evenement.LatLng }}</div>
                         {% else %}
                             <div class="col s1 m4">
-                                <p>Pas d'evenements</p>
+                                <p style="font-family: Arial">Pas d'evenements</p>
                             </div>
                         {% endfor %}
                     </div>

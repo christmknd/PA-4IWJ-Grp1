@@ -5,6 +5,10 @@ body {
   flex-direction: column;
 }
 
+nav {
+  font-family: Lato;
+}
+
 main {
   flex: 1 0 auto;
 }
@@ -44,10 +48,6 @@ table , responsive-table {
   margin-bottom: 50px;
 }
 
-.parallax img {
-  margin: auto;
-  opacity: 0.25;
-}
 
 .page-footer a{
   color: white;
