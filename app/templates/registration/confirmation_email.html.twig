@@ -1,11 +1,15 @@
 <h1>Bonjour {{ user.pseudo }}, confirmez votre email !</h1>
 
-<p>
-    Confirmez votre email en cliquant sur le lien suivant: <br><br>
-    <a href="{{ signedUrl|raw }}">Confirmer mon email</a>.
-    Ce lien expire dans {{ expiresAtMessageKey|trans(expiresAtMessageData, 'VerifyEmailBundle') }}.
-</p>
+<section>
+    <p>
+        Confirmez votre email en cliquant sur le lien suivant: <br><br>
+        <a href="{{ signedUrl|raw }}">Confirmer mon email</a>.
+        Ce lien expire dans {{ expiresAtMessageKey|trans(expiresAtMessageData, 'VerifyEmailBundle') }}.
+    </p>
 
-<p>
-    La Cartes Des Animaux !
-</p>
+    <p>
+        La Cartes Des Animaux !
+    </p>
+</section>
+
+
