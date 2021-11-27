@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Page not found - Carte des Animeaux{% endblock %}
+
+{% block body %}
+    <h1>Page introuvable - Page Not Found</h1>
+
+    <div class="collection" style="box-shadow:10px 5px 5px lightgrey;">
+        <p>
+            La page que vous cherchez est introuvable . <br/>
+            Etes vous sûr d'avoir tapé la bonne adresse (URL) ?
+            <a href="{{ path('default') }}">Retour à la page d'accueil</a>.
+        </p>
+    </div>
+
+{% endblock %}
