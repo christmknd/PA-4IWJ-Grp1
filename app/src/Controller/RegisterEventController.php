@@ -6,16 +6,27 @@ use App\Entity\Evenement;
 use App\Entity\User;
 use App\Repository\EvenementRepository;
 use App\Repository\UserRepository;
+use App\Security\EmailVerifier;
+use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Mailer\MailerInterface;
+use Symfony\Component\Mime\Address;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * @Route("/user/register/event")
  */
 class RegisterEventController extends AbstractController
 {
+    private $emailVerifier;
+
+    public function __construct(EmailVerifier $emailVerifier)
+    {
+        $this->emailVerifier = $emailVerifier;
+    }
 
     /**
      * @Route("/", name="evenements_registred", methods={"GET"})
@@ -33,7 +44,7 @@ class RegisterEventController extends AbstractController
      */
     public function remove_user_from_evenement(Request $request, Evenement $evenement, UserRepository $userRepository): Response
     {
-        $user = $userRepository->find($this->getUser()->getId());
+        $user = $this->getUser();
         $evenement->removeListUserRegistered($user);
         $entityManager = $this->getDoctrine()->getManager();
         $entityManager->persist($evenement);
@@ -45,13 +56,16 @@ class RegisterEventController extends AbstractController
     /**
      * @Route("/{id}/add_user", name="add_user_to_evenement", methods={"POST"})
      */
-    public function add_user_to_evenement(Request $request, Evenement $evenement, UserRepository $userRepository): Response
+    public function add_user_to_evenement(MailerInterface $mailer, MailerController $mailerController, Request $request, Evenement $evenement): Response
     {
-        $user = $userRepository->find($this->getUser()->getId());
+        $user = $this->getUser();
         $evenement->addListUserRegistered($user);
         $entityManager = $this->getDoctrine()->getManager();
         $entityManager->persist($evenement);
         $entityManager->flush();
+
+        $mailerController->sendEmailForEventRegisterToUser($mailer, $user, $evenement);
+        $mailerController->sendEmailForEventRegisterToAsso($mailer, $evenement->getUtilisateur(), $evenement);
 
         return $this->redirectToRoute('evenement_show', ['id'=>$request->attributes->get('id')]);
     }

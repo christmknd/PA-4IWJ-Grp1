@@ -11,8 +11,6 @@
             <th>Titre</th>
             <th>Date</th>
             <th>Ville</th>
-            <th>Description</th>
-            <th>Etat</th>
             <th>Actions</th>
 
         </tr>
@@ -23,13 +21,25 @@
                 <td>{{ evenement.titre }}</td>
                 <td>{{ evenement.dateEvent ? evenement.dateEvent|date('Y-m-d H:i:s') : '' }}</td>
                 <td>{{ evenement.ville }}</td>
-                <td>{{ evenement.description }}</td>
-                <td>{{ evenement.etat ? 'Yes' : 'No' }}</td>
                 <td>
                     <form method="post" action="{{ path('favori_evenement_toggle', {'id': evenement.id}) }}">
                         <button class="material-icons">{{ evenement.isFavori(app.user) ? 'star' : 'star_border' }}</button>
                     </form>
+                    <a class="btn" href="{{ path('evenement_show', {'id': evenement.id}) }}">visualiser</a>
                 </td>
+                {% if not user.getListEventRegistered.contains(evenement) %}
+                    <td>
+                        <form method="post" action="{{ path('add_user_to_evenement', {'id': evenement.id}) }}" >
+                            <button style ="background-color:#50acec" class="btn" type="submit">S'inscrire</button>
+                        </form>
+                    </td>
+                {% else %}
+                    <td>
+                        <form method="post" action="{{ path('remove_user_from_evenement', {'id': evenement.id}) }}" >
+                            <button style ="background-color:#fa4545" class="btn" type="submit">Se désinscrire</button>
+                        </form>
+                    </td>
+                {% endif %}
             </tr>
         {% else %}
             <tr>

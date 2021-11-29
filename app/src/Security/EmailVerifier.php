@@ -23,6 +23,12 @@ class EmailVerifier
         $this->entityManager = $manager;
     }
 
+    public function sendEmail(TemplatedEmail $email): void
+    {
+
+        $this->mailer->send($email);
+    }
+
     public function sendEmailConfirmation(string $verifyEmailRouteName, UserInterface $user, TemplatedEmail $email): void
     {
         $signatureComponents = $this->verifyEmailHelper->generateSignature(

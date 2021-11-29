@@ -1,0 +1,15 @@
+<h1>Bonjour {{ user.pseudo }}, vous êtes bien inscrit à {{ evenement.titre}} !</h1>
+<h2>Description</h2>
+<p> {{ evenement.description }}</p>
+<h3>Date</h3>
+<p>
+    Le {{ evenement.dateEvent.format('d-m-Y à H:i') }}
+</p>
+<h3>Lieu</h3>
+<p>
+    {{ evenement.address }} {{ evenement.zipCode }} {{ evenement.ville }} {{ evenement.pays }}
+</p>
+
+<p>
+    La carte des animaux !
+</p>

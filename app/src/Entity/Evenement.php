@@ -116,6 +116,7 @@ class Evenement
 
     /**
      * @ORM\ManyToMany(targetEntity=User::class, mappedBy="list_event_registered")
+     *
      */
     private $list_user_registered;
 
@@ -336,11 +337,11 @@ class Evenement
         return $this->list_user_registered;
     }
 
-    public function addListUserRegistered(User $listUserRegistered): self
+    public function addListUserRegistered(User $userRegistered): self
     {
-        if (!$this->list_user_registered->contains($listUserRegistered)) {
-            $this->list_user_registered[] = $listUserRegistered;
-            $listUserRegistered->addListEventRegistered($this);
+        if (!$this->list_user_registered->contains($userRegistered)) {
+            $this->list_user_registered[] = $userRegistered;
+            $userRegistered->addListEventRegistered($this);
         }
 
         return $this;
