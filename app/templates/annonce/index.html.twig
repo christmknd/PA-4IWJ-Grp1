@@ -27,8 +27,11 @@
                     <a class="btn" href="{{ path('annonce_show', {'id': annonce.id}) }}">visualiser</a>
                     <a class="btn" href="{{ path('annonce_edit', {'id': annonce.id}) }}">Modifier</a>
                     {{ include('annonce/_delete_form.html.twig') }}
-                    <form method="post" action="{{ path('annonce_toggle_etat', {'id': annonce.id}) }}">
-                        <button class="btn" style="background-color: {{ annonce.etat ? 'red' : 'blue' }}">{{ annonce.etat ? 'Desactiver' : 'Activer' }}</button>
+                    <form method="post" action="{{ path('annonce_toggle_is_published', {'id': annonce.id}) }}">
+                        <button class="btn" style="background-color: {{ annonce.isPublished ? 'green' : 'red' }}">{{ annonce.isPublished ? 'Publié' : 'Brouillon' }}</button>
+                    </form>
+                    <form method="post" action="{{ path('annonce_toggle_is_finish', {'id': annonce.id}) }}">
+                        <button class="btn" style="background-color: {{ annonce.isFinish ? 'green' : 'red' }}">{{ annonce.isFinish ? 'Donné' : 'En attente' }}</button>
                     </form>
                 </td>
             </tr>

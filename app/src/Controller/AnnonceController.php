@@ -118,17 +118,33 @@ class AnnonceController extends AbstractController
     }
 
     /**
-     * @Route("/{id}/toggle_etat", name="annonce_toggle_etat", methods={"POST"})
+     * @Route("/{id}/toggle_is_finish", name="annonce_toggle_is_finish", methods={"POST"})
      */
-    public function toggle_etat(Request $request, Annonce $annonce): Response
+    public function toggle_isFinish(Request $request, Annonce $annonce): Response
     {
         $user = $this->getUser();
         if(!$user->isVerified()){
             $this->addFlash('success', 'Compte restreint ! Validez votre compte en cliquant sur le lien reçu par email.');
-            $annonce->setEtat(true);
+            $annonce->setIsFinish(true);
             return $this->redirectToRoute('mes_annonces_index');
         }
-        $annonce->setEtat(!$annonce->getEtat());
+        $annonce->setIsFinish(!$annonce->getIsFinish());
+        $this->getDoctrine()->getManager()->flush();
+        return $this->redirectToRoute('mes_annonces_index');
+    }
+
+    /**
+     * @Route("/{id}/toggle_is_published", name="annonce_toggle_is_published", methods={"POST"})
+     */
+    public function toggle_isPublished(Request $request, Annonce $annonce): Response
+    {
+        $user = $this->getUser();
+        if(!$user->isVerified()){
+            $this->addFlash('success', 'Compte restreint ! Validez votre compte en cliquant sur le lien reçu par email.');
+            $annonce->setIsPublished(true);
+            return $this->redirectToRoute('mes_annonces_index');
+        }
+        $annonce->setIsPublished(!$annonce->getIsPublished());
         $this->getDoctrine()->getManager()->flush();
         return $this->redirectToRoute('mes_annonces_index');
     }

@@ -53,7 +53,7 @@ class Annonce
     /**
      * @ORM\Column(type="boolean")
      */
-    private $etat;
+    private $isFinish;
 
     /**
      * @ORM\Column(type="datetime")
@@ -151,13 +151,19 @@ class Annonce
      */
     private $LatLng;
 
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $isPublished;
+
 
     public function __construct()
     {
         $this->evenements = new ArrayCollection();
-        $this->etat = true;
+        $this->isFinish = false;
         $this->atCreated = Carbon::now();
         $this->nbrViews = 0;
+        $this->isPublished = true;
     }
 
     public function getId(): ?int
@@ -201,14 +207,14 @@ class Annonce
         return $this;
     }
 
-    public function getEtat(): ?bool
+    public function getIsFinish(): ?bool
     {
-        return $this->etat;
+        return $this->isFinish;
     }
 
-    public function setEtat(bool $etat): self
+    public function setIsFinish(bool $isFinish): self
     {
-        $this->etat = $etat;
+        $this->isFinish = $isFinish;
 
         return $this;
     }
@@ -409,6 +415,18 @@ class Annonce
     public function setLatLng($LatLng): void
     {
         $this->LatLng = $LatLng;
+    }
+
+    public function getIsPublished(): ?bool
+    {
+        return $this->isPublished;
+    }
+
+    public function setIsPublished(bool $isPublished): self
+    {
+        $this->isPublished = $isPublished;
+
+        return $this;
     }
 
 

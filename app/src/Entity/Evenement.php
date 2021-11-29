@@ -91,7 +91,7 @@ class Evenement
     /**
      * @ORM\Column(type="boolean")
      */
-    private $etat;
+    private $isFinish;
 
     /**
      * @ORM\ManyToMany(targetEntity=Annonce::class, inversedBy="evenements")
@@ -120,14 +120,20 @@ class Evenement
      */
     private $list_user_registered;
 
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $isPublished;
+
 
     public function __construct()
     {
         $this->annonces = new ArrayCollection();
         $this->atCreated = Carbon::now();
-        $this->etat = true;
+        $this->isFinish = false;
         $this->nbrViews = 0;
         $this->list_user_registered = new ArrayCollection();
+        $this->isPublished = true;
     }
 
     public function getId(): ?int
@@ -183,14 +189,14 @@ class Evenement
         return $this;
     }
 
-    public function getEtat(): ?bool
+    public function getIsFinish(): ?bool
     {
-        return $this->etat;
+        return $this->isFinish;
     }
 
-    public function setEtat(bool $etat): self
+    public function setIsFinish(bool $isFinish): self
     {
-        $this->etat = $etat;
+        $this->isFinish = $isFinish;
 
         return $this;
     }
@@ -352,6 +358,18 @@ class Evenement
         if ($this->list_user_registered->removeElement($listUserRegistered)) {
             $listUserRegistered->removeListEventRegistered($this);
         }
+
+        return $this;
+    }
+
+    public function getIsPublished(): ?bool
+    {
+        return $this->isPublished;
+    }
+
+    public function setIsPublished(bool $isPublished): self
+    {
+        $this->isPublished = $isPublished;
 
         return $this;
     }
