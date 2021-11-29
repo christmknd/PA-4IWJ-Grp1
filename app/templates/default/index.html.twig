@@ -87,7 +87,6 @@
 
                     <div class="row">
                         {% for annonce in annonces %}
-                            {% if annonce.etat  %}
                                 <div class="col s12">
                                     <div class="card grey darken-1" style="border-style: ridge ; box-shadow: 10px 5px 5px lightgrey;">
                                         <div class="card-content white-text">
@@ -109,7 +108,7 @@
                                     </div>
                                 </div>
                                 <div id="annonceJson" class="annonceJson" style="display: none">{{ annonce.LatLng }}</div>
-                            {% endif %}
+
                         {% else %}
                             <div class="col s1 m4">
                                 <p style="font-family: Arial">Pas d'annonces</p>
@@ -141,11 +140,6 @@
                                     {% endif %}
                                     <div class="card-action">
                                         <a href="{{ path('evenement_show', {'id': evenement.id}) }}">visualiser</a>
-                                        {% if evenement.etat  %}
-                                            <span class="badge green">Valide</span>
-                                        {% else %}
-                                            <span class="badge red">Annulé</span>
-                                        {% endif %}
                                         <p style="font-family: Arial">Publié par {{ evenement.utilisateur.pseudo }}</p>
                                     </div>
                                 </div>

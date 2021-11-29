@@ -71,6 +71,8 @@ class DefaultController extends AbstractController
 
         $optionsFilterAnnonce = [];
 
+        $optionsFilterAnnonce['isPublished']=true;
+        $optionsFilterAnnonce['isFinish']=false;
         if ($formFilterAnnonce->isSubmitted() && $formFilterAnnonce->isValid()) {
             if(!$formFilterAnnonce->get('sexe')->isEmpty()){
                 $optionSexeFilterAnnonce = $formFilterAnnonce->get('sexe')->getData();
@@ -82,10 +84,14 @@ class DefaultController extends AbstractController
             }
         }
 
+        $optionsFilterEvenement = [];
+
+        $optionsFilterEvenement['isPublished']=true;
+        $optionsFilterEvenement['isFinish']=false;
 
         return $this->render('default/index.html.twig', [
             'annonces' => $annonceRepository->findBy($optionsFilterAnnonce,$optionsTriAnnonces),
-            'evenements' => $evenementRepository->findBy([],$optionsTriEvenements),
+            'evenements' => $evenementRepository->findBy($optionsFilterEvenement,$optionsTriEvenements),
             'formTriAnnonces' => $formTriAnnonces->createView(),
             'formTriEvenements' => $formTriEvenements->createView(),
             'formFilterAnnonce' => $formFilterAnnonce->createView()

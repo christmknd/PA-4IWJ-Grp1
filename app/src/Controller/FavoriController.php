@@ -26,11 +26,15 @@ class FavoriController extends AbstractController
         return $this->render('favori/index.html.twig', [
             'annonces' => $annonceRepository->findBy(
                 [
-                    'favori' =>true
+                    'favori' =>true,
+                    'isFinish' =>false,
+                    'isPublish' =>true
                 ]),
             'evenements' => $evenementRepository->findBy(
                 [
-                    'favori' =>true
+                    'favori' =>true,
+                    'isFinish' =>false,
+                    'isPublish' =>true
                 ]
             )
         ]);
