@@ -11,6 +11,7 @@ use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Mime\Address;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -55,7 +56,7 @@ class RegisterEventController extends AbstractController
     /**
      * @Route("/{id}/add_user", name="add_user_to_evenement", methods={"POST"})
      */
-    public function add_user_to_evenement(Request $request, Evenement $evenement, UserRepository $userRepository): Response
+    public function add_user_to_evenement(MailerInterface $mailer, MailerController $mailerController, Request $request, Evenement $evenement): Response
     {
         $user = $this->getUser();
         $evenement->addListUserRegistered($user);
@@ -63,18 +64,8 @@ class RegisterEventController extends AbstractController
         $entityManager->persist($evenement);
         $entityManager->flush();
 
-        $email = (new TemplatedEmail())
-            ->from(new Address('esgipa2021@gmail.com', 'Carte des Animaux'))
-            ->to($user->getEmail())
-            ->subject('Carte des Animaux - Confirmation Inscription Evenement '.$evenement->getTitre())
-            ->htmlTemplate('register_event/inscription_event_email.html.twig')
-            ->context([
-                'user' => $user,
-                'evenement' => $evenement
-            ]);
-        // generate a signed url and email it to the user
-        $this->emailVerifier->sendEmailConfirmation("app_verify_email", $user, $email);
-
+        $mailerController->sendEmailForEventRegisterToUser($mailer, $user, $evenement);
+        $mailerController->sendEmailForEventRegisterToAsso($mailer, $evenement->getUtilisateur(), $evenement);
 
         return $this->redirectToRoute('evenement_show', ['id'=>$request->attributes->get('id')]);
     }

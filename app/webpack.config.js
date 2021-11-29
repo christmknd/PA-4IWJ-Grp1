@@ -22,6 +22,10 @@ Encore
      */
     .addEntry('app', './assets/app.js')
     .addEntry('base','./assets/styles/base.css')
+    .addEntry('animaux','./assets/img/animaux.webp')
+    .addEntry('carte','./assets/img/carte.png')
+    .addEntry('chien','./assets/img/chien-perdu.jpeg')
+    .addEntry('salon','./assets/img/salon.jpeg')
 
 
 

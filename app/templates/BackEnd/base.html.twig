@@ -16,6 +16,21 @@
                 z-index: 998;
             }
 
+            .container {
+                width: 100%;
+            }
+
+            h1, h2, h3 , th {
+                font-family: Lato;
+                text-shadow: 1px 1px 10px lightgrey;
+            }
+
+            table , responsive-table {
+                border-style: ridge;
+                box-shadow: 10px 5px 5px lightgrey;
+                overflow-x: auto;
+                margin-bottom: 50px;
+            }
 
             main {
                 flex: 1 0 auto;
@@ -39,7 +54,7 @@
 <div class="navbar-fixed">
     <nav>
         <div class="nav-wrapper  purple lighten-3">
-            <a href="{{path("admin")}}" class="brand-logo" style="margin-left: 20px">La carte des Animaux - ADMIN</a>
+            <a href="{{path("admin")}}" class="hide-on-small-only brand-logo" style="margin-left: 20px">La carte des Animaux - ADMIN</a>
             <a href="#" data-target="sidenav-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
             <ul id="nav-mobile" class="right hide-on-med-and-down">
                 <a class="btn" href="{{ path('default') }}">Mode User</a>
