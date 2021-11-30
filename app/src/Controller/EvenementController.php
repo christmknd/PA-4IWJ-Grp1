@@ -150,17 +150,33 @@ class EvenementController extends AbstractController
     }
 
     /**
-     * @Route("/{id}/toggle_etat", name="evenement_toggle_etat", methods={"POST"})
+     * @Route("/{id}/toggle_is_finish", name="evenement_toggle_is_finish", methods={"POST"})
      */
-    public function toggle_etat(Request $request, Evenement $evenement): Response
+    public function toggle_isFinish(Request $request, Evenement $evenement): Response
     {
         $user = $this->getUser();
         if(!$user->isVerified()){
             $this->addFlash('success', 'Compte restreint ! Validez votre compte en cliquant sur le lien reçu par email.');
-            $evenement->setEtat(false);
-            return $this->redirectToRoute('mes_annonces_index');
+            $evenement->setIsFinish(false);
+            return $this->redirectToRoute('mes_evenements_index');
         }
-        $evenement->setEtat(!$evenement->getEtat());
+        $evenement->setIsFinish(!$evenement->getIsFinish());
+        $this->getDoctrine()->getManager()->flush();
+        return $this->redirectToRoute('mes_evenements_index');
+    }
+
+    /**
+     * @Route("/{id}/toggle_is_published", name="evenement_toggle_is_published", methods={"POST"})
+     */
+    public function toggle_isPublished(Request $request, Evenement $evenement): Response
+    {
+        $user = $this->getUser();
+        if(!$user->isVerified()){
+            $this->addFlash('success', 'Compte restreint ! Validez votre compte en cliquant sur le lien reçu par email.');
+            $evenement->setIsPublished(true);
+            return $this->redirectToRoute('mes_evenements_index');
+        }
+        $evenement->setIsPublished(!$evenement->getIsPublished());
         $this->getDoctrine()->getManager()->flush();
         return $this->redirectToRoute('mes_evenements_index');
     }

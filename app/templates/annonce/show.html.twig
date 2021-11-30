@@ -8,10 +8,6 @@
     <table class="responsive-table">
         <tbody>
             <tr>
-                <th>Utilisateur</th>
-                <td>{{ annonce.utilisateur.pseudo }}</td>
-            </tr>
-            <tr>
                 <th>Titre</th>
                 <td>{{ annonce.titre }}</td>
             </tr>
@@ -22,18 +18,6 @@
             <tr>
                 <th>Description</th>
                 <td>{{ annonce.description }}</td>
-            </tr>
-            <tr>
-                <th>Etat</th>
-                <td>{{ annonce.etat ? 'Yes' : 'No' }}</td>
-            </tr>
-            <tr>
-                <th>AtCreated</th>
-                <td>{{ annonce.atCreated ? annonce.atCreated|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-            <tr>
-                <th>NbrViews</th>
-                <td>{{ annonce.nbrViews }}</td>
             </tr>
             <tr>
                 <th>NomAnimal</th>
@@ -69,12 +53,16 @@
             </tr>
         </tbody>
     </table>
+    <p> Publié le {{ annonce.atCreated ? annonce.atCreated|date('d-m-Y') : '' }} par {{ annonce.utilisateur.pseudo }}</p>
+    <p> Vue {{ annonce.nbrViews }} fois</p>
+
 
     <div class = "button-list" style="margin-top: 20px; margin-bottom: 20px">
         {% if app.user == annonce.utilisateur %}
             <a class="btn" href="{{ path('annonce_edit', {'id': annonce.id}) }}">Modifier</a>
             {{ include('annonce/_delete_form.html.twig') }}
         {% endif %}
+        <a class="btn" style ="background-color:#50acec" href="mailto:{{ annonce.utilisateur.email }}">Contacter le propriétaire</a>
         <a class="btn" href="{{ path('mes_annonces_index') }}">Revenir à la liste</a>
     </div>
 

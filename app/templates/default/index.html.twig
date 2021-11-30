@@ -84,15 +84,14 @@
                     {{ form(formTriAnnonces) }}
                     {{ form(formFilterAnnonce) }}
 
-
                     <div class="row">
                         {% for annonce in annonces %}
-                            {% if annonce.etat  %}
                                 <div class="col s12">
                                     <div class="card grey darken-1" style="border-style: ridge ; box-shadow: 10px 5px 5px lightgrey;">
                                         <div class="card-content white-text">
                                             <span class="card-title" style="font-family: Lato;text-shadow: 1px 1px 10px lightgrey;">{{ annonce.titre }} - {{ annonce.type }}</span>
-                                            <p style="font-family: Arial">{{ annonce.description }}</p>
+                                            <p style="font-family: Arial; text-overflow: ellipsis; max-height:200px; white-space: nowrap;
+  overflow: hidden;"> {{ annonce.description }} </p>
                                             <p style="font-family: Arial">Ville : {{ annonce.ville }}</p>
                                         </div>
                                         {% if is_granted('ROLE_USER') %}
@@ -108,8 +107,8 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div id="annonceJson" class="annonceJson" style="display: none">{{ annonce.LatLng }}</div>
-                            {% endif %}
+                                <div id="annonceJson" class="annonceJson" style="display: none">{{ annonce.LatLng }} </div>
+                                <div id="annonceJson3" class="annonceJson3" style="display: none"> {{ {"titre": annonce.titre,"nomAnimal":annonce.nomAnimal,"age":annonce.age, "espece":annonce.espece,"sexe":annonce.sexe,"pseudo":annonce.utilisateur.pseudo,"atCreated":annonce.atCreated ? annonce.atCreated|date('d-m-Y') : '',"lien":path('annonce_show', {'id': annonce.id}),"LatLng":annonce.LatLng }|json_encode() }} </div>
                         {% else %}
                             <div class="col s1 m4">
                                 <p style="font-family: Arial">Pas d'annonces</p>
@@ -130,7 +129,7 @@
                                     <div class="card-content white-text" style="font-family: Lato;text-shadow: 1px 1px 10px lightgrey;">
                                         <span class="card-title">{{ evenement.titre }}</span>
                                         <p style="font-family: Arial">{{ evenement.description }}</p>
-                                        <p style="font-family: Arial">Le {{ evenement.dateEvent ? evenement.dateEvent|date('Y-m-d H:i:s') : '' }} à {{ evenement.ville }}</p>
+                                        <p style="font-family: Arial">Le {{ evenement.dateEvent ? evenement.dateEvent|date('d-m-Y à H:i') : '' }} à {{ evenement.ville }}</p>
                                     </div>
                                     {% if is_granted('ROLE_USER') %}
                                         <div class="card-content">
@@ -141,16 +140,12 @@
                                     {% endif %}
                                     <div class="card-action">
                                         <a href="{{ path('evenement_show', {'id': evenement.id}) }}">visualiser</a>
-                                        {% if evenement.etat  %}
-                                            <span class="badge green">Valide</span>
-                                        {% else %}
-                                            <span class="badge red">Annulé</span>
-                                        {% endif %}
                                         <p style="font-family: Arial">Publié par {{ evenement.utilisateur.pseudo }}</p>
                                     </div>
                                 </div>
                             </div>
                             <div id="evenementJson" class="evenementJson" style="display: none">{{ evenement.LatLng }}</div>
+                            <div id="evenementJson3" class="evenementJson3" style="display: none"> {{ {"titre": evenement.titre,"ville": evenement.ville,"dateEvent":evenement.dateEvent ? evenement.dateEvent|date('d-m-Y à H:i') : '',"annonces":evenement.annonces|length, "user_registered":evenement.getListUserRegistered()|length,"pseudo":evenement.utilisateur.pseudo,"atCreated":evenement.atCreated ? evenement.atCreated|date('d-m-Y') : '',"lien":path('evenement_show', {'id': evenement.id}),"LatLng":evenement.LatLng }|json_encode() }} </div>
                         {% else %}
                             <div class="col s1 m4">
                                 <p style="font-family: Arial">Pas d'evenements</p>
