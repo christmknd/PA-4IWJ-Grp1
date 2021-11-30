@@ -317,7 +317,7 @@ class User implements UserInterface
                         [
                             'headers' => [
                                 'Accept' => 'application/json',
-                                'Authorization' => 'Bearer 9c3feff0-bdc0-3afa-9e8c-0cd1a1b1b4a3',
+                                'Authorization' => 'Bearer 98d18174-b929-375e-8148-c60c66a6536a',
                             ],
                         ]
                     );
