@@ -31,6 +31,11 @@ Make migrate
 docker-compose exec php bin/console doc:migration:m (prev)
 ```
 
+## Fixtures
+Créer les fixtures
+``
+docker-compose exec php bin/console doctrine:fixtures:load
+``
 
 ## Commande symfony Help
 

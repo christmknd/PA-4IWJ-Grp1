@@ -119,9 +119,9 @@ class UserController extends AbstractController
         $user = $this->getUser();
         $email = $user->getEmail();
         $email_new = (new TemplatedEmail())
-            ->from(new Address('esgipa2021@gmail.com', 'Carte des Animeaux'))
+            ->from(new Address('esgipa2021@gmail.com', 'Carte des Animaux'))
             ->to($email)
-            ->subject('Carte des Animeaux - Confirmation Email')
+            ->subject('Carte des Animaux - Confirmation Email')
             ->htmlTemplate('registration/confirmation_email.html.twig')
             ->context([
                 'user' => $user,

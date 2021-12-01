@@ -73,4 +73,5 @@ class AdminController extends AbstractController
             'main' // firewall name in security.yaml
         );
     }
+
 }
