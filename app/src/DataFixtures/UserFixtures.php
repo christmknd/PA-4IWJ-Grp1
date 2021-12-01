@@ -18,29 +18,36 @@ class UserFixtures extends Fixture
 
     public function load(ObjectManager $manager)
     {
-        for ($i = 0; $i < 10; $i++){
+        for ($i = 0; $i < 20; $i++){
             $user = new User();
             if($i==1) {
-                $user->setPseudo('admin '.$i);
+                $user->setPseudo('admin'.$i);
                 $user->setEmail('admin@test.fr');
                 $user->setRoles(["ROLE_ADMIN"]);
+                $user->setTypeDeCompte("Admin");
+                $user->setIsVerified(true);
             }
             elseif($i%3==0) {
-                $user->setPseudo('asso '.$i);
+                $user->setPseudo('asso'.$i);
                 $user->setEmail('asso'.$i.'@test.fr');
                 $user->setRoles(["ROLE_ASSO"]);
+                $user->setTypeDeCompte("Association");
+
             }
             else{
-                $user->setPseudo('user '.$i);
+                $user->setPseudo('user'.$i);
                 $user->setEmail('user'.$i.'@test.fr');
+                $user->setTypeDeCompte("Personne");
 
             }
 
             $password = $this->encoder->encodePassword($user, $user->getEmail());
             $user->setPassword($password);
 
+            $this->addReference($user->getPseudo(), $user);
+
             $manager->persist($user);
-            $manager->flush();
         }
+        $manager->flush();
     }
 }

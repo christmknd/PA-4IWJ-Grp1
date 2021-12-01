@@ -3,6 +3,7 @@
 namespace App\DataFixtures;
 
 use App\Entity\Evenement;
+use DateTime;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 
@@ -13,9 +14,9 @@ class EvenementFixtures extends Fixture
         for ($i = 0; $i < 10; $i++) {
             $evenement = new Evenement();
             $evenement->setTitre('Evenement '.$i);
-            $evenement->setDateEvent('2022-'.($i%12).'-'.$i);
-            $evenement->setDescription('Lorem ipsum dolor sit amet, consectetur adipiscing elit. In ac nibh quis orci maximus condimentum. Praesent sagittis posuere velit in dapibus. Duis arcu leo, pharetra ut accumsan sed, vehicula vitae leo. Sed tincidunt dui non purus fringilla vehicula. Mauris venenatis ex vitae metus mattis, vitae mollis felis maximus. Curabitur interdum, sem eget congue mollis, urna velit pharetra lacus, nec venenatis leo mi quis elit. Fusce imperdiet in turpis eu tristique. Aliquam sed sapien vitae nunc bibendum viverra at at ante. Fusce at ligula nec purus varius tempor. In hac habitasse platea dictumst. Etiam rutrum diam sit amet erat mattis, non ultricies neque molestie. Nunc massa augue, gravida at dignissim eu, mollis sit amet neque. Nullam varius nibh vitae mi fringilla commodo. Duis vulputate pharetra commodo. Vestibulum iaculis finibus nisl at tempor.');
-            if ($i%3==0)$evenement->setEtat(false);
+            $evenement->setDateEvent(new DateTime('NOW'));
+            date_modify($evenement->getDateEvent(), '+'.$i.'day');
+            $evenement->setDescription('Lorem ipsum dolor sit amet, consectetur adipiscing elit. In ac nibh quis orci maximus condimentum. Praesent sagittis posuere velit in dapibus. Duis arcu leo, pharetra ut accumsan sed, vehicula vitae leo. Sed tincidunt dui non purus fringilla vehicula. ');
             if($i<5) {
                 $evenement->setAddress($i . ' Rue de Paris');
                 $evenement->setZipCode('75008');
@@ -31,6 +32,13 @@ class EvenementFixtures extends Fixture
                 $evenement->setPays('Suisse');
                 $evenement->setLatLng('46.5220711,6.6281542999999'.$i);
             }
+            if($i%3==0){
+                $evenement->setUtilisateur($this->getReference('asso'.$i));
+            }else{
+                $x=$i%3;
+                $evenement->setUtilisateur($this->getReference('asso'.($i-$x)));
+            }
+
             $manager->persist($evenement);
         }
 
@@ -41,6 +49,7 @@ class EvenementFixtures extends Fixture
     {
         return [
             UserFixtures::class,
+            AnnonceFixtures::class
         ];
     }
 }
