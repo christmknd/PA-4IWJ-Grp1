@@ -19,16 +19,16 @@ class FilterAnnonceType extends AbstractType
                 'required' => false,
                 'choices'  => [
                     'Male' => 'Male',
-                    'Female' => 'Female',
+                    'Femelle' => 'Femelle',
                 ],
             ])
             ->add('espece', ChoiceType::class, [
                 'label' => 'Espece',
                 'required' => false,
                 'choices'  => [
-                    'Chien' => 'chien',
-                    'Chat' => 'chat',
-                    'Serpent' => 'serpent',
+                    'Chien' => 'Chien',
+                    'Chat' => 'Chat',
+                    'Serpent' => 'Serpent',
                     'Hamster' => 'Hamster'
                 ],
             ])

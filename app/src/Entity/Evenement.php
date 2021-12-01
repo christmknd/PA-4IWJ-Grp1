@@ -43,7 +43,7 @@ class Evenement
     private $atCreated;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=100)
      * @Assert\NotBlank
      * @assert\Length(
      *     min = 2,
@@ -53,7 +53,7 @@ class Evenement
     private $address;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=100)
      * @Assert\NotBlank
      * @assert\Length(
      *     min = 2,
@@ -63,7 +63,7 @@ class Evenement
     private $ville;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=100)
      * @Assert\NotBlank
      * @assert\Length(
      *     min = 2,

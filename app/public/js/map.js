@@ -92,7 +92,7 @@ function initMapIndex() {
         '</div>' +
         '<h1 id="firstHeading" class="firstHeading">'+evenement.titre+'</h1>' +
         '<div id="bodyContent">' +
-        '<p>Date de l\'evenement: '+evenement.dateEvent+' à: '+evenement.ville+'</p>' +
+        '<p>Date de l\'evenement: '+evenement.dateEvent+' à '+evenement.ville+'</p>' +
         '<p>Nombre de participant: '+evenement.user_registered+' Nombre d\'annonce: '+evenement.annonces+'</p>' +
         '<p>Accéder à l\'evenement <a href=' + urlcourante.toString() +evenement.lien+ '>'
         +evenement.titre+
