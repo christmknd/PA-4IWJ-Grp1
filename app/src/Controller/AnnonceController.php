@@ -64,10 +64,13 @@ class AnnonceController extends AbstractController
      */
     public function show(Annonce $annonce): Response
     {
+        $user = $this->getUser();
         $annonce->setNbrViews($annonce->getNbrViews()+1);
+        $isFavori = $user->getAnnoncesFavoris()->contains($annonce);
         $this->getDoctrine()->getManager()->flush();
         return $this->render('annonce/show.html.twig', [
             'annonce' => $annonce,
+            'isFavori' => $isFavori
         ]);
     }
 

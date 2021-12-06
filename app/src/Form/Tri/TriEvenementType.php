@@ -22,32 +22,24 @@ class TriEvenementType extends AbstractType
                 'label' => 'Nbr de vues',
                 'required' => false,
                 'choices'  => [
-                    'Croissant' => 'ASC',
-                    'Décroissant' => 'DESC',
-                ],
-            ])
-            ->add('lieuTri', ChoiceType::class, [
-                'label' => 'Ville',
-                'required' => false,
-                'choices'  => [
-                    'Croissant' => 'ASC',
-                    'Décroissant' => 'DESC',
+                    'Plus populaire' => 'DESC',
+                    'Moins populaire' => 'ASC',
                 ],
             ])
             ->add('dateAtCreatedTri', ChoiceType::class, [
                 'label' => 'Date de création',
                 'required' => false,
                 'choices'  => [
-                    'Croissant' => 'ASC',
-                    'Décroissant' => 'DESC',
+                    'Plus récents' => 'ASC',
+                    'Moins récents' => 'DESC',
                 ],
             ])
             ->add('dateEventTri', ChoiceType::class, [
                 'label' => "Date de l'évenement",
                 'required' => false,
                 'choices'  => [
-                    'Croissant' => 'ASC',
-                    'Décroissant' => 'DESC',
+                    'Plus proche' => 'ASC',
+                    'Moins proche' => 'DESC',
                 ],
             ])
             ->add('submit', SubmitType::class,[

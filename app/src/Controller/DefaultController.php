@@ -19,9 +19,9 @@ class DefaultController extends AbstractController
      */
     public function index(AnnonceRepository $annonceRepository, EvenementRepository $evenementRepository,Request $request): Response
     {
+        // Form Tri Annonce
         $formTriAnnonces = $this->createForm(TriAnnonceType::class);
         $optionsTriAnnonces = [];
-
 
         $formTriAnnonces->handleRequest($request);
         if ($formTriAnnonces->isSubmitted() && $formTriAnnonces->isValid()) {
@@ -37,21 +37,14 @@ class DefaultController extends AbstractController
                 $optionNbrViewsTriAnnonces = $formTriAnnonces->get('nbrViewTri')->getData();
                 $optionsTriAnnonces['nbrViews']=$optionNbrViewsTriAnnonces;
             }
-            if(!$formTriAnnonces->get('lieuTri')->isEmpty()){
-                $optionNbrViewsTriAnnonces = $formTriAnnonces->get('lieuTri')->getData();
-                $optionsTriAnnonces['ville']=$optionNbrViewsTriAnnonces;
-            }
         }
 
+        // Form Tri Evenement
         $formTriEvenements = $this->createForm(TriEvenementType::class);
         $optionsTriEvenements = [];
 
         $formTriEvenements->handleRequest($request);
         if ($formTriEvenements->isSubmitted() && $formTriEvenements->isValid()) {
-            if(!$formTriEvenements->get('lieuTri')->isEmpty()){
-                $optionNbrViewsTriEvenements = $formTriEvenements->get('lieuTri')->getData();
-                $optionsTriEvenements['ville']=$optionNbrViewsTriEvenements;
-            }
             if(!$formTriEvenements->get('dateAtCreatedTri')->isEmpty()){
                 $optionDateTriEvenements = $formTriEvenements->get('dateAtCreatedTri')->getData();
                 $optionsTriEvenements['atCreated']=$optionDateTriEvenements;
@@ -66,6 +59,7 @@ class DefaultController extends AbstractController
             }
         }
 
+        // Form Filtre Annonce
         $formFilterAnnonce = $this->createForm(FilterAnnonceType::class);
         $formFilterAnnonce->handleRequest($request);
 
@@ -81,6 +75,10 @@ class DefaultController extends AbstractController
             if(!$formFilterAnnonce->get('espece')->isEmpty()){
                 $optionEspeceFilterAnnonce = $formFilterAnnonce->get('espece')->getData();
                 $optionsFilterAnnonce['espece']=$optionEspeceFilterAnnonce;
+            }
+            if(!$formFilterAnnonce->get('type')->isEmpty()){
+                $optionEspeceFilterAnnonce = $formFilterAnnonce->get('type')->getData();
+                $optionsFilterAnnonce['type']=$optionEspeceFilterAnnonce;
             }
         }
 

@@ -27,18 +27,23 @@
                     </form>
                     <a class="btn" href="{{ path('evenement_show', {'id': evenement.id}) }}">visualiser</a>
                 </td>
-                {% if not user.getListEventRegistered.contains(evenement) %}
-                    <td>
-                        <form method="post" action="{{ path('add_user_to_evenement', {'id': evenement.id}) }}" >
-                            <button style ="background-color:#50acec" class="btn" type="submit">S'inscrire</button>
-                        </form>
-                    </td>
-                {% else %}
-                    <td>
-                        <form method="post" action="{{ path('remove_user_from_evenement', {'id': evenement.id}) }}" >
-                            <button style ="background-color:#fa4545" class="btn" type="submit">Se désinscrire</button>
-                        </form>
-                    </td>
+                {% if not is_granted('ROLE_ASSO') %}
+                    {% if not user.getListEventRegistered.contains(evenement) %}
+                        <td>
+                            <form method="post" action="{{ path('add_user_to_evenement', {'id': evenement.id}) }}">
+                                <button style="background-color:#50acec" class="btn" type="submit">S'inscrire
+                                </button>
+                            </form>
+                        </td>
+                    {% else %}
+                        <td>
+                            <form method="post"
+                                  action="{{ path('remove_user_from_evenement', {'id': evenement.id}) }}">
+                                <button style="background-color:#fa4545" class="btn" type="submit">Se désinscrire
+                                </button>
+                            </form>
+                        </td>
+                    {% endif %}
                 {% endif %}
             </tr>
         {% else %}

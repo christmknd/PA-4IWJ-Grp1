@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Inscription{% endblock %}
+{% block title %}LaCarteDesAnimaux - Inscription{% endblock %}
 
 {% block body %}
     {% for flashError in app.flashes('verify_email_error') %}
@@ -10,25 +10,63 @@
     <h1>Inscription</h1>
     {% if typeDeCompte == "association" or typeDeCompte == "personne" %}
         {{ form_start(registrationForm) }}
-            {{ form_row(registrationForm.pseudo) }}
-            {{ form_row(registrationForm.email) }}
-            {% if typeDeCompte == "association" %}
-                {{ form_row(registrationForm.siret) }}
-                {% for errorMessage in errorMessages %}
-                    <div class="alert alert-danger" role="alert">{{ errorMessage }}</div>
-                {% endfor %}
-            {% endif %}
-            {{ form_row(registrationForm.plainPassword, {
-                label: 'Password'
-            }) }}
+        {{ form_row(registrationForm.pseudo) }}
+        {{ form_row(registrationForm.email) }}
+        {% if typeDeCompte == "association" %}
+            {{ form_row(registrationForm.siret) }}
+            {% for errorMessage in errorMessages %}
+                <div class="alert alert-danger" role="alert">{{ errorMessage }}</div>
+            {% endfor %}
+        {% endif %}
+        {{ form_row(registrationForm.plainPassword, {
+            label: 'Password'
+        }) }}
         <button type="submit" class="btn">S'inscrire</button>
         {{ form_end(registrationForm) }}
+
     {% else %}
         <section>
-            <a class="waves-effect waves-light btn" href="{{ path('register_person') }}">Je suis une personne</a>
-            <a class="waves-effect waves-light btn" href="{{ path('register_association') }}">Je suis une association</a>
+            <div style="background-color: #5a636b;" class="row">
+                <!-- IMAGE CARD Particulier -->
+                <div class="col s6 m6">
+                    <div class="card">
+                        <div style="text-align: center" class="card">
+                            <span class="card-title">Particulier</span>
+                        </div>
+                        <div style="text-align: center" class="card-content">
+                            <ul>
+                                <li>Déposer des annonnces</li>
+                                <li>Déclarer des pertes</li>
+                                <li>Répondre aux annonnces</li>
+                                <li>S'inscrire à des évènements</li>
+                            </ul>
+                        </div>
+                        <div style="text-align: center;" class="card-action">
+                            <a class="waves-effect waves-light btn" href="{{ path('register_person') }}">Je suis
+                                un particulier</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- IMAGE CARD Association -->
+                <div class="col s6 m6">
+                    <div class="card">
+                        <div style="text-align: center" class="card">
+                            <span class="card-title">Association</span>
+                        </div>
+                        <div style="text-align: center;" class="card-content">
+                            <ul>
+                                <li>Créer des évènements publiques</li>
+                                <li>Déposer des annonnces</li>
+                                <li>Déclarer des pertes</li>
+                            </ul>
+                        </div>
+                        <div style="text-align: center;" class="card-action">
+                            <a style="margin: 10px" class="waves-effect waves-light btn"
+                               href="{{ path('register_association') }}">Je suis une association</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </section>
-
     {% endif %}
-
 {% endblock %}
