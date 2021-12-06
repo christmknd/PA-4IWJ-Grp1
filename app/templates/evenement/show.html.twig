@@ -3,66 +3,85 @@
 {% block title %}Evenement{% endblock %}
 
 {% block body %}
-    <h1>{{ evenement.titre }}</h1>
+    <h1>{{ evenement.titre }}
+        {% if isFavori %}
+            <span class="badge orange">Favori</span>
+        {% endif %}
+        <form method="post" action="{{ path('favori_evenement_toggle', {'id': evenement.id}) }}">
+            <button class="material-icons">{{ evenement.isFavori(app.user) ? 'star' : 'star_border' }}</button>
+        </form>
+    </h1>
 
     <table class="table">
         <tbody>
-            <tr>
-                <th>Association</th>
-                <td>{{ evenement.utilisateur.pseudo }}</td>
-            </tr>
-            <tr>
-                <th>Description</th>
-                <td>{{ evenement.description }}</td>
-            </tr>
-            <tr>
-                <th>Date de l'évènement</th>
-                <td>{{ evenement.dateEvent ? evenement.dateEvent|date('d-m-Y à H:i') : '' }}</td>
-            </tr>
-            <tr>
-                <th>Adress</th>
-                <td>{{ evenement.address }}</td>
-            </tr>
-            <tr>
-                <th>Ville</th>
-                <td>{{ evenement.ville }}</td>
-            </tr>
-            <tr>
-                <th>Code Postal</th>
-                <td>{{ evenement.zipCode }}</td>
-            </tr>
-            <tr>
-                <th>Pays</th>
-                <td>{{ evenement.pays }}</td>
-            </tr>
-            <tr>
-                <th>Publié le</th>
-                <td>{{ evenement.getAtCreated ? evenement.getAtCreated|date('d-m-Y') : '' }}</td>
-            </tr>
+        <tr>
+            <th>Association</th>
+            <td>{{ evenement.utilisateur.pseudo }}</td>
+        </tr>
+        <tr>
+            <th>Description</th>
+            <td>{{ evenement.description }}</td>
+        </tr>
+        <tr>
+            <th>Date de l'évènement</th>
+            <td>{{ evenement.dateEvent ? evenement.dateEvent|date('d-m-Y à H:i') : '' }}</td>
+        </tr>
+        <tr>
+            <th>Adress</th>
+            <td>{{ evenement.address }}</td>
+        </tr>
+        <tr>
+            <th>Ville</th>
+            <td>{{ evenement.ville }}</td>
+        </tr>
+        <tr>
+            <th>Code Postal</th>
+            <td>{{ evenement.zipCode }}</td>
+        </tr>
+        <tr>
+            <th>Pays</th>
+            <td>{{ evenement.pays }}</td>
+        </tr>
         </tbody>
     </table>
 
+    <p> Publié le {{ evenement.atCreated ? evenement.atCreated|date('d-m-Y') : '' }}
+        par {{ evenement.utilisateur.pseudo }}</p>
+    <p> Vue {{ evenement.nbrViews }} fois</p>
 
-    {% if app.user == evenement.utilisateur %}
-        <div class="last-button" style="padding-top: 10px;">
-            <a class="btn" href="{{ path('evenement_edit', {'id': evenement.id}) }}">edit</a>
-            {{ include('evenement/_delete_form.html.twig') }}
-        </div>
+
+    {% if app.user.isVerified %}
+        {% if app.user == evenement.utilisateur %}
+            <div class="last-button" style="padding-top: 10px;">
+                <a class="btn" href="{{ path('evenement_edit', {'id': evenement.id}) }}">edit</a>
+                {{ include('evenement/_delete_form.html.twig') }}
+            </div>
         {% else %}
-            {% if not isContain %}
-                <form method="post" action="{{ path('add_user_to_evenement', {'id': evenement.id}) }}" >
-                    <button style ="background-color:#50acec" class="btn" type="submit">S'inscrire</button>
-                </form>
-            {% else %}
-                <form method="post" action="{{ path('remove_user_from_evenement', {'id': evenement.id}) }}" >
-                    <button style ="background-color:#fa4545" class="btn" type="submit">Se désinscrire</button>
-                </form>
+            <a class="btn" style="background-color:#50acec" href="mailto:{{ evenement.utilisateur.email }}">Contacter le
+                propriétaire</a>
+            {% if not is_granted('ROLE_ASSO') %}
+                {% if not isContain %}
+                    <form method="post" action="{{ path('add_user_to_evenement', {'id': evenement.id}) }}">
+                        <button style="background-color:#50acec" class="btn" type="submit">S'inscrire</button>
+                    </form>
+                {% else %}
+                    <form method="post" action="{{ path('remove_user_from_evenement', {'id': evenement.id}) }}">
+                        <button style="background-color:#fa4545" class="btn" type="submit">Se désinscrire</button>
+                    </form>
+                {% endif %}
             {% endif %}
+        {% endif %}
+    {% else %}
+        <p>Compte restreint ! Votre compte doit être valide pour s'inscrire à l'évènement.</p>
+        <p>Validez votre compte en cliquant sur le lien reçu par email.</p>
     {% endif %}
+
 
     <hr style="margin-top: 20px ; border: 1px solid black"/>
 
     <h2>Annonces contenues dans cet evenement</h2>
+
+    <span class="badge yellow">Nombre d'annonces {{ annoncesRegisted.count() }}</span>
 
     <table class="table">
         <thead>
@@ -94,7 +113,8 @@
                 <td>{{ annonce.age }}</td>
                 {% if app.user == evenement.utilisateur %}
                     <td>
-                        <form method="post" action="{{ path('remove_annonce_from_evenement', {'id': evenement.id, 'annonce_id': annonce.id}) }}">
+                        <form method="post"
+                              action="{{ path('remove_annonce_from_evenement', {'id': evenement.id, 'annonce_id': annonce.id}) }}">
                             <button class="btn">Supprimer annonce</button>
                         </form>
                     </td>
@@ -113,7 +133,6 @@
 
     {% if app.user == evenement.utilisateur %}
         <h2>Mes annonces exclues de l'événement</h2>
-
         <table class="table" style="margin-bottom: 20px;">
             <thead>
             <tr>
@@ -147,7 +166,8 @@
                     <tr>
                         <td>
                             <a class="btn" href="{{ path('annonce_show', {'id': annonce.id}) }}">visualiser</a>
-                            <form method="post" action="{{ path('add_annonce_to_evenement', {'id': evenement.id, 'annonce_id':annonce.id}) }}">
+                            <form method="post"
+                                  action="{{ path('add_annonce_to_evenement', {'id': evenement.id, 'annonce_id':annonce.id}) }}">
                                 <button class="btn">Ajouter annonce</button>
                             </form>
                         </td>
@@ -167,12 +187,12 @@
 
     <h2>Users inscrits dans cet evenement</h2>
 
+    <span class="badge yellow">Nombre d'inscrit {{ usersRegisted.count() }}</span>
     <table class="table">
         <thead>
         <tr>
             <th>Pseudo</th>
         </tr>
-        <tr>Nombre d'inscrit {{ usersRegisted.count() }}</tr>
         </thead>
         <tbody>
         {% for userRegisted in usersRegisted %}

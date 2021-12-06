@@ -45,6 +45,10 @@ class RegisterEventController extends AbstractController
     public function remove_user_from_evenement(Request $request, Evenement $evenement, UserRepository $userRepository): Response
     {
         $user = $this->getUser();
+        if(!$user->isVerified()){
+            $this->addFlash('success', 'Compte restreint ! Validez votre compte en cliquant sur le lien reçu par email.');
+            return $this->redirectToRoute('default');
+        }
         $evenement->removeListUserRegistered($user);
         $entityManager = $this->getDoctrine()->getManager();
         $entityManager->persist($evenement);
@@ -59,6 +63,10 @@ class RegisterEventController extends AbstractController
     public function add_user_to_evenement(MailerInterface $mailer, MailerController $mailerController, Request $request, Evenement $evenement): Response
     {
         $user = $this->getUser();
+        if(!$user->isVerified()){
+            $this->addFlash('success', 'Compte restreint ! Validez votre compte en cliquant sur le lien reçu par email.');
+            return $this->redirectToRoute('default');
+        }
         $evenement->addListUserRegistered($user);
         $entityManager = $this->getDoctrine()->getManager();
         $entityManager->persist($evenement);

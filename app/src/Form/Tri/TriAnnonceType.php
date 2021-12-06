@@ -26,28 +26,20 @@ class TriAnnonceType extends AbstractType
                     'Décroissant' => 'DESC',
                 ],
             ])
-            ->add('lieuTri', ChoiceType::class, [
-                'label' => 'Ville',
-                'required' => false,
-                'choices'  => [
-                    'Croissant' => 'ASC',
-                    'Décroissant' => 'DESC',
-                ],
-            ])
             ->add('nbrViewTri', ChoiceType::class, [
                 'label' => 'Nbr de vues',
                 'required' => false,
                 'choices'  => [
-                    'Croissant' => 'ASC',
-                    'Décroissant' => 'DESC',
+                    'Plus populaire' => 'DESC',
+                    'Moins populaire' => 'ASC',
                 ],
             ])
             ->add('dateAtCreatedTri', ChoiceType::class, [
                 'label' => 'Date de création',
                 'required' => false,
                 'choices'  => [
-                    'Croissant' => 'ASC',
-                    'Décroissant' => 'DESC',
+                    'Plus récents' => 'ASC',
+                    'Moins récents' => 'DESC',
                 ],
             ])
             ->add('submit', SubmitType::class,[

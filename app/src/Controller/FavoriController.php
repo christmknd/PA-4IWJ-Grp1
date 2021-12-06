@@ -23,20 +23,11 @@ class FavoriController extends AbstractController
      */
     public function indexFavori(AnnonceRepository $annonceRepository, EvenementRepository $evenementRepository): Response
     {
+        $user=$this->getUser();
         return $this->render('favori/index.html.twig', [
-            'annonces' => $annonceRepository->findBy(
-                [
-                    'favori' =>true,
-                    'isFinish' =>false,
-                    'isPublish' =>true
-                ]),
-            'evenements' => $evenementRepository->findBy(
-                [
-                    'favori' =>true,
-                    'isFinish' =>false,
-                    'isPublish' =>true
-                ]
-            )
+            'annonces' => $this->getUser()->getAnnoncesFavoris(),
+            'evenements' => $this->getUser()->getEvenementsFavoris(),
+            'user' => $user
         ]);
     }
 
@@ -68,6 +59,11 @@ class FavoriController extends AbstractController
      */
     public function annonce_toggle_favori(Request $request, Annonce $annonce): Response
     {
+        $user = $this->getUser();
+        if(!$user->isVerified()){
+            $this->addFlash('success', 'Compte restreint ! Validez votre compte en cliquant sur le lien reçu par email.');
+            return $this->redirectToRoute('default');
+        }
         if (!$annonce->isFavori($this->getUser())) $this->getUser()->addAnnoncesFavori($annonce);
         else $this->getUser()->removeAnnoncesFavori($annonce);
         $this->getDoctrine()->getManager()->flush();
@@ -79,6 +75,11 @@ class FavoriController extends AbstractController
      */
     public function evenement_toggle_favori(Request $request, Evenement $evenement): Response
     {
+        $user = $this->getUser();
+        if(!$user->isVerified()){
+            $this->addFlash('success', 'Compte restreint ! Validez votre compte en cliquant sur le lien reçu par email.');
+            return $this->redirectToRoute('default');
+        }
         if (!$evenement->isFavori($this->getUser())) $this->getUser()->addEvenementsFavori($evenement);
         else $this->getUser()->removeEvenementsFavori($evenement);
         $this->getDoctrine()->getManager()->flush();

@@ -3,62 +3,88 @@
 {% block title %}Mes favoris{% endblock %}
 
 {% block body %}
-    <h1> List de mes favoris</h1>
-<div class="example-wrapper">
-    <h2>Mes annonces favorites</h2>
-        <div class="row ">
-        {% for annonce in annonces %}
-                    <div class="col s1 m4">
-                        <div class="card blue-grey darken-1">
-                            <div class="card-content white-text">
-                                <span class="card-title">{{ annonce.titre }} - {{ annonce.type }}</span>
-                                <p>{{ annonce.description }}</p>
-                            </div>
-                            <div class="card-content">
-                                <form method="post" action="{{ path('favori_annonce_toggle', {'id': annonce.id}) }}">
-                                    <button class="material-icons">{{ annonce.favori ? 'star' : 'star_border' }}</button>
-                                </form>
-                            </div>
-                            <div class="card-action">
-                                <a href="{{ path('annonce_show', {'id': annonce.id}) }}">visualiser</a><span style="height: auto; width: auto" class="badge yellow"><i class="material-icons">remove_red_eye</i>{{ annonce.nbrViews }}</span>
-                                <p>Publié par {{ annonce.utilisateur.pseudo }}, le {{ annonce.atCreated ? annonce.atCreated|date('Y-m-d') : '' }}</p>
-                            </div>
-                        </div>
-                    </div>
-                <div class="col s1 m4"/>
-        {% endif %}
-        {% endfor %}
-        </div>
-
-    <h2>Mes évènements favoris</h2>
-        <div class="collection ">
-        {% for evenement in evenements %}
-            <div class="col s1 m6">
-                <div class="card blue-grey darken-1">
-                    <div class="card-content white-text">
-                        <span class="card-title">{{ evenement.titre }}</span>
-                        <p>{{ evenement.description }}</p>
-                        <p>Le {{ evenement.date ? evenement.date|date('Y-m-d H:i:s') : '' }} à {{ evenement.lieu }}</p>
-                    </div>
-                    <div class="card-content">
-                        <form method="post" action="{{ path('favori_evenement_toggle', {'id': annonce.id}) }}">
-                            <button class="material-icons">{{ annonce.favori ? 'star' : 'star_border' }}</button>
+    <h1> Mes favoris</h1>
+    <div class="example-wrapper">
+        <h2>Mes annonces favorites</h2>
+        <table class="responsive-table striped">
+            <thead>
+            <tr>
+                <th>Nom Animal</th>
+                <th>Espece</th>
+                <th>Ville</th>
+                <th>Date de création</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for annonce in annonces %}
+                <tr>
+                    <td>{{ annonce.nomAnimal }}</td>
+                    <td>{{ annonce.espece }}</td>
+                    <td>{{ annonce.ville }}</td>
+                    <td>{{ annonce.atCreated ? annonce.atCreated|date('d-m-Y') : '' }}</td>
+                    <td>
+                        <form method="post" action="{{ path('favori_annonce_toggle', {'id': annonce.id}) }}">
+                            <button class="material-icons">{{ annonce.isFavori(app.user) ? 'star' : 'star_border' }}</button>
                         </form>
-                    </div>
-                    <div class="card-action">
-                        <a href="{{ path('evenement_show', {'id': evenement.id}) }}">visualiser</a>
-                        {% if evenement.isFinish  %}
-                            <span class="badge green">Valide</span>
+                        <a class="btn" href="{{ path('annonce_show', {'id': annonce.id}) }}">visualiser</a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="13">Pas d'annonce</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+        <h2>Mes évènements favoris</h2>
+        <table class="responsive-table striped" style="margin-bottom: 20px;">
+            <thead>
+            <tr>
+                <th>Titre</th>
+                <th>Date</th>
+                <th>Ville</th>
+                <th>Actions</th>
+
+            </tr>
+            </thead>
+            <tbody>
+            {% for evenement in evenements %}
+                <tr>
+                    <td>{{ evenement.titre }}</td>
+                    <td>{{ evenement.dateEvent ? evenement.dateEvent|date('Y-m-d H:i:s') : '' }}</td>
+                    <td>{{ evenement.ville }}</td>
+                    <td>
+                        <form method="post" action="{{ path('favori_evenement_toggle', {'id': evenement.id}) }}">
+                            <button class="material-icons">{{ evenement.isFavori(app.user) ? 'star' : 'star_border' }}</button>
+                        </form>
+                        <a class="btn" href="{{ path('evenement_show', {'id': evenement.id}) }}">visualiser</a>
+                    </td>
+                    {% if not is_granted('ROLE_ASSO') %}
+                        {% if not user.getListEventRegistered.contains(evenement) %}
+                            <td>
+                                <form method="post" action="{{ path('add_user_to_evenement', {'id': evenement.id}) }}">
+                                    <button style="background-color:#50acec" class="btn" type="submit">S'inscrire
+                                    </button>
+                                </form>
+                            </td>
                         {% else %}
-                            <span class="badge red">Annulé</span>
+                            <td>
+                                <form method="post"
+                                      action="{{ path('remove_user_from_evenement', {'id': evenement.id}) }}">
+                                    <button style="background-color:#fa4545" class="btn" type="submit">Se désinscrire
+                                    </button>
+                                </form>
+                            </td>
                         {% endif %}
-                        <p>Publié par {{ evenement.utilisateur.pseudo }}</p>
-                    </div>
-                </div>
-            </div>
-        {% else %}
-            <div class="col s1 m6"/>
-        {% endfor %}
-        </div>
-</div>
+                    {% endif %}
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="7">Pas d'evenement</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
 {% endblock %}

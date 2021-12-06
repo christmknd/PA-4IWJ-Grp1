@@ -32,6 +32,14 @@ class FilterAnnonceType extends AbstractType
                     'Hamster' => 'Hamster'
                 ],
             ])
+            ->add('type', ChoiceType::class, [
+                'label' => 'Type',
+                'required' => false,
+                'choices'  => [
+                    'Adoption' => 'Adoption',
+                    'Perte' => 'Perte'
+                ],
+            ])
             ->add('submit', SubmitType::class,[
                 'label' => 'Filtrer',
             ])

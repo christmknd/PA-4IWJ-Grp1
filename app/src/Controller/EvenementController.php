@@ -67,11 +67,14 @@ class EvenementController extends AbstractController
     public function show(Evenement $evenement): Response
     {
         $user = $this->getUser();
-        $isContain = $user->getListEventRegistered()->contains($evenement);;
+        $isContain = $user->getListEventRegistered()->contains($evenement);
+        $isFavori = $user->getEvenementsFavoris()->contains($evenement);
         return $this->render('evenement/show.html.twig', [
             'evenement' => $evenement,
             'isContain' => $isContain,
-            'usersRegisted' => $evenement->getListUserRegistered()
+            'isFavori' => $isFavori,
+            'usersRegisted' => $evenement->getListUserRegistered(),
+            'annoncesRegisted' => $evenement->getAnnonces()
         ]);
     }
 
