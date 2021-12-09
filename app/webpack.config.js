@@ -26,6 +26,7 @@ Encore
     .addEntry('carte','./assets/img/carte.png')
     .addEntry('chien','./assets/img/chien-perdu.jpeg')
     .addEntry('salon','./assets/img/salon.jpeg')
+    .addEntry('landscape', './assets/img/landscape.jpeg')
 
 
 
