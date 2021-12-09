@@ -3,68 +3,76 @@
 {% block title %}Mon profil{% endblock %}
 
 {% block body %}
-    <h1>{{ user.pseudo }}</h1>
 
-    <table class="table" style="border: 1px solid black">
-        <tbody>
 
-            <tr>
-                <th> <i class="small material-icons"> account_box</i> </th>
-                <th>Pseudo</th>
-                <td>{{ user.pseudo }}</td>
-            </tr>
-            <tr>
-                <th> <i class="small material-icons">email</i> </th>
-                <th>Email</th>
-                <td>{{ user.email }}</td>
-            </tr>
-            <tr>
-                <th> <i class="small material-icons">verified_user</i> </th>
-                <th>Compte vérifié</th>
-                <td>{{ user.isVerified ? 'Oui' : 'Non' }}</td>
-                {% if not user.isVerified %}
-                    <td>
-                        <form  method="post" action="{{ path('user_post_mail') }}">
-                            <button style ="background-color: #2446af; margin: 5px" class="btn">Envoyer lien d'activation</button>
-                        </form>
-                    </td>
-                {% endif %}
-            </tr>
-            <tr>
-                <th> <i class="small material-icons">supervisor_account</i> </th>
-                <th>Type de compte</th>
-                <td>{{ user.typeDeCompte }}</td>
-            </tr>
-            {% if app.user.typeDeCompte == "Association" %}
-            <tr>
-                <th>Siret (Valide par INSEE)</th>
-                <td>{{ user.siret }}</td>
-            </tr>
-            {% endif %}
-        </tbody>
-    </table>
-
-    <div class="container" style="margin: 25px">
+    <div class="container">
         <div class="row">
-                <div class="col s12">
-                    <a href="{{ path('user_edit') }}">
-                        <button style ="background-color:#ffcc00; margin: 5px" class="btn">
-                            Modifier profil
-                        </button>
-                    </a>
+            <div class="col s8 offset-s2">
+                <div class="card text-center">
+                    <div class="card-title">
+                        <h1 style="text-align: center">{{ user.pseudo }}</h1>
+                        <h4 style="text-align: center">{{ user.typeDeCompte }}</h4>
+                        {% if app.user.typeDeCompte == "Association" %}
+                    <br/><h5>{{ user.siret }}</h5>
+                        {% endif %}
+                    </div>
+                    <div class="card-content">
+                        <div class="row">
+                            <div class="col m6">
+                                <i class="small material-icons">email</i>
+                            </div>
+                            <div class="col m6">
+                                {{ user.email }}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col m6">
+                                <i class="small material-icons">verified_user</i>
+                            </div>
+                            <div class="col m6">
+                                {{ user.isVerified ? 'Oui' : 'Non' }}
+                                {% if not user.isVerified %}
+                                        <form  method="post" action="{{ path('user_post_mail') }}">
+                                            <button style ="background-color: #2446af; margin: 5px" class="btn">Envoyer lien d'activation</button>
+                                        </form>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="action-btn">
+                            <ul>
+                               <li>
+                                   <a href="{{ path('user_edit') }}">
+                                       <button style ="background-color:#ffcc00; margin: 5px" class="btn">
+                                           Modifier profil
+                                       </button>
+                                   </a>
+                               </li>
+                                <li>
+                                    <a href="{{ path('app_forgot_password_request') }}">
+                                        <button style ="background-color:#ffcc00; margin: 5px" class="btn">
+                                            Modifier mot de passe
+                                        </button>
+                                    </a>
+                                </li>
+                                <li>{{ include('user/_delete_form.html.twig') }}</li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
-                <div class="col s12">
-                    <a href="{{ path('app_forgot_password_request') }}">
-                        <button style ="background-color:#ffcc00; margin: 5px" class="btn">
-                            Modifier mot de passe
-                        </button>
-                    </a>
-                </div>
-                <div class="col s12">
-                    {{ include('user/_delete_form.html.twig') }}
-                </div>
+            </div>
         </div>
     </div>
 
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var elems = document.querySelectorAll('.fixed-action-btn');
+            var instances = M.FloatingActionButton.init(elems, {
+                direction: 'left',
+                hoverEnabled: false
+            });
+        });
+    </script>
 
 {% endblock %}
