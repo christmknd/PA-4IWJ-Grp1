@@ -91,7 +91,7 @@
                                                 <span class="card-title activator" style="font-family: Lato;text-shadow: 1px 1px 10px lightgrey;">{{ annonce.titre }} - {{ annonce.type }}</span>
                                                 <p style="font-family: Arial; text-overflow: ellipsis; max-height:200px; white-space: nowrap;
       overflow: hidden;"> {{ annonce.description }} </p>
-                                                <p style="font-family: Arial">Ville : {{ annonce.ville }}</p>
+                                                <p style="font-family: Arial">{{ annonce.ville }}</p>
                                             </div>
                                                 {% if is_granted('ROLE_USER') %}
                                                 <div class="card-content">
@@ -100,7 +100,7 @@
                                                     </form>
                                                 </div>
                                             {% endif %}
-                                            <div class="card-reveal">
+                                            <div class="card-reveal green lighten-5">
                                                 <span class="card-title grey-text text-darken-4"><i class="material-icons right">close</i></span>
                                                 <a href="{{ path('annonce_show', {'id': annonce.id}) }}">visualiser</a><span style="height: auto; width: auto" class="badge yellow"><i class="material-icons">remove_red_eye</i>{{ annonce.nbrViews }}</span>
                                                 <p style="font-family: Arial">Publié par {{ annonce.utilisateur.pseudo }}, le {{ annonce.atCreated ? annonce.atCreated|date('Y-m-d') : '' }}</p>
@@ -137,7 +137,7 @@
                                             </form>
                                         </div>
                                     {% endif %}
-                                    <div class="card-reveal">
+                                    <div class="card-reveal deep-purple lighten-5">
                                         <span class="card-title grey-text text-darken-4"><i class="material-icons right">close</i></span>
                                         <p style="font-family: Arial">Le {{ evenement.dateEvent ? evenement.dateEvent|date('d-m-Y à H:i') : '' }} à {{ evenement.ville }}</p>
                                         <a href="{{ path('evenement_show', {'id': evenement.id}) }}">visualiser</a>
