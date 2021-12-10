@@ -11,10 +11,11 @@
                 <div class="card text-center">
                     <div class="card-title">
                         <h1 style="text-align: center">{{ user.pseudo }}</h1>
-                        <h4 style="text-align: center">{{ user.typeDeCompte }}</h4>
+                        <h5 style="text-align: center">{{ user.typeDeCompte }}</h5>
                         {% if app.user.typeDeCompte == "Association" %}
-                    <br/><h5>{{ user.siret }}</h5>
+                    <br/><h5 style="text-align: center">{{ user.siret }}</h5>
                         {% endif %}
+                        <hr>
                     </div>
                     <div class="card-content">
                         <div class="row">
@@ -39,9 +40,17 @@
                             </div>
                         </div>
                     </div>
+                    <hr>
                     <div class="row">
                         <div class="action-btn">
                             <ul>
+                                <li>
+                                    <a href="{{ path("mes_annonces_index") }}">
+                                        <button style ="background-color:darkgreen; margin: 5px" class="btn">
+                                            Voir mes annonces
+                                        </button>
+                                    </a>
+                                </li>
                                <li>
                                    <a href="{{ path('user_edit') }}">
                                        <button style ="background-color:#ffcc00; margin: 5px" class="btn">
@@ -64,15 +73,5 @@
             </div>
         </div>
     </div>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            var elems = document.querySelectorAll('.fixed-action-btn');
-            var instances = M.FloatingActionButton.init(elems, {
-                direction: 'left',
-                hoverEnabled: false
-            });
-        });
-    </script>
 
 {% endblock %}
