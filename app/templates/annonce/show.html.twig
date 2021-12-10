@@ -3,84 +3,59 @@
 {% block title %}Annonce{% endblock %}
 
 {% block body %}
-    <h1>{{ annonce.titre }}
-        {% if isFavori %}
-            <span class="badge orange">Favori</span>
-        {% endif %}
-        <form method="post" action="{{ path('favori_annonce_toggle', {'id': annonce.id}) }}">
-            <button class="material-icons">{{ annonce.isFavori(app.user) ? 'star' : 'star_border' }}</button>
-        </form>
-    </h1>
 
+    <div class="container">
+        <div class="row">
+            <div class="col s8 offset-s2">
+                <div class="card">
+                    <div class="card-title">
+                        <h1 style="text-align: center">{{ annonce.nomAnimal }} - {{ annonce.espece }} </h1>
+                        <h5 style="text-align: center; color: darkgreen">{{ annonce.type }}</h5>
+                        <hr>
+                    </div>
+                    <div class="card-content">
+                        <div class="row">
+                            <div class="col s6"><i class="material-icons small">description</i></div>
+                            <div class="col s6">{{ annonce.description }}</div>
+                        </div>
+                        <div class="row">
+                            <div class="col s6"><i class="material-icons small">home</i></div>
+                            <div class="col s6">{{ annonce.address }}, {{ annonce.zipCode }} {{ annonce.ville }}</div>
+                        </div>
+                        <div class="row">
+                            <div class="col s6"><i class="material-icons small">pets</i></div>
+                            <div class="col s6">{{ annonce.sexe }}</div>
+                        </div>
+                    </div>
+                    <div class="button-list" style="margin-top: 20px; margin-bottom: 20px">
+                        {% if app.user.isVerified %}
+                            {% if app.user == annonce.utilisateur %}
+                                <a class="btn" href="{{ path('annonce_edit', {'id': annonce.id}) }}">Modifier</a>
+                                {{ include('annonce/_delete_form.html.twig') }}
+                                <a class="btn" href="{{ path('mes_annonces_index') }}">Revenir à la liste</a>
+                            {% else %}
+                                <a class="btn" style="background-color:#50acec" href="mailto:{{ annonce.utilisateur.email }}">Contacter
+                                    le
+                                    propriétaire</a>
+                            {% endif %}
+                        {% else %}
+                            <p>Compte restreint ! Votre compte doit être valide pour contacter le propriétaire.</p>
+                            <p>Validez votre compte en cliquant sur le lien reçu par email.</p>
+                        {% endif %}
+                    </div>
+                    {% if isFavori %}
+                        <span class="badge orange">Favori</span>
+                    {% endif %}
+                    <form method="post" action="{{ path('favori_annonce_toggle', {'id': annonce.id}) }}">
+                        <button class="material-icons">{{ annonce.isFavori(app.user) ? 'star' : 'star_border' }}</button>
+                    </form>
+                </div>
+            </div>
+        </div>
 
-    <table class="responsive-table">
-        <tbody>
-        <tr>
-            <th>Titre</th>
-            <td>{{ annonce.titre }}</td>
-        </tr>
-        <tr>
-            <th>Type</th>
-            <td>{{ annonce.type }}</td>
-        </tr>
-        <tr>
-            <th>Description</th>
-            <td>{{ annonce.description }}</td>
-        </tr>
-        <tr>
-            <th>NomAnimal</th>
-            <td>{{ annonce.nomAnimal }}</td>
-        </tr>
-        <tr>
-            <th>Espece</th>
-            <td>{{ annonce.espece }}</td>
-        </tr>
-        <tr>
-            <th>Adress</th>
-            <td>{{ annonce.address }}</td>
-        </tr>
-        <tr>
-            <th>Ville</th>
-            <td>{{ annonce.ville }}</td>
-        </tr>
-        <tr>
-            <th>Code Postal</th>
-            <td>{{ annonce.zipCode }}</td>
-        </tr>
-        <tr>
-            <th>Pays</th>
-            <td>{{ annonce.pays }}</td>
-        </tr>
-        <tr>
-            <th>Sexe</th>
-            <td>{{ annonce.sexe }}</td>
-        </tr>
-        <tr>
-            <th>Age</th>
-            <td>{{ annonce.age }}</td>
-        </tr>
-        </tbody>
-    </table>
-    <p> Publié le {{ annonce.atCreated ? annonce.atCreated|date('d-m-Y') : '' }}
-        par {{ annonce.utilisateur.pseudo }}</p>
-    <p> Vue {{ annonce.nbrViews }} fois</p>
-
-
-    <div class="button-list" style="margin-top: 20px; margin-bottom: 20px">
-        {% if app.user.isVerified %}
-            {% if app.user == annonce.utilisateur %}
-                <a class="btn" href="{{ path('annonce_edit', {'id': annonce.id}) }}">Modifier</a>
-                {{ include('annonce/_delete_form.html.twig') }}
-                <a class="btn" href="{{ path('mes_annonces_index') }}">Revenir à la liste</a>
-            {% else %}
-                <a class="btn" style="background-color:#50acec" href="mailto:{{ annonce.utilisateur.email }}">Contacter
-                    le
-                    propriétaire</a>
-            {% endif %}
-        {% else %}
-            <p>Compte restreint ! Votre compte doit être valide pour contacter le propriétaire.</p>
-            <p>Validez votre compte en cliquant sur le lien reçu par email.</p>
-        {% endif %}
     </div>
+
+
+
 
 {% endblock %}
