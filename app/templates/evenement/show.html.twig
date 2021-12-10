@@ -17,7 +17,7 @@
             <div class="col s12">
                 <div class="card">
                     <div class="card-title">
-                        <h5 style="text-align: center; color: darkgreen">{{ evenement.utilisateur.pseudo }}</h5>
+                        <h3 style="text-align: center">{{ evenement.utilisateur.pseudo }}</h3>
                     </div>
                     <hr>
                     <div class="card-content">
@@ -151,17 +151,17 @@
                                             <div class="col s6"><i class="material-icons small">pets</i></div>
                                             <div class="col s6">{{ annonce.sexe }}</div>
                                         </div>
+                                        <div class="row">
+                                            <a class="btn" href="{{ path('annonce_show', {'id': annonce.id}) }}">visualiser</a>
+                                            <form method="post"
+                                                  action="{{ path('add_annonce_to_evenement', {'id': evenement.id, 'annonce_id':annonce.id}) }}">
+                                                <button class="btn">Ajouter annonce</button>
+                                            </form>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <a class="btn" href="{{ path('annonce_show', {'id': annonce.id}) }}">visualiser</a>
-                        <form method="post"
-                              action="{{ path('add_annonce_to_evenement', {'id': evenement.id, 'annonce_id':annonce.id}) }}">
-                            <button class="btn">Ajouter annonce</button>
-                        </form>
                     </div>
                 {% endif %}
             {% else %}
