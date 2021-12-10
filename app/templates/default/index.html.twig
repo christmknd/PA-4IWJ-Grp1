@@ -80,8 +80,26 @@
 
                 <div class="hide-on-small-only col m6 s12" style="overflow: auto">
                     <h3>Annonces en ligne</h3>
-                    {{ form(formTriAnnonces) }}
-                    {{ form(formFilterAnnonce) }}
+
+                        {{ form_start(formTriAnnonces) }}
+                        <div class="row">
+                            <div class="col s3"> {{ form_row(formTriAnnonces.ageTri) }}</div>
+                            <div class="col s3">{{ form_row(formTriAnnonces.nbrViewTri) }}</div>
+                            <div class="col s3">{{ form_row(formTriAnnonces.dateAtCreatedTri) }}</div>
+                            <div class="col s3">{{ form_row(formTriAnnonces.submit) }}</div>
+                        </div>
+                        {{ form_end(formTriAnnonces) }}
+
+                        {{ form_start (formFilterAnnonce)  }}
+                        <div class="row">
+                            <div class="col s3">{{ form_row(formFilterAnnonce.sexe) }}</div>
+                            <div class="col s3">{{ form_row(formFilterAnnonce.espece) }}</div>
+                            <div class="col s3">{{ form_row(formFilterAnnonce.type) }}</div>
+                            <div class="col s3">{{ form_row(formFilterAnnonce.submit) }}</div>
+                        </div>
+                        {{ form_end (formFilterAnnonce)  }}
+
+
 
                     <div class="row">
                         {% for annonce in annonces %}
@@ -119,7 +137,14 @@
                     <h1>Évènements à venir</h1>
 
 
-                    {{ form(formTriEvenements) }}
+                    {{ form_start(formTriEvenements) }}
+                    <div class="row">
+                        <div class="col s3">{{ form_row(formTriEvenements.nbrViewTri) }}</div>
+                        <div class="col s3">{{ form_row(formTriEvenements.dateAtCreatedTri) }}</div>
+                        <div class="col s3">{{ form_row(formTriEvenements.dateEventTri) }}</div>
+                        <div class="col s3">{{ form_row(formTriEvenements.submit) }}</div>
+                    </div>
+                    {{ form_end(formTriEvenements) }}
 
 
                     <div class="row">
