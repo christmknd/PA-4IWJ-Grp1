@@ -4,87 +4,114 @@
 
 {% block body %}
     <h1> Mes favoris</h1>
+
     <div class="example-wrapper">
         <h2>Mes annonces favorites</h2>
-        <table class="responsive-table striped">
-            <thead>
-            <tr>
-                <th>Nom Animal</th>
-                <th>Espece</th>
-                <th>Ville</th>
-                <th>Date de création</th>
-            </tr>
-            </thead>
-            <tbody>
+
             {% for annonce in annonces %}
-                <tr>
-                    <td>{{ annonce.nomAnimal }}</td>
-                    <td>{{ annonce.espece }}</td>
-                    <td>{{ annonce.ville }}</td>
-                    <td>{{ annonce.atCreated ? annonce.atCreated|date('d-m-Y') : '' }}</td>
-                    <td>
-                        <form method="post" action="{{ path('favori_annonce_toggle', {'id': annonce.id}) }}">
-                            <button class="material-icons">{{ annonce.isFavori(app.user) ? 'star' : 'star_border' }}</button>
-                        </form>
-                        <a class="btn" href="{{ path('annonce_show', {'id': annonce.id}) }}">visualiser</a>
-                    </td>
-                </tr>
-            {% else %}
-                <tr>
-                    <td colspan="13">Pas d'annonce</td>
-                </tr>
-            {% endfor %}
-            </tbody>
-        </table>
+                <div class="container">
+                    <div class="row">
+                        <div class="card">
+                            <div class="card-title">
+                                <h1 style="text-align: center">{{ annonce.nomAnimal }} - {{ annonce.espece }} </h1>
+                                <h5 style="text-align: center; color: darkgreen">{{ annonce.type }}</h5>
+                                <hr>
+                            </div>
+                            <div class="card-content">
+                                <div class="row">
+                                    <div class="col s6"><i class="material-icons small">description</i></div>
+                                    <div class="col s6">{{ annonce.description }}</div>
+                                </div>
+                                <div class="row">
+                                    <div class="col s6"><i class="material-icons small">home</i></div>
+                                    <div class="col s6">{{ annonce.address }}, {{ annonce.zipCode }} {{ annonce.ville }}</div>
+                                </div>
+                                <div class="row">
+                                    <div class="col s6"><i class="material-icons small">pets</i></div>
+                                    <div class="col s6">{{ annonce.sexe }}</div>
+                                </div>
+                                <div class="row">
+                                    <form method="post" action="{{ path('favori_annonce_toggle', {'id': annonce.id}) }}">
+                                        <button class="material-icons">{{ annonce.isFavori(app.user) ? 'star' : 'star_border' }}</button>
+                                    </form>
+                                    <a class="btn" href="{{ path('annonce_show', {'id': annonce.id}) }}">visualiser</a>
+                                </div>
+                                {% else %}
+                                    <div class="row">
+                                        <div class="col s12">
+                                            <p>Pas d'annonce</p>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                </div>
+            </div>
+
 
         <h2>Mes évènements favoris</h2>
-        <table class="responsive-table striped" style="margin-bottom: 20px;">
-            <thead>
-            <tr>
-                <th>Titre</th>
-                <th>Date</th>
-                <th>Ville</th>
-                <th>Actions</th>
 
-            </tr>
-            </thead>
-            <tbody>
             {% for evenement in evenements %}
-                <tr>
-                    <td>{{ evenement.titre }}</td>
-                    <td>{{ evenement.dateEvent ? evenement.dateEvent|date('Y-m-d H:i:s') : '' }}</td>
-                    <td>{{ evenement.ville }}</td>
-                    <td>
-                        <form method="post" action="{{ path('favori_evenement_toggle', {'id': evenement.id}) }}">
-                            <button class="material-icons">{{ evenement.isFavori(app.user) ? 'star' : 'star_border' }}</button>
-                        </form>
-                        <a class="btn" href="{{ path('evenement_show', {'id': evenement.id}) }}">visualiser</a>
-                    </td>
-                    {% if not is_granted('ROLE_ASSO') %}
-                        {% if not user.getListEventRegistered.contains(evenement) %}
-                            <td>
-                                <form method="post" action="{{ path('add_user_to_evenement', {'id': evenement.id}) }}">
-                                    <button style="background-color:#50acec" class="btn" type="submit">S'inscrire
-                                    </button>
-                                </form>
-                            </td>
-                        {% else %}
-                            <td>
-                                <form method="post"
-                                      action="{{ path('remove_user_from_evenement', {'id': evenement.id}) }}">
-                                    <button style="background-color:#fa4545" class="btn" type="submit">Se désinscrire
-                                    </button>
-                                </form>
-                            </td>
-                        {% endif %}
-                    {% endif %}
-                </tr>
-            {% else %}
-                <tr>
-                    <td colspan="7">Pas d'evenement</td>
-                </tr>
+                <div class="container">
+                    <div class="row">
+                        <div class="col s12">
+                            <div class="card">
+                                <div class="card-title">
+                                    <h3 style="text-align: center">{{ evenement.utilisateur.pseudo }}</h3>
+                                </div>
+                                <hr>
+                                <div class="card-content">
+                                    <div class="row">
+                                        <div class="col s6"><i class="material-icons small">description</i></div>
+                                        <div class="col s6">{{ evenement.description }}</div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col s6"><i class="material-icons small">date_range</i></div>
+                                        <div class="col s6">{{ evenement.dateEvent ? evenement.dateEvent|date('d-m-Y à H:i') : '' }}</div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col s6"><i class="material-icons small">home</i></div>
+                                        <div class="col s6">{{ evenement.address }}, {{ evenement.zipCode }} {{ evenement.ville }}</div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col s12">
+                                            <form method="post" action="{{ path('favori_evenement_toggle', {'id': evenement.id}) }}">
+                                                <button class="material-icons">{{ evenement.isFavori(app.user) ? 'star' : 'star_border' }}</button>
+                                            </form>
+                                            <a class="btn" href="{{ path('evenement_show', {'id': evenement.id}) }}">visualiser</a>
+                                        </div>
+                                    </div>
+                                    {% if not is_granted('ROLE_ASSO') %}
+                                        {% if not user.getListEventRegistered.contains(evenement) %}
+                                    <div class="row">
+                                         <div class="col s12">
+                                             <form method="post" action="{{ path('add_user_to_evenement', {'id': evenement.id}) }}">
+                                                <button style="background-color:#50acec" class="btn" type="submit">S'inscrire
+                                                </button>
+                                             </form>
+                                         </div>
+                                    </div>
+                                        {% else %}
+                                            <div class="row">
+                                                <div class="col s12">
+                                                    <form method="post"
+                                                          action="{{ path('remove_user_from_evenement', {'id': evenement.id}) }}">
+                                                        <button style="background-color:#fa4545" class="btn" type="submit">Se désinscrire
+                                                        </button>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        {% endif %}
+                                    {% endif %}
+                                    {% else %}
+                                    <div class="col s12">
+                                        <p>Pas d'evenement</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             {% endfor %}
-            </tbody>
-        </table>
-    </div>
+
 {% endblock %}

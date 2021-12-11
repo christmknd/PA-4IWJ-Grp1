@@ -26,7 +26,7 @@
             <div class="container-fluid">
                 <div class="parallax-container">
                     <div class="parallax" style="opacity: 0.6">
-                        <img style="margin: auto" src="{{ asset('build/images/animaux.e87a0d26.webp') }}">
+                        <img style="max-width: 100%;height: auto" src="{{ asset('build/images/animaux.e87a0d26.webp') }}">
                     </div>
                 </div>
                 <h2 style="text-align : center; font-family: Arial">Une plateforme pour les amoureux des animaux</h2>
@@ -80,31 +80,50 @@
 
                 <div class="hide-on-small-only col m6 s12" style="overflow: auto">
                     <h3>Annonces en ligne</h3>
-                    {{ form(formTriAnnonces) }}
-                    {{ form(formFilterAnnonce) }}
+
+                        {{ form_start(formTriAnnonces) }}
+                        <div class="row">
+                            <div class="col s3"> {{ form_row(formTriAnnonces.ageTri) }}</div>
+                            <div class="col s3">{{ form_row(formTriAnnonces.nbrViewTri) }}</div>
+                            <div class="col s3">{{ form_row(formTriAnnonces.dateAtCreatedTri) }}</div>
+                            <div class="col s3">{{ form_row(formTriAnnonces.submit) }}</div>
+                        </div>
+                        {{ form_end(formTriAnnonces) }}
+
+                        {{ form_start (formFilterAnnonce)  }}
+                        <div class="row">
+                            <div class="col s3">{{ form_row(formFilterAnnonce.sexe) }}</div>
+                            <div class="col s3">{{ form_row(formFilterAnnonce.espece) }}</div>
+                            <div class="col s3">{{ form_row(formFilterAnnonce.type) }}</div>
+                            <div class="col s3">{{ form_row(formFilterAnnonce.submit) }}</div>
+                        </div>
+                        {{ form_end (formFilterAnnonce)  }}
+
+
 
                     <div class="row">
                         {% for annonce in annonces %}
                                 <div class="col s12">
-                                    <div class="card grey darken-1" style="border-style: ridge ; box-shadow: 10px 5px 5px lightgrey;">
-                                        <div class="card-content white-text">
-                                            <span class="card-title" style="font-family: Lato;text-shadow: 1px 1px 10px lightgrey;">{{ annonce.titre }} - {{ annonce.type }}</span>
-                                            <p style="font-family: Arial; text-overflow: ellipsis; max-height:200px; white-space: nowrap;
-  overflow: hidden;"> {{ annonce.description }} </p>
-                                            <p style="font-family: Arial">Ville : {{ annonce.ville }}</p>
-                                        </div>
-                                        {% if is_granted('ROLE_USER') %}
-                                            <div class="card-content">
-                                                <form method="post" action="{{ path('favori_annonce_toggle', {'id': annonce.id}) }}">
-                                                    <button class="material-icons">{{ annonce.isFavori(app.user) ? 'star' : 'star_border' }}</button>
-                                                </form>
+                                    <div class="card green darken-2" style="border-style: ridge ; box-shadow: 10px 5px 5px lightgrey;">
+                                            <div class="card-content white-text">
+                                                <span class="card-title activator" style="font-family: Lato;text-shadow: 1px 1px 10px lightgrey;">{{ annonce.titre }} - {{ annonce.type }}</span>
+                                                <p style="font-family: Arial; text-overflow: ellipsis; max-height:200px; white-space: nowrap;
+      overflow: hidden;"> {{ annonce.description }} </p>
+                                                <p style="font-family: Arial">{{ annonce.ville }}</p>
                                             </div>
-                                        {% endif %}
-                                        <div class="card-action">
-                                            <a href="{{ path('annonce_show', {'id': annonce.id}) }}">visualiser</a><span style="height: auto; width: auto" class="badge yellow"><i class="material-icons">remove_red_eye</i>{{ annonce.nbrViews }}</span>
-                                            <p style="font-family: Arial">Publié par {{ annonce.utilisateur.pseudo }}, le {{ annonce.atCreated ? annonce.atCreated|date('Y-m-d') : '' }}</p>
+                                                {% if is_granted('ROLE_USER') %}
+                                                <div class="card-content">
+                                                    <form method="post" action="{{ path('favori_annonce_toggle', {'id': annonce.id}) }}">
+                                                        <button class="material-icons">{{ annonce.isFavori(app.user) ? 'star' : 'star_border' }}</button>
+                                                    </form>
+                                                </div>
+                                            {% endif %}
+                                            <div class="card-reveal green lighten-5">
+                                                <span class="card-title grey-text text-darken-4"><i class="material-icons right">close</i></span>
+                                                <a href="{{ path('annonce_show', {'id': annonce.id}) }}">visualiser</a><span style="height: auto; width: auto" class="badge yellow"><i class="material-icons">remove_red_eye</i>{{ annonce.nbrViews }}</span>
+                                                <p style="font-family: Arial">Publié par {{ annonce.utilisateur.pseudo }}, le {{ annonce.atCreated ? annonce.atCreated|date('Y-m-d') : '' }}</p>
+                                            </div>
                                         </div>
-                                    </div>
                                 </div>
                                 <div id="annonceJson" class="annonceJson" style="display: none">{{ annonce.LatLng }} </div>
                                 <div id="annonceJson3" class="annonceJson3" style="display: none"> {{ {"titre": annonce.titre,"nomAnimal":annonce.nomAnimal,"age":annonce.age, "espece":annonce.espece,"sexe":annonce.sexe,"pseudo":annonce.utilisateur.pseudo,"atCreated":annonce.atCreated ? annonce.atCreated|date('d-m-Y') : '',"lien":path('annonce_show', {'id': annonce.id}),"LatLng":annonce.LatLng }|json_encode() }} </div>
@@ -118,17 +137,23 @@
                     <h1>Évènements à venir</h1>
 
 
-                    {{ form(formTriEvenements) }}
+                    {{ form_start(formTriEvenements) }}
+                    <div class="row">
+                        <div class="col s3">{{ form_row(formTriEvenements.nbrViewTri) }}</div>
+                        <div class="col s3">{{ form_row(formTriEvenements.dateAtCreatedTri) }}</div>
+                        <div class="col s3">{{ form_row(formTriEvenements.dateEventTri) }}</div>
+                        <div class="col s3">{{ form_row(formTriEvenements.submit) }}</div>
+                    </div>
+                    {{ form_end(formTriEvenements) }}
 
 
                     <div class="row">
                         {% for evenement in evenements %}
                             <div class="col s12">
-                                <div class="card grey darken-1" style="border-style: ridge; box-shadow: 10px 5px 5px lightgrey;">
+                                <div class="card blue darken-1" style="border-style: ridge; box-shadow: 10px 5px 5px lightgrey;">
                                     <div class="card-content white-text" style="font-family: Lato;text-shadow: 1px 1px 10px lightgrey;">
-                                        <span class="card-title">{{ evenement.titre }}</span>
+                                        <span class="card-title activator">{{ evenement.titre }}</span>
                                         <p style="font-family: Arial">{{ evenement.description }}</p>
-                                        <p style="font-family: Arial">Le {{ evenement.dateEvent ? evenement.dateEvent|date('d-m-Y à H:i') : '' }} à {{ evenement.ville }}</p>
                                     </div>
                                     {% if is_granted('ROLE_USER') %}
                                         <div class="card-content">
@@ -137,7 +162,9 @@
                                             </form>
                                         </div>
                                     {% endif %}
-                                    <div class="card-action">
+                                    <div class="card-reveal deep-purple lighten-5">
+                                        <span class="card-title grey-text text-darken-4"><i class="material-icons right">close</i></span>
+                                        <p style="font-family: Arial">Le {{ evenement.dateEvent ? evenement.dateEvent|date('d-m-Y à H:i') : '' }} à {{ evenement.ville }}</p>
                                         <a href="{{ path('evenement_show', {'id': evenement.id}) }}">visualiser</a>
                                         <p style="font-family: Arial">Publié par {{ evenement.utilisateur.pseudo }}</p>
                                     </div>
