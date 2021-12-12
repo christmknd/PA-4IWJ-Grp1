@@ -56,9 +56,9 @@ class AnnonceType extends AbstractType
                 'label' => 'Espece',
                 'required' => false,
                 'choices'  => [
-                    'Chien' => 'chien',
-                    'Chat' => 'chat',
-                    'Serpent' => 'serpent',
+                    'Chien' => 'Chien',
+                    'Chat' => 'Chat',
+                    'Serpent' => 'Serpent',
                     'Hamster' => 'Hamster',
                     'Autre' => 'Autre',
                 ],

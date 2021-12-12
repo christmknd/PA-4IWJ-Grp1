@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>{% block title %}Bienvenue!{% endblock %}</title>
+    <title>{% block title %}LaCarteDesAnimaux - Bienvenue!{% endblock %}</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     {% block stylesheets %}
@@ -79,14 +79,18 @@
         <div class="row">
             <div class="col l6 s12">
                 <h5 class="white-text">Qui sommes-nous ?</h5>
-                <p class="grey-text text-lighten-4">Présentation projet</p>
+                <p class="grey-text text-lighten-4">Une plateforme destiné à tous les amis des animaux afin de
+                    digitaliser la procédure d’adoption ou
+                    de recherche d’animaux perdus.
+                </p>
+                <a class="waves-effect waves-light btn" href="{{ path("plateforme") }}">Voir plus</a>
             </div>
         </div>
     </div>
     <div class="footer-copyright">
         <div class="container">
-            © 2021 Copyright Carte Des Animeaux
-            <a class="grey-text text-lighten-4 right" href="#">Plus d'informations</a>
+            © 2021 Copyright Carte Des Animaux
+            <a class="grey-text text-lighten-4 right" href="{{ path("mention_legale") }}">Mentions légales</a>
         </div>
     </div>
 </footer>

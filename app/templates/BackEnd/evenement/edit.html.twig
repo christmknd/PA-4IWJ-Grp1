@@ -1,17 +1,17 @@
 {% extends 'BackEnd/base.html.twig' %}
 
-{% block title %}Modifier Evenement{% endblock %}
+{% block title %}LaCarteDesAnimaux ADMIN - Modifier évènement{% endblock %}
 
 {% block javascripts %}
     <script src="{{ asset('js/autocompleteAuto.js') }}"></script>
 {% endblock %}
 
 {% block body %}
-    <h1>Modifier Evenement</h1>
+    <h1>Modifier évènement</h1>
 
     <div class="card-container">
         <div class="panel">
-            {{ include('BackEnd/evenement/_form.html.twig', {'button_label': 'Update'}) }}
+            {{ include('BackEnd/evenement/_form.html.twig', {'button_label': 'Modifier'}) }}
         </div>
     </div>
 

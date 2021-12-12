@@ -1,17 +1,17 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Modifier Annonce{% endblock %}
+{% block title %}LaCarteDesAnimaux - Modifier annonce{% endblock %}
 
 {% block javascripts %}
     <script src="{{ asset('js/autocompleteAuto.js') }}"></script>
 {% endblock %}
 
 {% block body %}
-    <h1>Modifier Annonce</h1>
+    <h1>Modifier annonce</h1>
 
     <div class="card-container">
         <div class="panel">
-            {{ include('annonce/_form.html.twig', {'button_label': 'Update'}) }}
+            {{ include('annonce/_form.html.twig', {'button_label': 'Modifier'}) }}
         </div>
     </div>
 
