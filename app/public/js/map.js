@@ -69,7 +69,7 @@ function initMapIndex() {
         // The marker
         const marker = new google.maps.Marker({
             position: mark_annonce,
-            icon : (annonce.type) === "Perte" ? "" : "",
+            icon : (annonce.type) === "Perte" ? "" : "../map_green2.png",
             animation: google.maps.Animation.DROP,
             map: map,
         });
@@ -112,7 +112,7 @@ function initMapIndex() {
         // The marker
         const marker = new google.maps.Marker({
             position: mark_evenement,
-            icon : "../map_green2.png",
+            icon : "../bleu_map-min.png",
             animation: google.maps.Animation.DROP,
             map: map,
         });
