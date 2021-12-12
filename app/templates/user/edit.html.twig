@@ -1,10 +1,9 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Modifier profil{% endblock %}
+{% block title %}LaCarteDesAnimaux - Modifier profil{% endblock %}
 
 {% block body %}
     <h1>Modifier mon profil</h1>
-
             {{ include('user/_form.html.twig', {'button_label': 'Enregistrer', 'errorMessages' : errorMessages}) }}
             <a href="{{ path('user_show') }}">
                 <button style ="background-color:#ffcc00; margin-bottom: 25px ; margin-left: 5px" class="btn">

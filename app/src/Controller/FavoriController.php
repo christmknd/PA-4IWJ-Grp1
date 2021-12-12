@@ -31,28 +31,6 @@ class FavoriController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/favori-annonce", name="_annonce")
-     */
-    public function indexFavoriAnnonce(AnnonceRepository $annonceRepository): Response
-    {
-        return $this->render('favori/favori_annonce.html.twig', [
-            'annonces' => $this->getUser()->getAnnoncesFavoris()
-        ]);
-    }
-
-    /**
-     * @Route("/favori-evenement", name="_evenement")
-     */
-    public function indexFavoriEvenement(EvenementRepository $evenementRepository): Response
-    {
-        $user=$this->getUser();
-        return $this->render('favori/favori_evenement.html.twig', [
-            'evenements' => $this->getUser()->getEvenementsFavoris(),
-            'user' => $user
-        ]);
-    }
-
 
     /**
      * @Route("/{id}/annonce-toggle", name="_annonce_toggle", methods={"POST"})

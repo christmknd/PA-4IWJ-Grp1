@@ -69,6 +69,7 @@ function initMapIndex() {
         // The marker
         const marker = new google.maps.Marker({
             position: mark_annonce,
+            icon : (annonce.type) === "Perte" ? "" : "",
             animation: google.maps.Animation.DROP,
             map: map,
         });

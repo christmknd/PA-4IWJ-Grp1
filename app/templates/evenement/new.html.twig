@@ -1,13 +1,13 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Ajouter Evenement{% endblock %}
+{% block title %}LaCarteDesAnimaux - Créer évènement{% endblock %}
 
 {% block javascripts %}
     <script src="{{ asset('js/autocompleteAuto.js') }}"></script>
 {% endblock %}
 
 {% block body %}
-    <h1>Créer Evenement</h1>
+    <h1>Créer évènement</h1>
 
     <div class="card-container">
         <div class="panel">
@@ -16,6 +16,6 @@
         <div class="map" id="map"></div>
     </div>
 
-    <a class="btn" href="{{ path('mes_evenements_index') }}">back to list</a>
+    <a class="btn" href="{{ path('mes_evenements_index') }}">Revenir à la liste</a>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAipTm3HoOVFjsVcePwaIRK9GhjqgvwS-U&libraries=places&callback=initMap&channel=GMPSB_addressselection_v1_cAB" async defer></script>
 {% endblock %}

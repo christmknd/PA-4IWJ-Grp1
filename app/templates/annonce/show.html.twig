@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Annonce{% endblock %}
+{% block title %}LaCarteDesAnimaux - Annonce{% endblock %}
 
 {% block body %}
 
@@ -9,8 +9,11 @@
             <div class="col s8 offset-s2">
                 <div class="card">
                     <div class="card-title">
-                        <h1 style="text-align: center">{{ annonce.nomAnimal }} - {{ annonce.espece }} </h1>
-                        <h5 style="text-align: center; color: darkgreen">{{ annonce.type }}</h5>
+                        <h1 style="text-align: center;">{{ annonce.nomAnimal }}</h1>
+                        <span class="badge">
+                                            <i class="material-icons">remove_red_eye</i>{{ annonce.nbrViews }}
+                            </span>
+                        <h5 style="text-align: center; color: {{ annonce.type == 'Adoption' ? "teal": "red" }}">{{ annonce.type }}</h5>
                         <hr>
                     </div>
                     <div class="card-content">
@@ -24,17 +27,18 @@
                         </div>
                         <div class="row">
                             <div class="col s6"><i class="material-icons small">pets</i></div>
-                            <div class="col s6">{{ annonce.sexe }}</div>
+                            <div class="col s6">{{ annonce.espece }}, {{ annonce.sexe }}, {{ annonce.age }} ans</div>
                         </div>
                     </div>
-                    <div class="button-list" style="margin-top: 20px; margin-bottom: 20px">
+                    <div class="button-list" style="display: flex; justify-content: start;">
                         {% if app.user.isVerified %}
                             {% if app.user == annonce.utilisateur %}
                                 <a class="btn" href="{{ path('annonce_edit', {'id': annonce.id}) }}">Modifier</a>
-                                {{ include('annonce/_delete_form.html.twig') }}
+                                <div style="margin-top: -5px">{{ include('annonce/_delete_form.html.twig') }}</div>
                                 <a class="btn" href="{{ path('mes_annonces_index') }}">Revenir à la liste</a>
                             {% else %}
-                                <a class="btn" style="background-color:#50acec" href="mailto:{{ annonce.utilisateur.email }}">Contacter
+                                <a class="btn" style="background-color:#50acec"
+                                   href="mailto:{{ annonce.utilisateur.email }}">Contacter
                                     le
                                     propriétaire</a>
                             {% endif %}
@@ -43,12 +47,14 @@
                             <p>Validez votre compte en cliquant sur le lien reçu par email.</p>
                         {% endif %}
                     </div>
+                    <div style="display: flex; justify-content: end;">
                     {% if isFavori %}
                         <span class="badge orange">Favori</span>
                     {% endif %}
                     <form method="post" action="{{ path('favori_annonce_toggle', {'id': annonce.id}) }}">
                         <button class="material-icons">{{ annonce.isFavori(app.user) ? 'star' : 'star_border' }}</button>
                     </form>
+                    </div>
                 </div>
             </div>
         </div>

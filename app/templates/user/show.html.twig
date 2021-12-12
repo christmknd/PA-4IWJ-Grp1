@@ -1,10 +1,8 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Mon profil{% endblock %}
+{% block title %}LaCarteDesAnimaux - Mon profil{% endblock %}
 
 {% block body %}
-
-
     <div class="container">
         <div class="row">
             <div class="col s8 offset-s2">
@@ -30,7 +28,7 @@
                             <div class="col m6">
                                 <i class="small material-icons">verified_user</i>
                             </div>
-                            <div class="col m6">
+                            <div style="display: flex; justify-content: space-around" class="col m6">
                                 {{ user.isVerified ? 'Oui' : 'Non' }}
                                 {% if not user.isVerified %}
                                         <form  method="post" action="{{ path('user_post_mail') }}">
@@ -42,15 +40,8 @@
                     </div>
                     <hr>
                     <div class="row">
-                        <div class="action-btn">
+                        <div style="padding-left: 10px" class="action-btn">
                             <ul>
-                                <li>
-                                    <a href="{{ path("mes_annonces_index") }}">
-                                        <button style ="background-color:darkgreen; margin: 5px" class="btn">
-                                            Voir mes annonces
-                                        </button>
-                                    </a>
-                                </li>
                                <li>
                                    <a href="{{ path('user_edit') }}">
                                        <button style ="background-color:#ffcc00; margin: 5px" class="btn">

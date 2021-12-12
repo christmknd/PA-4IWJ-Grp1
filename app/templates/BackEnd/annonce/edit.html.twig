@@ -1,20 +1,19 @@
 {% extends 'BackEnd/base.html.twig' %}
 
-{% block title %}Modifier Annonce{% endblock %}
+{% block title %}LaCarteDesAnimaux ADMIN - Modifier annonce{% endblock %}
 
 {% block javascripts %}
     <script src="{{ asset('js/autocompleteAuto.js') }}"></script>
 {% endblock %}
 
 {% block body %}
-    <h1>Modifier Annonce</h1>
+    <h1>Modifier annonce</h1>
 
     <div class="card-container">
         <div class="panel">
             {{ include('BackEnd/annonce/_form.html.twig', {'button_label': 'Update'}) }}
         </div>
     </div>
-
 
         <div class="last-btn" style="margin-top : 5px; margin-bottom: 20px;">
                 <a class="btn" href="{{ path('admin_annonces') }}">Revenir à la liste</a>
