@@ -1,0 +1,18 @@
+{
+  "build/app.css": "/build/app.css",
+  "build/app.js": "/build/app.js",
+  "build/base.css": "/build/base.css",
+  "build/base.js": "/build/base.js",
+  "build/animaux.js": "/build/animaux.js",
+  "build/carte.js": "/build/carte.js",
+  "build/chien.js": "/build/chien.js",
+  "build/salon.js": "/build/salon.js",
+  "build/landscape.js": "/build/landscape.js",
+  "build/runtime.js": "/build/runtime.js",
+  "build/vendors-node_modules_symfony_stimulus-bridge_dist_index_js-node_modules_core-js_modules_es_ob-7db861.js": "/build/vendors-node_modules_symfony_stimulus-bridge_dist_index_js-node_modules_core-js_modules_es_ob-7db861.js",
+  "build/images/landscape.jpeg": "/build/images/landscape.c0712f76.jpeg",
+  "build/images/carte.png": "/build/images/carte.3680e1fd.png",
+  "build/images/salon.jpeg": "/build/images/salon.064a3242.jpeg",
+  "build/images/chien-perdu.jpeg": "/build/images/chien-perdu.407f5e75.jpeg",
+  "build/images/animaux.webp": "/build/images/animaux.e87a0d26.webp"
+}

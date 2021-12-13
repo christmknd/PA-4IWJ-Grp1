@@ -1,0 +1,7 @@
+{{ form_start(form) }}
+    {{ form_widget(form) }}
+    {% for errorMessage in errorMessages %}
+        <div class="alert alert-danger" role="alert">{{ errorMessage }}</div>
+    {% endfor %}
+    <button class="btn" style ="margin: 5px">{{ button_label|default('Enregistrer') }}</button>
+{{ form_end(form) }}

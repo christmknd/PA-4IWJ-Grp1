@@ -1,0 +1,104 @@
+<?php //App__Entity__FilterSelection__CLASSMETADATA__
+
+return [PHP_INT_MAX, static function () { return \Symfony\Component\VarExporter\Internal\Hydrator::hydrate(
+    $o = [
+        clone (($p = &\Symfony\Component\VarExporter\Internal\Registry::$prototypes)['Doctrine\\ORM\\Mapping\\ClassMetadata'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Mapping\\ClassMetadata')),
+        clone ($p['Doctrine\\ORM\\Id\\IdentityGenerator'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Id\\IdentityGenerator')),
+    ],
+    null,
+    [
+        'stdClass' => [
+            'name' => [
+                'App\\Entity\\FilterSelection',
+            ],
+            'namespace' => [
+                'App\\Entity',
+            ],
+            'rootEntityName' => [
+                'App\\Entity\\FilterSelection',
+            ],
+            'customRepositoryClassName' => [
+                'App\\Repository\\FilterSelectionRepository',
+            ],
+            'identifier' => [
+                [
+                    'id',
+                ],
+            ],
+            'generatorType' => [
+                4,
+            ],
+            'fieldMappings' => [
+                [
+                    'id' => [
+                        'fieldName' => 'id',
+                        'type' => 'integer',
+                        'scale' => null,
+                        'length' => null,
+                        'unique' => false,
+                        'nullable' => false,
+                        'precision' => null,
+                        'id' => true,
+                        'columnName' => 'id',
+                    ],
+                    'sexe' => [
+                        'fieldName' => 'sexe',
+                        'type' => 'string',
+                        'scale' => null,
+                        'length' => null,
+                        'unique' => false,
+                        'nullable' => true,
+                        'precision' => null,
+                        'columnName' => 'sexe',
+                    ],
+                    'espece' => [
+                        'fieldName' => 'espece',
+                        'type' => 'string',
+                        'scale' => null,
+                        'length' => null,
+                        'unique' => false,
+                        'nullable' => true,
+                        'precision' => null,
+                        'columnName' => 'espece',
+                    ],
+                    'type' => [
+                        'fieldName' => 'type',
+                        'type' => 'string',
+                        'scale' => null,
+                        'length' => 255,
+                        'unique' => false,
+                        'nullable' => true,
+                        'precision' => null,
+                        'columnName' => 'type',
+                    ],
+                ],
+            ],
+            'fieldNames' => [
+                [
+                    'id' => 'id',
+                    'sexe' => 'sexe',
+                    'espece' => 'espece',
+                    'type' => 'type',
+                ],
+            ],
+            'columnNames' => [
+                [
+                    'id' => 'id',
+                    'sexe' => 'sexe',
+                    'espece' => 'espece',
+                    'type' => 'type',
+                ],
+            ],
+            'table' => [
+                [
+                    'name' => 'filter_selection',
+                ],
+            ],
+            'idGenerator' => [
+                $o[1],
+            ],
+        ],
+    ],
+    $o[0],
+    []
+); }];

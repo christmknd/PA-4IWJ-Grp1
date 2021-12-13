@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}LaCarteDesAnimaux - Mes annonces{% endblock %}
+
+{% block body %}
+    <h1>Liste de mes annonces</h1>
+
+    <section class="mesAnnonces">
+        {% for annonce in annonces %}
+            <div class="row">
+                <div class="col s12">
+                    <div class="card" style="border-radius: 10px">
+                        <span class="card-title"> <h3
+                                    style="text-align: center;text-transform: uppercase">{{ annonce.nomAnimal }}</h3></span>
+                        <h5 style="text-align: center; color: {{ annonce.type == 'Adoption' ? "teal": "red" }}">{{ annonce.type }}</h5>
+                        <hr>
+                        <div class="card-content" style="text-align: center">
+                            <h5 style="color: black">{{ annonce.espece }}</h5>
+                            <p>Age: {{ annonce.age }} ans</p>
+                            <p>Date de création de l'annonce:
+                                <strong>{{ annonce.atCreated ? annonce.atCreated|date('d-m-Y') : '' }}</strong></p>
+                        </div>
+                        <div class="row">
+                            <div style="display: flex; justify-content: start;" class="col s6">
+                                <a class="btn" href="{{ path('annonce_show', {'id': annonce.id}) }}">Visualiser</a>
+                                <a class="btn" href="{{ path('annonce_edit', {'id': annonce.id}) }}">Modifier</a>
+                                <div style="margin-top: -5px">{{ include('annonce/_delete_form.html.twig') }}</div>
+                            </div>
+                            <div style="display: flex; justify-content: end;" class="col s6">
+                                <form method="post"
+                                      action="{{ path('annonce_toggle_is_published', {'id': annonce.id}) }}">
+                                    <button class="btn"
+                                            style="background-color: {{ annonce.isPublished ? 'green' : 'red' }}">{{ annonce.isPublished ? 'Publié' : 'Brouillon' }}</button>
+                                </form>
+                                <form method="post"
+                                      action="{{ path('annonce_toggle_is_finish', {'id': annonce.id}) }}">
+                                    <button class="btn"
+                                            style="background-color: {{ annonce.isFinish ? 'green' : 'red' }}">{{ annonce.isFinish ? 'Donné' : 'En attente' }}</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% else %}
+            <div class="row">
+                <p>Pas d'annonce</p>
+            </div>
+        {% endfor %}
+    </section>
+
+    <div class="btn-annonce" style="margin-top: 20px ; margin-bottom: 20px;">
+        <a class="btn" href="{{ path('annonce_new') }}">Créer annonce</a>
+    </div>
+{% endblock %}

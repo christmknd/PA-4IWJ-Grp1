@@ -1,0 +1,39 @@
+{% extends 'BackEnd/base.html.twig' %}
+
+{% block title %}LaCarteDesAnimaux ADMIN - Accueil{% endblock %}
+
+{% block body %}
+<div class="example-wrapper">
+    <h1>Interface admin</h1>
+
+    <div class="container">
+        <div class="row" style="padding: 5px">
+            <div class="card col s12 m3">
+                        <p><i class=" large material-icons">border_color</i></p>
+                <div class="card-action">
+                    <a href="{{path("admin_annonces")}}">Annonces</a>
+                </div>
+            </div>
+            <div class="card col s12 m3">
+                <p><i class=" large material-icons">event</i></p>
+                <div class="card-action">
+                    <a href="{{path("admin_evenements")}}">Evenements</a>
+                </div>
+            </div>
+            <div class="card col s12 m3">
+                <p><i class=" large material-icons">group</i></p>
+                <div class="card-action">
+                    <a href="{{path("admin_users")}}">Comptes</a>
+                </div>
+            </div>
+            <div class="card col s12 m3">
+                <p><i class=" large material-icons">account_box</i></p>
+                <div class="card-action">
+                    <a href="{{path("admin_show")}}">Admin</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+{% endblock %}

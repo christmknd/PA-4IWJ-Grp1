@@ -1,0 +1,227 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}LaCarteDesAnimaux - Accueil{% endblock %}
+
+{% block javascripts %}
+    <script src="{{ asset('js/map.js') }}"></script>
+{% endblock %}
+
+{% block stylesheets %}
+    {{ encore_entry_link_tags('base') }}
+{% endblock %}
+
+{% block body %}
+
+    {% if not app.user %}
+
+        <section class="banner">
+            <!-- BANNIERE -->
+            <div class="container-fluid">
+                <div class="parallax-container">
+                    <div class="parallax" style="opacity: 0.6">
+                        <img style="max-width: 100%;height: auto"
+                             src="{{ asset('build/images/animaux.e87a0d26.webp') }}">
+                    </div>
+                </div>
+                <h2 style="text-align : center; font-family: Arial">Une plateforme pour les amoureux des animaux</h2>
+            </div>
+
+            <!-- SLIDERS  -->
+
+            <div class="container">
+                <div class="slider">
+                    <ul class="slides" style="box-shadow: 10px 5px 5px lightgrey;">
+                        <li>
+                            <img style="opacity: 0.6" src="{{ asset('build/images/chien-perdu.407f5e75.jpeg') }}">
+                            <div class="caption center-align">
+                                <h3>Adoptez ou déclarez la perte de votre animal</h3>
+                                <h5 style="font-family: Arial">À partir de notre système d'annonces</h5>
+                                <a class="waves-effect waves-light btn" href="{{ path('annonce_new') }}"> Déposer une
+                                    annonce</a>
+                            </div>
+                        </li>
+                        <li>
+                            <img style="opacity: 0.6" src="{{ asset('build/images/carte.3680e1fd.png') }}">
+                            <div class="caption left-align">
+                                <h3>Visualisez toutes les annonces de la plateforme</h3>
+                                <h5 style="font-family: Arial">Avec notre carte interactive</h5>
+                            </div>
+                        </li>
+                        <li>
+                            <img style="opacity: 0.6" src="{{ asset('build/images/salon.064a3242.jpeg') }}">
+                            <div class="caption right-align">
+                                <h3>Participez aux évenements publics</h3>
+                                <h5 style="font-family: Arial">Organisé par des associations <span
+                                            style="text-decoration:underline; ">certifiées</span><br/>
+                                    discutez, échangez et rencontrez votre futur animal de compagnie</h5>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+    {% endif %}
+
+
+    <section class="result">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col m6 s12" style="position: sticky ; top: 0; left: 0; padding-top: 150px">
+                    <!--The div element for the map -->
+                    <div id="map" style="height: 500px; width: 100%; box-shadow: 5px 5px 5px lightgrey;"></div>
+                </div>
+
+                <div class="hide-on-small-only col m6 s12" style="overflow: auto">
+                    <h3>Annonces en ligne</h3>
+                    {{ form_start(formTriAnnonces) }}
+                    <div style="border: black 1px solid;" class="row">
+                        <div style="border: black 1px solid;" class="col s3"> {{ form_row(formTriAnnonces.ageTri) }}</div>
+                        <div style="border: black 1px solid;" class="col s3">{{ form_row(formTriAnnonces.nbrViewTri) }}</div>
+                        <div style="border: black 1px solid;" class="col s3">{{ form_row(formTriAnnonces.dateAtCreatedTri) }}</div>
+                        <div style=" display: flex;justify-content: center; align-content: center; padding-top: 30px;" class="col s3">{{ form_row(formTriAnnonces.submit) }}</div>
+                    </div>
+                    {{ form_end(formTriAnnonces) }}
+
+                    {{ form_start (formFilterAnnonce) }}
+                    <div style="border: black 1px solid;" class="row">
+                        <div style="border: black 1px solid;" class="col s3">{{ form_row(formFilterAnnonce.sexe) }}</div>
+                        <div style="border: black 1px solid;" class="col s3">{{ form_row(formFilterAnnonce.espece) }}</div>
+                        <div style="border: black 1px solid;" class="col s3">{{ form_row(formFilterAnnonce.type) }}</div>
+                        <div style=" display: flex;justify-content: center; align-content: center; padding-top: 30px;" class="col s3">{{ form_row(formFilterAnnonce.submit) }}</div>
+                    </div>
+                    {{ form_end (formFilterAnnonce) }}
+
+
+                    <div class="row">
+                        {% for annonce in annonces %}
+                            <div  class="col s12">
+                                <div class="{{ annonce.type == 'Adoption' ? "card teal": "card red lighten-2" }}"
+                                     style="border-style: ridge ; box-shadow: 10px 5px 5px lightgrey;">
+                                    <div class="card-content white-text">
+                                        <div style="display: flex; justify-content: space-between;">
+                                            <p class="card-title"
+                                               style="font-family: Lato;text-shadow: 1px 1px 10px lightgrey;">{{ annonce.titre }}</p>
+                                            <p class="card-title"
+                                               style="font-family: Lato;text-shadow: 1px 1px 10px lightgrey;text-decoration:underline;">{{ annonce.type }}</p>
+                                        </div>
+                                        <p style="font-family: Arial; text-overflow: ellipsis; max-height:200px; white-space: nowrap;
+      overflow: hidden;"> {{ annonce.description }} </p>
+                                        <p style="padding-top: 10px; font-family: Arial">Localisation : {{ annonce.ville }}</p>
+                                    </div>
+                                    {% if is_granted('ROLE_USER') %}
+                                        <div style="display: flex; justify-content: space-between;" class="card-content">
+                                            <a class="waves-effect waves-light btn activator amber"
+                                               >Voir plus</a>
+                                            <form method="post"
+                                                  action="{{ path('favori_annonce_toggle', {'id': annonce.id}) }}">
+                                                <button class="material-icons">{{ annonce.isFavori(app.user) ? 'star' : 'star_border' }}</button>
+                                            </form>
+                                        </div>
+                                    {% endif %}
+                                    <div class="card-reveal green lighten-5">
+                                        <span class="card-title grey-text text-darken-4"><i
+                                                    class="material-icons right">close</i></span>
+                                        <a class="waves-effect waves-light btn"
+                                           href="{{ path('annonce_show', {'id': annonce.id}) }}">visualiser</a>
+                                        <span style="height: auto; width: auto" class="badge">
+                                            <i class="material-icons">remove_red_eye</i>{{ annonce.nbrViews }}</span>
+                                        <p style="font-family: Arial">Publié par {{ annonce.utilisateur.pseudo }},
+                                            le {{ annonce.atCreated ? annonce.atCreated|date('d-m-Y') : '' }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="annonceJson" class="annonceJson" style="display: none">{{ annonce.LatLng }} </div>
+                            <div id="annonceJson3" class="annonceJson3"
+                                 style="display: none"> {{ {"titre": annonce.titre,"nomAnimal":annonce.nomAnimal,"age":annonce.age, "espece":annonce.espece,"sexe":annonce.sexe,"pseudo":annonce.utilisateur.pseudo,"atCreated":annonce.atCreated ? annonce.atCreated|date('d-m-Y') : '',"lien":path('annonce_show', {'id': annonce.id}),"LatLng":annonce.LatLng }|json_encode() }} </div>
+                        {% else %}
+                            <div class="col s1 m4">
+                                <p style="font-family: Arial">Pas d'annonces</p>
+                            </div>
+                        {% endfor %}
+                    </div>
+
+                    <h3>Évènements à venir</h3>
+                    {{ form_start(formTriEvenements) }}
+                    <div style="border: black 1px solid;" class="row">
+                        <div style="border: black 1px solid;" class="col s3">{{ form_row(formTriEvenements.nbrViewTri) }}</div>
+                        <div style="border: black 1px solid;" class="col s3">{{ form_row(formTriEvenements.dateAtCreatedTri) }}</div>
+                        <div style="border: black 1px solid;" class="col s3">{{ form_row(formTriEvenements.dateEventTri) }}</div>
+                        <div style=" display: flex;justify-content: center; align-content: center; padding-top: 30px;" class="col s3">{{ form_row(formTriEvenements.submit) }}</div>
+                    </div>
+                    {{ form_end(formTriEvenements) }}
+
+
+                    <div class="row">
+                        {% for evenement in evenements %}
+                            <div class="col s12">
+                                <div class="card cyan darken-2"
+                                     style="border-style: ridge; box-shadow: 10px 5px 5px lightgrey;">
+                                    <div class="card-content white-text"
+                                         style="font-family: Lato;text-shadow: 1px 1px 10px lightgrey;">
+                                        <span class="card-title">{{ evenement.titre }}</span>
+                                        <p style="font-family: Arial; text-overflow: ellipsis; max-height:200px; white-space: nowrap;
+      overflow: hidden;">{{ evenement.description }}</p>
+                                        <p style="padding-top: 10px; font-family: Arial">Localisation : {{ evenement.ville }}</p>
+                                        <p style="padding-top: 10px; font-family: Arial">Date : {{ evenement.dateEvent ? evenement.dateEvent|date('d-m-Y à H:i') : '' }}</p>
+
+                                    </div>
+                                    {% if is_granted('ROLE_USER') %}
+                                        <div style="display: flex; justify-content: space-between;" class="card-content">
+                                            <a class="waves-effect waves-light btn activator amber"
+                                            >Voir plus</a>
+                                            <form method="post"
+                                                  action="{{ path('favori_evenement_toggle', {'id': evenement.id}) }}">
+                                                <button class="material-icons">{{ evenement.isFavori(app.user) ? 'star' : 'star_border' }}</button>
+                                            </form>
+                                        </div>
+                                    {% endif %}
+                                    <div class="card-reveal deep-purple lighten-5">
+                                        <span class="card-title grey-text text-darken-4"><i
+                                                    class="material-icons right">close</i></span>
+                                        <span style="height: auto; width: auto" class="badge">
+                                            <i class="material-icons">remove_red_eye</i>{{ evenement.nbrViews }}</span>
+                                        <p style="font-family: Arial">Publié par {{ evenement.utilisateur.pseudo }},
+                                            le {{ evenement.atCreated ? evenement.atCreated|date('d-m-Y') : '' }}
+                                        </p>
+                                        <a class="waves-effect waves-light btn" href="{{ path('evenement_show', {'id': evenement.id}) }}">visualiser</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="evenementJson" class="evenementJson"
+                                 style="display: none">{{ evenement.LatLng }}</div>
+                            <div id="evenementJson3" class="evenementJson3"
+                                 style="display: none"> {{ {"titre": evenement.titre,"ville": evenement.ville,"dateEvent":evenement.dateEvent ? evenement.dateEvent|date('d-m-Y à H:i') : '',"annonces":evenement.annonces|length, "user_registered":evenement.getListUserRegistered()|length,"pseudo":evenement.utilisateur.pseudo,"atCreated":evenement.atCreated ? evenement.atCreated|date('d-m-Y') : '',"lien":path('evenement_show', {'id': evenement.id}),"LatLng":evenement.LatLng }|json_encode() }} </div>
+                        {% else %}
+                            <div class="col s1 m4">
+                                <p style="font-family: Arial">Pas d'evenements</p>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <script>
+        annoncesJson()
+        evenementsJson()
+    </script>
+    <script async
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAipTm3HoOVFjsVcePwaIRK9GhjqgvwS-U&callback=initMapIndex">
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var elems = document.querySelectorAll('.parallax');
+            var instances = M.Parallax.init(elems);
+        });
+
+        document.addEventListener('DOMContentLoaded', function () {
+            var elems = document.querySelectorAll('.slider');
+            var instances = M.Slider.init(elems);
+        });
+    </script>
+    </div>
+{% endblock %}

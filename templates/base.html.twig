@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}LaCarteDesAnimaux - Bienvenue!{% endblock %}</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    {% block stylesheets %} {{ encore_entry_link_tags('base') }}{% endblock %}
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    {% block javascripts %}{{ encore_entry_script_tags('app') }}{% endblock %}
+</head>
+<body>
+<div class="navbar-fixed">
+    <nav>
+        <div class="nav-wrapper green darken-2">
+            <a href="{{ path("default") }}" class=" hide-on-small-only brand-logo"
+               style="margin-left: 20px; font-family: Lato">La carte des Animaux</a>
+            <a href="#" data-target="sidenav-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+                {% if is_granted('ROLE_ADMIN') %}
+                    <a class="btn" href="{{ path('admin') }}">Mode Admin</a>
+                {% endif %}
+                <li><a href="{{ path("default") }}">Accueil</a></li>
+                <li><a href="{{ path("plateforme") }}">Présentation</a></li>
+                {% if app.user %}
+                    <li><a href="{{ path("mes_annonces_index") }}">Annonces</a></li>
+                    {% if not is_granted('ROLE_ASSO') %}
+                        <li><a href="{{ path("evenements_registred") }}">Evenements</a></li>
+                    {% endif %}
+                    {% if is_granted('ROLE_ASSO') %}
+                        <li><a href="{{ path("mes_evenements_index") }}">Mes evenements</a></li>
+                    {% endif %}
+                    <li><a href="{{ path("favori") }}">Mes favoris</a></li>
+                    <li><a href="{{ path("user_show") }}">Mon compte</a></li>
+                    <li><a href="{{ path("app_logout") }}">Se deconnecter</a></li>
+                {% else %}
+                    <li><a href="{{ path("app_register") }}">S'incrire</a></li>
+                    <li><a href="{{ path("app_login") }}">Se connecter</a></li>
+                {% endif %}
+            </ul>
+        </div>
+    </nav>
+    <ul class="sidenav" id="sidenav-demo">
+        {% if is_granted('ROLE_ADMIN') %}
+            <a class="btn" href="{{ path('admin') }}">Mode Admin</a>
+        {% endif %}
+        <li><a href="{{ path("default") }}">Accueil</a></li>
+        <li><a href="{{ path("plateforme") }}">Présentation</a></li>
+        {% if app.user %}
+            <li><a href="{{ path("mes_annonces_index") }}">Annonces</a></li>
+            {% if is_granted('ROLE_ASSO') %}
+                <li><a href="{{ path("mes_evenements_index") }}">Evenements</a></li>
+            {% endif %}
+            <li><a href="{{ path("favori") }}">Mes favoris</a></li>
+            <li><a href="{{ path("user_show") }}">Mon compte</a></li>
+            <li><a href="{{ path("app_logout") }}">Se deconnecter</a></li>
+        {% else %}
+            <li><a href="{{ path("app_register") }}">S'incrire</a></li>
+            <li><a href="{{ path("app_login") }}">Se connecter</a></li>
+        {% endif %}
+    </ul>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col s12">
+            {% block body %}
+
+            {% endblock %}
+        </div>
+    </div>
+</div>
+
+<footer class="page-footer green darken-2">
+    <div class="container">
+        <div class="row">
+            <div class="col l6 s12">
+                <h5 class="white-text">Qui sommes-nous ?</h5>
+                <p class="grey-text text-lighten-4">Une plateforme destiné à tous les amis des animaux afin de
+                    digitaliser la procédure d’adoption ou
+                    de recherche d’animaux perdus.
+                </p>
+                <a class="waves-effect waves-light btn" href="{{ path("plateforme") }}">Voir plus</a>
+
+            </div>
+            <div class="col l4 offset-l2 s12">
+                <h5 class="white-text">Menu</h5>
+                <ul>
+                    <li><a href="{{ path("default") }}">Accueil</a></li>
+                    <li><a href="{{ path("plateforme") }}">Présentation</a></li>
+                    {% if app.user %}
+                        <li><a href="{{ path("mes_annonces_index") }}">Annonces</a></li>
+                        <li><a href="{{ path("favori") }}">Mes favoris</a></li>
+                        {% if is_granted('ROLE_ASSO') %}
+                            <li><a href="{{ path("mes_evenements_index") }}">Mes evenements</a></li>
+                        {% endif %}
+                        <li><a href="{{ path("user_show") }}">Mon compte</a></li>
+                        <li><a href="{{ path("app_logout") }}">Se deconnecter</a></li>
+                    {% else %}
+                        <li><a href="{{ path("app_register") }}">S'incrire</a></li>
+                        <li><a href="{{ path("app_login") }}">Se connecter</a></li>
+                    {% endif %}
+                    <li><a href="mailto:esgipa2021@gmail.com">Nous contacter</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="footer-copyright">
+        <div class="container">
+            © 2021 Copyright Carte Des Animaux
+            <a class="grey-text text-lighten-4 right" href="{{ path("mention_legale") }}">Mentions légales</a>
+        </div>
+    </div>
+</footer>
+
+
+<script>
+    {% for type, messages in app.flashes %}
+    {% for message in messages %}
+    M.toast({
+        html: '{{ message }}',
+        classes: '{{ type }}'
+    });
+    {% endfor %}
+    {% endfor %}
+    document.addEventListener('DOMContentLoaded', function () {
+        var elems = document.querySelectorAll('.dropdown-trigger');
+        var instances = M.Dropdown.init(elems);
+    });
+    document.addEventListener('DOMContentLoaded', function () {
+        var elems = document.querySelectorAll('select');
+        var instances = M.FormSelect.init(elems);
+    });
+    //navbar
+    document.addEventListener('DOMContentLoaded', function () {
+        let elems = document.querySelectorAll('.sidenav');
+        let instances = M.Sidenav.init(elems);
+    });
+</script>
+</body>
+</html>

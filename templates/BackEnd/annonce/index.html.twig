@@ -1,0 +1,78 @@
+{% extends 'BackEnd/base.html.twig' %}
+
+{% block title %}LaCarteDesAnimaux ADMIN - Annonces en ligne{% endblock %}
+
+{% block body %}
+    <h1>Annonces en ligne</h1>
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col m3">
+                <div class="collection" style="box-shadow: 10px 5px 5px lightgrey;
+">
+                    <a href="{{path("admin")}}" class="collection-item"><span class="badge"><i class=" small material-icons">home</i></span>Interface Admin</a>
+                    <a href="{{path("admin_annonces")}}" class="collection-item"><span class="badge"><i class=" small material-icons">border_color</i></span>Annonce</a>
+                    <a href="{{path("admin_evenements")}}" class="collection-item"><span class="badge"><i class=" small material-icons">event</i></span>Evenements</a>
+                    <a href="{{path("admin_users")}}" class="collection-item"><span class="badge"><i class=" small material-icons">group</i></span>Comptes</a>
+                    <a href="{{path("admin_show")}}" class="collection-item"><span class="badge"><i class=" small material-icons">account_box</i></span>Admin</a>
+                </div>
+            </div>
+            <div class="col m9">
+                <table class="responsive-table striped" style="margin-bottom: 20px">
+                    <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Titre</th>
+                        <th>Type</th>
+                        <th>Description</th>
+                        <th>Date de création</th>
+                        <th>Nombre de Vue</th>
+                        <th>Nom Animal</th>
+                        <th>Espece</th>
+                        <th>Ville</th>
+                        <th>Sexe</th>
+                        <th>Age</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for annonce in annonces %}
+                        <tr>
+                            <td>{{ annonce.id }}</td>
+                            <td>{{ annonce.titre }}</td>
+                            <td>{{ annonce.type }}</td>
+                            <td>{{ annonce.description }}</td>
+                            <td>{{ annonce.atCreated ? annonce.atCreated|date('Y-m-d') : '' }}</td>
+                            <td>{{ annonce.nbrViews }}</td>
+                            <td>{{ annonce.nomAnimal }}</td>
+                            <td>{{ annonce.espece }}</td>
+                            <td>{{ annonce.ville }}</td>
+                            <td>{{ annonce.sexe }}</td>
+                            <td>{{ annonce.age }}</td>
+                            <td>
+                                <a class="btn" href="{{ path('admin_annonces_show', {'id': annonce.id}) }}">visualiser</a>
+                                <a class="btn" href="{{ path('admin_annonces_edit', {'id': annonce.id}) }}">Modifier</a>
+                                {{ include('BackEnd/annonce/_delete_form.html.twig') }}
+                                <form method="post" action="{{ path('annonce_toggle_is_published', {'id': annonce.id}) }}">
+                                    <button class="btn" style="background-color: {{ annonce.isPublished ? 'green' : 'red' }}">{{ annonce.isPublished ? 'Publié' : 'Brouillon' }}</button>
+                                </form>
+                                <form method="post" action="{{ path('annonce_toggle_is_finish', {'id': annonce.id}) }}">
+                                    <button class="btn" style="background-color: {{ annonce.isFinish ? 'green' : 'red' }}">{{ annonce.isFinish ? 'Donné' : 'En attente' }}</button>
+                                </form>
+                            </td>
+                        </tr>
+                    {% else %}
+                        <tr>
+                            <td colspan="13">Pas d'annonce</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+{% endblock %}

@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}LaCarteDesAnimaux - Modifier annonce{% endblock %}
+
+{% block javascripts %}
+    <script src="{{ asset('js/autocompleteAuto.js') }}"></script>
+{% endblock %}
+
+{% block body %}
+    <h1>Modifier annonce</h1>
+
+    <div class="card-container">
+        <div class="panel">
+            {{ include('annonce/_form.html.twig', {'button_label': 'Modifier'}) }}
+        </div>
+    </div>
+
+    <div class="button-list" style="margin-top: 20px; margin-bottom: 20px">
+        <a class="btn" href="{{ path('mes_annonces_index') }}">Revenir à la liste</a>
+
+        {{ include('annonce/_delete_form.html.twig') }}
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAipTm3HoOVFjsVcePwaIRK9GhjqgvwS-U&libraries=places&callback=initMap&channel=GMPSB_addressselection_v1_cAB" async defer></script>
+    </div>
+
+
+{% endblock %}

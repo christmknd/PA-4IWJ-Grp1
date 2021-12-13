@@ -1,0 +1,149 @@
+{% extends 'BackEnd/base.html.twig' %}
+
+{% block title %}LaCarteDesAnimaux ADMIN - Évènement{% endblock %}
+
+{% block body %}
+    <h1>Évènement</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Utilisateur</th>
+                <td>{{ evenement.utilisateur.pseudo }}</td>
+            </tr>
+            <tr>
+                <th>Titre</th>
+                <td>{{ evenement.titre }}</td>
+            </tr>
+            <tr>
+                <th>Date</th>
+                <td>{{ evenement.dateEvent ? evenement.dateEvent|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Adress</th>
+                <td>{{ evenement.address }}</td>
+            </tr>
+            <tr>
+                <th>Ville</th>
+                <td>{{ evenement.ville }}</td>
+            </tr>
+            <tr>
+                <th>Code Postal</th>
+                <td>{{ evenement.zipCode }}</td>
+            </tr>
+            <tr>
+                <th>Pays</th>
+                <td>{{ evenement.pays }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ evenement.description }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="last-button" style="padding-top: 10px;">
+        <a class="btn" href="{{ path('admin_evenements_edit', {'id': evenement.id}) }}">edit</a>
+        {{ include('BackEnd/evenement/_delete_form.html.twig') }}
+    </div>
+
+    <hr style="margin-top: 20px ; border: 1px solid black"/>
+
+    <h2>Annonces dans cet evenement</h2>
+    <table class="table" style="margin-bottom: 20px">
+        <thead>
+        <tr>
+            <th>Titre</th>
+            <th>Type</th>
+            <th>Description</th>
+            <th>AtCreated</th>
+            <th>NbrViews</th>
+            <th>NomAnimal</th>
+            <th>Espece</th>
+            <th>Ville</th>
+            <th>Sexe</th>
+            <th>Age</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for annonce in evenement.annonces %}
+            <tr>
+                <td>{{ annonce.titre }}</td>
+                <td>{{ annonce.type }}</td>
+                <td>{{ annonce.description }}</td>
+                <td>{{ annonce.atCreated ? annonce.atCreated|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ annonce.nbrViews }}</td>
+                <td>{{ annonce.nomAnimal }}</td>
+                <td>{{ annonce.espece }}</td>
+                <td>{{ annonce.ville }}</td>
+                <td>{{ annonce.sexe }}</td>
+                <td>{{ annonce.age }}</td>
+                {% if app.user == evenement.utilisateur %}
+                    <td>
+                        <form method="post" action="{{ path('admin_evenements_remove_annonce', {'id': evenement.id, 'annonce_id': annonce.id}) }}">
+                            <button class="btn">Supprimer annonce</button>
+                        </form>
+                    </td>
+                {% endif %}
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="13">Pas d'annonce</td>
+            </tr>
+        {% endfor %}
+
+        </tbody>
+    </table>
+
+    <hr style="margin-top: 20px ; border: 1px solid black"/>
+
+    {% if app.user == evenement.utilisateur %}
+        <h2>Mes annonces exclues de l'événement</h2>
+
+        <table class="table" style="margin-bottom: 20px">
+            <thead>
+            <tr>
+                <th>Titre</th>
+                <th>Type</th>
+                <th>Description</th>
+                <th>AtCreated</th>
+                <th>NbrViews</th>
+                <th>NomAnimal</th>
+                <th>Espece</th>
+                <th>Ville</th>
+                <th>Sexe</th>
+                <th>Age</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for annonce in app.user.annonces %}
+                {% if annonce not in evenement.annonces %}
+                    <tr>
+                        <td>{{ annonce.titre }}</td>
+                        <td>{{ annonce.type }}</td>
+                        <td>{{ annonce.description }}</td>
+                        <td>{{ annonce.atCreated ? annonce.atCreated|date('Y-m-d H:i:s') : '' }}</td>
+                        <td>{{ annonce.nbrViews }}</td>
+                        <td>{{ annonce.nomAnimal }}</td>
+                        <td>{{ annonce.espece }}</td>
+                        <td>{{ annonce.ville }}</td>
+                        <td>{{ annonce.sexe }}</td>
+                        <td>{{ annonce.age }}</td>
+                        <td>
+                            <a class="btn" href="{{ path('admin_evenements_show', {'id': annonce.id}) }}">visualiser</a>
+                            <form method="post" action="{{ path('admin_evenements_add_annonce', {'id': evenement.id, 'annonce_id':annonce.id}) }}">
+                                <button class="btn">Ajouter annonce</button>
+                            </form>
+                        </td>
+                    </tr>
+                {% endif %}
+            {% else %}
+                <tr>
+                    <td colspan="13">Pas d'annonce</td>
+                </tr>
+            {% endfor %}
+
+            </tbody>
+        </table>
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,11 @@
+{% extends 'BackEnd/base.html.twig' %}
+
+{% block title %}LaCarteDesAnimaux ADMIN - Créer User{% endblock %}
+
+{% block body %}
+    <h1>Créer User</h1>
+
+    {{ include('BackEnd/user/_form.html.twig') }}
+
+    <a class="btn" href="{{ path('admin_users') }}">Revenir à la liste</a>
+{% endblock %}

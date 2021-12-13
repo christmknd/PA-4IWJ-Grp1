@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}LaCarteDesAnimaux - Nouvelle annonce{% endblock %}
+
+{% block javascripts %}
+    <script src="{{ asset('js/autocompleteAuto.js') }}"></script>
+{% endblock %}
+
+{% block body %}
+    <h1>Créer une nouvelle annonce</h1>
+
+    <div class="card-container">
+        <div class="panel">
+            {{ include('annonce/_form.html.twig') }}
+        </div>
+        <div class="map" id="map"></div>
+    </div>
+
+    <a class="btn" href="{{ path('mes_annonces_index') }}">Revenir à la liste</a>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAipTm3HoOVFjsVcePwaIRK9GhjqgvwS-U&libraries=places&callback=initMap&channel=GMPSB_addressselection_v1_cAB" async defer></script>
+{% endblock %}
