@@ -1,0 +1,128 @@
+<?php //App__Entity__TriSelection__CLASSMETADATA__
+
+return [PHP_INT_MAX, static function () { return \Symfony\Component\VarExporter\Internal\Hydrator::hydrate(
+    $o = [
+        clone (($p = &\Symfony\Component\VarExporter\Internal\Registry::$prototypes)['Doctrine\\ORM\\Mapping\\ClassMetadata'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Mapping\\ClassMetadata')),
+        clone ($p['Doctrine\\ORM\\Id\\IdentityGenerator'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Id\\IdentityGenerator')),
+    ],
+    null,
+    [
+        'stdClass' => [
+            'name' => [
+                'App\\Entity\\TriSelection',
+            ],
+            'namespace' => [
+                'App\\Entity',
+            ],
+            'rootEntityName' => [
+                'App\\Entity\\TriSelection',
+            ],
+            'customRepositoryClassName' => [
+                'App\\Repository\\TriSelectionRepository',
+            ],
+            'identifier' => [
+                [
+                    'id',
+                ],
+            ],
+            'generatorType' => [
+                4,
+            ],
+            'fieldMappings' => [
+                [
+                    'id' => [
+                        'fieldName' => 'id',
+                        'type' => 'integer',
+                        'scale' => null,
+                        'length' => null,
+                        'unique' => false,
+                        'nullable' => false,
+                        'precision' => null,
+                        'id' => true,
+                        'columnName' => 'id',
+                    ],
+                    'ageTri' => [
+                        'fieldName' => 'ageTri',
+                        'type' => 'string',
+                        'scale' => null,
+                        'length' => null,
+                        'unique' => false,
+                        'nullable' => true,
+                        'precision' => null,
+                        'columnName' => 'age_tri',
+                    ],
+                    'nbrViewTri' => [
+                        'fieldName' => 'nbrViewTri',
+                        'type' => 'string',
+                        'scale' => null,
+                        'length' => null,
+                        'unique' => false,
+                        'nullable' => true,
+                        'precision' => null,
+                        'columnName' => 'nbr_view_tri',
+                    ],
+                    'dateAtCreatedTri' => [
+                        'fieldName' => 'dateAtCreatedTri',
+                        'type' => 'string',
+                        'scale' => null,
+                        'length' => null,
+                        'unique' => false,
+                        'nullable' => true,
+                        'precision' => null,
+                        'columnName' => 'date_at_created_tri',
+                    ],
+                    'dateEventTri' => [
+                        'fieldName' => 'dateEventTri',
+                        'type' => 'string',
+                        'scale' => null,
+                        'length' => null,
+                        'unique' => false,
+                        'nullable' => true,
+                        'precision' => null,
+                        'columnName' => 'date_event_tri',
+                    ],
+                    'lieuTri' => [
+                        'fieldName' => 'lieuTri',
+                        'type' => 'string',
+                        'scale' => null,
+                        'length' => null,
+                        'unique' => false,
+                        'nullable' => true,
+                        'precision' => null,
+                        'columnName' => 'lieu_tri',
+                    ],
+                ],
+            ],
+            'fieldNames' => [
+                [
+                    'id' => 'id',
+                    'age_tri' => 'ageTri',
+                    'nbr_view_tri' => 'nbrViewTri',
+                    'date_at_created_tri' => 'dateAtCreatedTri',
+                    'date_event_tri' => 'dateEventTri',
+                    'lieu_tri' => 'lieuTri',
+                ],
+            ],
+            'columnNames' => [
+                [
+                    'id' => 'id',
+                    'ageTri' => 'age_tri',
+                    'nbrViewTri' => 'nbr_view_tri',
+                    'dateAtCreatedTri' => 'date_at_created_tri',
+                    'dateEventTri' => 'date_event_tri',
+                    'lieuTri' => 'lieu_tri',
+                ],
+            ],
+            'table' => [
+                [
+                    'name' => 'tri_selection',
+                ],
+            ],
+            'idGenerator' => [
+                $o[1],
+            ],
+        ],
+    ],
+    $o[0],
+    []
+); }];
