@@ -1,0 +1,44 @@
+{
+  "entrypoints": {
+    "app": {
+      "js": [
+        "/build/runtime.js"
+      ]
+    },
+    "base": {
+      "js": [
+        "/build/runtime.js"
+      ]
+    },
+    "animaux": {
+      "js": [
+        "/build/runtime.js",
+        "/build/animaux.js"
+      ]
+    },
+    "carte": {
+      "js": [
+        "/build/runtime.js",
+        "/build/carte.js"
+      ]
+    },
+    "chien": {
+      "js": [
+        "/build/runtime.js",
+        "/build/chien.js"
+      ]
+    },
+    "salon": {
+      "js": [
+        "/build/runtime.js",
+        "/build/salon.js"
+      ]
+    },
+    "landscape": {
+      "js": [
+        "/build/runtime.js",
+        "/build/landscape.js"
+      ]
+    }
+  }
+}
