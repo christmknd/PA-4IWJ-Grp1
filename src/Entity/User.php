@@ -317,7 +317,7 @@ class User implements UserInterface
                         [
                             'headers' => [
                                 'Accept' => 'application/json',
-                                'Authorization' => 'Bearer 98d18174-b929-375e-8148-c60c66a6536a',
+                                'Authorization' => 'Bearer '.$_SERVER['KEY_INSEE_API'],
                             ],
                         ]
                     );
